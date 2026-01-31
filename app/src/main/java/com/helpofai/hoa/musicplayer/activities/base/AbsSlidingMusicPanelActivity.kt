@@ -346,7 +346,7 @@ abstract class AbsSlidingMusicPanelActivity : AbsMusicServiceActivity(),
         if (VersionUtils.hasOreo()) return
         navigationBarColorAnimator?.cancel()
         navigationBarColorAnimator = ValueAnimator
-            .ofArgb(window.navigationBarColor, color).apply {
+            .ofArgb(navigationBarColor, color).apply {
                 duration = ViewUtil.hoa_MUSIC_ANIM_TIME.toLong()
                 interpolator = PathInterpolator(0.4f, 0f, 1f, 1f)
                 addUpdateListener { animation: ValueAnimator ->

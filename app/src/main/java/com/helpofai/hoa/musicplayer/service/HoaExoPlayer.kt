@@ -30,7 +30,7 @@ import com.helpofai.hoa.musicplayer.util.PreferenceUtil.playbackSpeed
 import com.helpofai.hoa.musicplayer.util.logE
 
 @OptIn(UnstableApi::class)
-class hoaExoPlayer(context: Context) : AudioManagerPlayback(context), Player.Listener {
+class HoaExoPlayer(context: Context) : AudioManagerPlayback(context), Player.Listener {
     private val stereoProcessor = StereoProcessor()
     private val reverbProcessor = ReverbProcessor()
     private val bassBoostProcessor = BassBoostProcessor()
@@ -63,7 +63,7 @@ class hoaExoPlayer(context: Context) : AudioManagerPlayback(context), Player.Lis
                 enableAudioTrackPlaybackParams: Boolean
             ): AudioSink? {
                 val useFloat = enableFloatOutput || PreferenceUtil.isHighResAudio
-                return DefaultAudioSink.Builder()
+                return DefaultAudioSink.Builder(context)
                     .setAudioProcessors(arrayOf(stereoProcessor, reverbProcessor, bassBoostProcessor))
                     .setEnableFloatOutput(useFloat)
                     .setEnableAudioTrackPlaybackParams(enableAudioTrackPlaybackParams)
@@ -299,6 +299,6 @@ class hoaExoPlayer(context: Context) : AudioManagerPlayback(context), Player.Lis
     }
 
     companion object {
-        val TAG: String = hoaExoPlayer::class.java.simpleName
+        val TAG: String = HoaExoPlayer::class.java.simpleName
     }
 }

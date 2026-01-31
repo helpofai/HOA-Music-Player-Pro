@@ -677,15 +677,15 @@ class MusicService : MediaBrowserServiceCompat(),
 
             TOGGLE_HEADSET -> registerHeadsetEvents()
 
-            "audio_balance" -> (playback as? hoaExoPlayer)?.setBalance(com.helpofai.hoa.musicplayer.util.PreferenceUtil.balance)
+            "audio_balance" -> (playback as? HoaExoPlayer)?.setBalance(com.helpofai.hoa.musicplayer.util.PreferenceUtil.balance)
 
-            "audio_stereo_width" -> (playback as? hoaExoPlayer)?.setStereoWidth(com.helpofai.hoa.musicplayer.util.PreferenceUtil.stereoWidth)
+            "audio_stereo_width" -> (playback as? HoaExoPlayer)?.setStereoWidth(com.helpofai.hoa.musicplayer.util.PreferenceUtil.stereoWidth)
 
-            "audio_bass_strength" -> (playback as? hoaExoPlayer)?.setBassStrength(com.helpofai.hoa.musicplayer.util.PreferenceUtil.bassStrength)
+            "audio_bass_strength" -> (playback as? HoaExoPlayer)?.setBassStrength(com.helpofai.hoa.musicplayer.util.PreferenceUtil.bassStrength)
 
-            "audio_reverb_amount" -> (playback as? hoaExoPlayer)?.setReverbAmount(com.helpofai.hoa.musicplayer.util.PreferenceUtil.reverbAmount)
+            "audio_reverb_amount" -> (playback as? HoaExoPlayer)?.setReverbAmount(com.helpofai.hoa.musicplayer.util.PreferenceUtil.reverbAmount)
 
-            "audio_clarity" -> (playback as? hoaExoPlayer)?.setClarity(com.helpofai.hoa.musicplayer.util.PreferenceUtil.clarity)
+            "audio_clarity" -> (playback as? HoaExoPlayer)?.setClarity(com.helpofai.hoa.musicplayer.util.PreferenceUtil.clarity)
         }
     }
 
