@@ -451,8 +451,8 @@
     <string name="restored_previous_purchases">Předchozí nákupy byly obnoveny.</string>
     <string name="restoring_purchase">Obnovuji nákup…</string>
     <string name="billing_error">An error occurred while communicating with Google Play Billing</string>
-    <string name="retro_music_player">HOA Music Přehrávač</string>
-    <string name="retro_music_pro">HOA Music Pro</string>
+    <string name="hoa_music_player">HOA Music Přehrávač</string>
+    <string name="hoa_music_pro">HOA Music Pro</string>
     <string name="ringtone_summary">Aplikace potřebuje přístup k nastavení zařízení pro nastavení hudby jako vyzvánění</string>
     <string name="ringtone_title">Ringtone (Optional)</string>
     <string name="permission_alarm_summary">Aplikace potřebuje oprávnění aby mohla naplánovat konkrétní budíky pro nastavení časovačů spánku</string>
@@ -536,7 +536,7 @@
     <string name="track_list">Číslo skladby</string>
     <string name="translate">Překlad</string>
     <string name="translate_community">Pomožte nám přeložit tuto aplikaci do vašeho jazyka</string>
-    <string name="try_retro_music_premium">Vyzkoušejte HOA Music Premium</string>
+    <string name="try_hoa_music_premium">Vyzkoušejte HOA Music Premium</string>
     <string name="twitter_page">Twitter</string>
     <string name="twitter_page_summary">Sdílejte svůj design s HOA Music</string>
     <string name="unlabeled">Bez štítku</string>

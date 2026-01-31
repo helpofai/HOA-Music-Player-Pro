@@ -52,13 +52,13 @@ class AboutFragment : Fragment(R.layout.fragment_about), View.OnClickListener {
     }
 
     private fun setUpView() {
-        binding.aboutContent.cardRetroInfo.appGithub.setOnClickListener(this)
-        binding.aboutContent.cardRetroInfo.faqLink.setOnClickListener(this)
-        binding.aboutContent.cardRetroInfo.appRate.setOnClickListener(this)
-        binding.aboutContent.cardRetroInfo.appTranslation.setOnClickListener(this)
-        binding.aboutContent.cardRetroInfo.appShare.setOnClickListener(this)
-        binding.aboutContent.cardRetroInfo.donateLink.setOnClickListener(this)
-        binding.aboutContent.cardRetroInfo.bugReportLink.setOnClickListener(this)
+        binding.aboutContent.cardHoaInfo.appGithub.setOnClickListener(this)
+        binding.aboutContent.cardHoaInfo.faqLink.setOnClickListener(this)
+        binding.aboutContent.cardHoaInfo.appRate.setOnClickListener(this)
+        binding.aboutContent.cardHoaInfo.appTranslation.setOnClickListener(this)
+        binding.aboutContent.cardHoaInfo.appShare.setOnClickListener(this)
+        binding.aboutContent.cardHoaInfo.donateLink.setOnClickListener(this)
+        binding.aboutContent.cardHoaInfo.bugReportLink.setOnClickListener(this)
 
         binding.aboutContent.cardSocial.telegramLink.setOnClickListener(this)
         binding.aboutContent.cardSocial.twitterLink.setOnClickListener(this)

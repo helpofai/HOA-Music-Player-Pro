@@ -471,8 +471,8 @@
 
     <string name="restoring_purchase">Restoring purchase…</string>
 
-    <string name="retro_music_player">HOA Music Player</string>
-    <string name="retro_music_pro">HOA Music Pro</string>
+    <string name="hoa_music_player">HOA Music Player</string>
+    <string name="hoa_music_pro">HOA Music Pro</string>
 
     <string name="saf_delete_failed">File delete failed: %s</string>
     <!-- SAF -->
@@ -581,7 +581,7 @@
     <string name="translate">Translate</string>
     <string name="translate_community">Help us translate the app to your language</string>
 
-    <string name="try_retro_music_premium">Try HOA Music Premium</string>
+    <string name="try_hoa_music_premium">Try HOA Music Premium</string>
 
     <string name="twitter_page">Twitter</string>
     <string name="twitter_page_summary">Share your design with HOA Music</string>

@@ -418,8 +418,8 @@
     <string name="restored_previous_purchase_please_restart">Restored previous purchase. Please restart the app to make use of all features.</string>
     <string name="restored_previous_purchases">Restored previous purchases.</string>
     <string name="restoring_purchase">Restoring purchase…</string>
-    <string name="retro_music_player">HOA Music Player</string>
-    <string name="retro_music_pro">HOA Music Pro</string>
+    <string name="hoa_music_player">HOA Music Player</string>
+    <string name="hoa_music_pro">HOA Music Pro</string>
     <string name="ringtone_summary">The app needs permission to access your device settings in order to set music as Ringtone</string>
     <string name="ringtone_title">Ringtone (Optional)</string>
     <string name="saf_delete_failed">File delete failed: %s</string>
@@ -498,7 +498,7 @@
     <string name="track_list">Track number</string>
     <string name="translate">Translate</string>
     <string name="translate_community">Help us translate the app to your language</string>
-    <string name="try_retro_music_premium">Try HOA Music Premium</string>
+    <string name="try_hoa_music_premium">Try HOA Music Premium</string>
     <string name="twitter_page">Twitter</string>
     <string name="twitter_page_summary">Share your design with HOA Music</string>
     <string name="unlabeled">Unlabeled</string>

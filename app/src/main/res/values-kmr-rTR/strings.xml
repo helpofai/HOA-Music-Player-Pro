@@ -449,8 +449,8 @@ têne guhertin</string>
     <string name="restored_previous_purchases">Kirînên berê hatin vegerandin.</string>
     <string name="restoring_purchase">Kirîn tê vegerandin…</string>
     <string name="billing_error">An error occurred while communicating with Google Play Billing</string>
-    <string name="retro_music_player">Lêdera muzîkê ya Retro</string>
-    <string name="retro_music_pro">HOA Music Pro</string>
+    <string name="hoa_music_player">Lêdera muzîkê ya hoa</string>
+    <string name="hoa_music_pro">HOA Music Pro</string>
     <string name="ringtone_summary">Ji bo ku muzîkê wekî dengê zengilê saz bikî pêdivî bi mafdayînê heye ku bigihîje sazkariyên amûra te</string>
     <string name="ringtone_title">Dengê zengilê (Vebijêrkî)</string>
     <string name="permission_alarm_summary">Ev sepana re izina xişte kirina \'elarman hewce dike bo demjimêrên xewê cih bike</string>
@@ -534,7 +534,7 @@ têne guhertin</string>
     <string name="track_list">Jimara herikê</string>
     <string name="translate">Wergerandin</string>
     <string name="translate_community">Alîkariya me bike ku em sepanê wergerînin zimanê te</string>
-    <string name="try_retro_music_premium">HOA Music Premium biceribîne</string>
+    <string name="try_hoa_music_premium">HOA Music Premium biceribîne</string>
     <string name="twitter_page">Twitter</string>
     <string name="twitter_page_summary">Dîzayna xwe bi HOA Music re parve bike</string>
     <string name="unlabeled">Nenîşankirî</string>

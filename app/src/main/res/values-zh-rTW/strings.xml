@@ -445,8 +445,8 @@
     <string name="restored_previous_purchases">已復原先前購買。</string>
     <string name="restoring_purchase">正在復原購買…</string>
     <string name="billing_error">An error occurred while communicating with Google Play Billing</string>
-    <string name="retro_music_player">HOA Music Player</string>
-    <string name="retro_music_pro">HOA Music Pro</string>
+    <string name="hoa_music_player">HOA Music Player</string>
+    <string name="hoa_music_pro">HOA Music Pro</string>
     <string name="ringtone_summary">應用程式需要取得權限以存取您的裝置設定，並將歌曲設為鈴聲</string>
     <string name="ringtone_title">鈴聲 (可選)</string>
     <string name="permission_alarm_summary">此應用程式需要鬧鐘權限以啟用睡眠計時器</string>
@@ -530,7 +530,7 @@
     <string name="track_list">曲目編號</string>
     <string name="translate">翻譯</string>
     <string name="translate_community">協助我們將應用程式本地化成您的語言</string>
-    <string name="try_retro_music_premium">立即嘗試 HOA Music Premium</string>
+    <string name="try_hoa_music_premium">立即嘗試 HOA Music Premium</string>
     <string name="twitter_page">Twitter</string>
     <string name="twitter_page_summary">分享您為 HOA Music 的設計</string>
     <string name="unlabeled">隱藏標籤</string>

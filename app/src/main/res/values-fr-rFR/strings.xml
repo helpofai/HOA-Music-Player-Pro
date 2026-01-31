@@ -447,8 +447,8 @@
     <string name="restored_previous_purchases">Achats précédents restaurés.</string>
     <string name="restoring_purchase">Restauration de l\'achat…</string>
     <string name="billing_error">Une erreur s\'est produite lors de la communication avec Google Play Billing</string>
-    <string name="retro_music_player">HOA Music Player</string>
-    <string name="retro_music_pro">HOA Music Pro</string>
+    <string name="hoa_music_player">HOA Music Player</string>
+    <string name="hoa_music_pro">HOA Music Pro</string>
     <string name="ringtone_summary">L\'application a besoin d\'accéder au stockage de votre appareil pour configurer un morceau comme sonnerie</string>
     <string name="ringtone_title">Sonnerie (facultatif)</string>
     <string name="permission_alarm_summary">L\'application a besoin d\'une autorisation pour programmer des alarmes exactes afin de définir des minuteries de sommeil.</string>
@@ -532,7 +532,7 @@
     <string name="track_list">Numéro de piste</string>
     <string name="translate">Traduction</string>
     <string name="translate_community">Aidez-nous à traduire l\'application dans votre langue</string>
-    <string name="try_retro_music_premium">Essayer HOA Music Premium</string>
+    <string name="try_hoa_music_premium">Essayer HOA Music Premium</string>
     <string name="twitter_page">Twitter</string>
     <string name="twitter_page_summary">Partager votre design avec HOA Music</string>
     <string name="unlabeled">Sans étiquette</string>

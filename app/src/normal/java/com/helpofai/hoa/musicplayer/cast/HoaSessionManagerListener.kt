@@ -3,7 +3,7 @@ package com.helpofai.hoa.musicplayer.cast
 import com.google.android.gms.cast.framework.CastSession
 import com.google.android.gms.cast.framework.SessionManagerListener
 
-interface RetroSessionManagerListener : SessionManagerListener<CastSession> {
+interface HoaSessionManagerListener : SessionManagerListener<CastSession> {
     override fun onSessionResuming(p0: CastSession, p1: String) {}
 
     override fun onSessionStartFailed(p0: CastSession, p1: Int) {}

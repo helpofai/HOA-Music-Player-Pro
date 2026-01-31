@@ -26,7 +26,7 @@ android {
 
         buildConfigField("String", "GOOGLE_PLAY_LICENSING_KEY", "\"${getProperty(getProperties("../public.properties"), "GOOGLE_PLAY_LICENSE_KEY")}\"")
     }
-    val signingProperties = getProperties("retro.properties")
+    val signingProperties = getProperties("hoa.properties")
     val theSigningConfig = if (signingProperties != null) {
         signingConfigs.create("release") {
             storeFile = file(getProperty(signingProperties, "storeFile"))

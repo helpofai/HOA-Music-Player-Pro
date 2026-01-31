@@ -182,7 +182,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:maxHeight="3dp"
-        style="@style/Widget.Retro.Slider"
+        style="@style/Widget.hoa.Slider"
         app:layout_constraintBottom_toTopOf="@id/songCurrentProgress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

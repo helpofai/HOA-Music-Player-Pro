@@ -447,8 +447,8 @@
     <string name="restored_previous_purchases">Teruggezette aankopen</string>
     <string name="restoring_purchase">Aankoop herstellen…</string>
     <string name="billing_error">An error occurred while communicating with Google Play Billing</string>
-    <string name="retro_music_player">HOA Music Player</string>
-    <string name="retro_music_pro">HOA Music Pro</string>
+    <string name="hoa_music_player">HOA Music Player</string>
+    <string name="hoa_music_pro">HOA Music Pro</string>
     <string name="ringtone_summary">The app needs permission to access your device settings in order to set music as Ringtone</string>
     <string name="ringtone_title">Beltoon (Optioneel)</string>
     <string name="permission_alarm_summary">The app needs permission to schedule exact alarms to set sleep timers</string>
@@ -532,9 +532,9 @@
     <string name="track_list">Track nummer</string>
     <string name="translate">Vertalen</string>
     <string name="translate_community">Help us translate the app to your language</string>
-    <string name="try_retro_music_premium">Probeer Retro Muziek Premium</string>
+    <string name="try_hoa_music_premium">Probeer hoa Muziek Premium</string>
     <string name="twitter_page">Twitter</string>
-    <string name="twitter_page_summary">Deel jouw ontwerp met Retro Muziek</string>
+    <string name="twitter_page_summary">Deel jouw ontwerp met hoa Muziek</string>
     <string name="unlabeled">Niet gelabeld</string>
     <string name="unplayable_file">Kon dit nummer niet afspelen </string>
     <string name="up_next">Volgende</string>

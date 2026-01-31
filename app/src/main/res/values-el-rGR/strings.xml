@@ -447,8 +447,8 @@
     <string name="restored_previous_purchases">Επαναφορά προηγούμενων αγορών επιτυχής.</string>
     <string name="restoring_purchase">Επαναφορά αγοράς…</string>
     <string name="billing_error">An error occurred while communicating with Google Play Billing</string>
-    <string name="retro_music_player">HOA Music Player</string>
-    <string name="retro_music_pro">HOA Music Pro</string>
+    <string name="hoa_music_player">HOA Music Player</string>
+    <string name="hoa_music_pro">HOA Music Pro</string>
     <string name="ringtone_summary">Η εφαρμογή χρειάζεται άδεια πρόσβασης στις ρυθμίσεις της συσκευής σας, για να ορίσει τη μουσική ως ήχο κλήσης</string>
     <string name="ringtone_title">Ήχος Κλήσης (Προαιρετικό)</string>
     <string name="permission_alarm_summary">The app needs permission to schedule exact alarms to set sleep timers</string>
@@ -532,7 +532,7 @@
     <string name="track_list">Αριθμός κομματιού</string>
     <string name="translate">Μετάφραση</string>
     <string name="translate_community">Βοηθήστε μας να μεταφράσουμε την εφαρμογή στη γλώσσα σας</string>
-    <string name="try_retro_music_premium">Δοκιμάστε το HOA Music Premium</string>
+    <string name="try_hoa_music_premium">Δοκιμάστε το HOA Music Premium</string>
     <string name="twitter_page">Twitter</string>
     <string name="twitter_page_summary">Μοιραστείτε το σχέδιό σας με το HOA Music</string>
     <string name="unlabeled">Χωρίς ετικέτα</string>

@@ -446,8 +446,8 @@ tiếp tục xảy ra hãy \"Xóa dữ liệu ứng dụng\"</string>
     <string name="restored_previous_purchases">Đã khôi phục lần mua trước.</string>
     <string name="restoring_purchase">Đang khôi phục mua hàng...</string>
     <string name="billing_error">An error occurred while communicating with Google Play Billing</string>
-    <string name="retro_music_player">HOA Music Player</string>
-    <string name="retro_music_pro">HOA Music Pro</string>
+    <string name="hoa_music_player">HOA Music Player</string>
+    <string name="hoa_music_pro">HOA Music Pro</string>
     <string name="ringtone_summary">Ứng dụng cần quyền truy cập cài đặt thiết bị của bạn để đặt nhạc làm Nhạc chuông</string>
     <string name="ringtone_title">Nhạc chuông (Tùy chọn)</string>
     <string name="permission_alarm_summary">Ứng dụng cần được cấp quyền để lên lịch báo thức chính xác để hẹn giờ ngừng phát</string>
@@ -531,7 +531,7 @@ tiếp tục xảy ra hãy \"Xóa dữ liệu ứng dụng\"</string>
     <string name="track_list">Số rãnh</string>
     <string name="translate">Dịch</string>
     <string name="translate_community">Hãy giúp chúng tôi dịch ứng dụng sang ngôn ngữ của bạn nhé</string>
-    <string name="try_retro_music_premium">Thử HOA Music Premium</string>
+    <string name="try_hoa_music_premium">Thử HOA Music Premium</string>
     <string name="twitter_page">Twitter</string>
     <string name="twitter_page_summary">Chia sẻ thiết kế của bạn với HOA Music</string>
     <string name="unlabeled">Chưa gắn nhãn</string>

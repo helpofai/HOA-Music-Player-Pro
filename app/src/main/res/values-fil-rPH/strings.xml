@@ -447,8 +447,8 @@
     <string name="restored_previous_purchases">Ibinalik ang mga nakaraang pagbili.</string>
     <string name="restoring_purchase">Ibinabalik ang pagbili…</string>
     <string name="billing_error">An error occurred while communicating with Google Play Billing</string>
-    <string name="retro_music_player">HOA Music Player</string>
-    <string name="retro_music_pro">HOA Music Pro</string>
+    <string name="hoa_music_player">HOA Music Player</string>
+    <string name="hoa_music_pro">HOA Music Pro</string>
     <string name="ringtone_summary">Ang app ay nangangailangan ng permiso upang ma-access ang mga setting ng iyong device upang maitakda ang musika bilang Ringtone</string>
     <string name="ringtone_title">Ringtone (Opsyonal)</string>
     <string name="permission_alarm_summary">The app needs permission to schedule exact alarms to set sleep timers</string>
@@ -532,7 +532,7 @@
     <string name="track_list">Numero ng track</string>
     <string name="translate">Isalin</string>
     <string name="translate_community">Tulungan kaming isalin ang app sa iyong wika</string>
-    <string name="try_retro_music_premium">Subukan ang HOA Music Premium</string>
+    <string name="try_hoa_music_premium">Subukan ang HOA Music Premium</string>
     <string name="twitter_page">Twitter</string>
     <string name="twitter_page_summary">Ibahagi ang iyong disenyo sa HOA Music</string>
     <string name="unlabeled">Walang label</string>

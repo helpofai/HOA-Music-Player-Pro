@@ -169,7 +169,7 @@ class MediaButtonIntentReceiver : MediaButtonReceiver() {
                 val pm = appContext.getSystemService<PowerManager>()
                 wakeLock = pm?.newWakeLock(
                     PowerManager.PARTIAL_WAKE_LOCK,
-                    "RetroMusicApp:Wakelock headset button"
+                    "hoaMusicApp:Wakelock headset button"
                 )
                 wakeLock!!.setReferenceCounted(false)
             }

@@ -339,7 +339,7 @@ class MusicService : MediaBrowserServiceCompat(),
         audioVolumeObserver.register(AudioManager.STREAM_MUSIC, this)
         registerOnSharedPreferenceChangedListener(this)
         restoreState()
-        sendBroadcast(Intent("$RETRO_MUSIC_PACKAGE_NAME.RETRO_MUSIC_SERVICE_CREATED"))
+        sendBroadcast(Intent("$hoa_MUSIC_PACKAGE_NAME.hoa_MUSIC_SERVICE_CREATED"))
         registerHeadsetEvents()
         registerBluetoothConnected()
         mPackageValidator = PackageValidator(this, R.xml.allowed_media_browser_callers)
@@ -366,7 +366,7 @@ class MusicService : MediaBrowserServiceCompat(),
         contentResolver.unregisterContentObserver(mediaStoreObserver)
         unregisterOnSharedPreferenceChangedListener(this)
         wakeLock?.release()
-        sendBroadcast(Intent("$RETRO_MUSIC_PACKAGE_NAME.RETRO_MUSIC_SERVICE_DESTROYED"))
+        sendBroadcast(Intent("$hoa_MUSIC_PACKAGE_NAME.hoa_MUSIC_SERVICE_DESTROYED"))
     }
 
     private fun acquireWakeLock() {
@@ -676,15 +676,15 @@ class MusicService : MediaBrowserServiceCompat(),
 
             TOGGLE_HEADSET -> registerHeadsetEvents()
 
-            "audio_balance" -> (playback as? RetroExoPlayer)?.setBalance(com.helpofai.hoa.musicplayer.util.PreferenceUtil.balance)
+            "audio_balance" -> (playback as? hoaExoPlayer)?.setBalance(com.helpofai.hoa.musicplayer.util.PreferenceUtil.balance)
 
-            "audio_stereo_width" -> (playback as? RetroExoPlayer)?.setStereoWidth(com.helpofai.hoa.musicplayer.util.PreferenceUtil.stereoWidth)
+            "audio_stereo_width" -> (playback as? hoaExoPlayer)?.setStereoWidth(com.helpofai.hoa.musicplayer.util.PreferenceUtil.stereoWidth)
 
-            "audio_bass_strength" -> (playback as? RetroExoPlayer)?.setBassStrength(com.helpofai.hoa.musicplayer.util.PreferenceUtil.bassStrength)
+            "audio_bass_strength" -> (playback as? hoaExoPlayer)?.setBassStrength(com.helpofai.hoa.musicplayer.util.PreferenceUtil.bassStrength)
 
-            "audio_reverb_amount" -> (playback as? RetroExoPlayer)?.setReverbAmount(com.helpofai.hoa.musicplayer.util.PreferenceUtil.reverbAmount)
+            "audio_reverb_amount" -> (playback as? hoaExoPlayer)?.setReverbAmount(com.helpofai.hoa.musicplayer.util.PreferenceUtil.reverbAmount)
 
-            "audio_clarity" -> (playback as? RetroExoPlayer)?.setClarity(com.helpofai.hoa.musicplayer.util.PreferenceUtil.clarity)
+            "audio_clarity" -> (playback as? hoaExoPlayer)?.setClarity(com.helpofai.hoa.musicplayer.util.PreferenceUtil.clarity)
         }
     }
 
@@ -1008,7 +1008,7 @@ class MusicService : MediaBrowserServiceCompat(),
 
     // to let other apps know whats playing. i.e. last.fm (scrobbling) or musixmatch
     fun sendPublicIntent(what: String) {
-        val intent = Intent(what.replace(RETRO_MUSIC_PACKAGE_NAME, MUSIC_PACKAGE_NAME))
+        val intent = Intent(what.replace(hoa_MUSIC_PACKAGE_NAME, MUSIC_PACKAGE_NAME))
         val song = currentSong
         intent.putExtra("id", song.id)
         intent.putExtra("artist", song.artistName)
@@ -1017,7 +1017,7 @@ class MusicService : MediaBrowserServiceCompat(),
         intent.putExtra("duration", song.duration)
         intent.putExtra("position", songProgressMillis.toLong())
         intent.putExtra("playing", isPlaying)
-        intent.putExtra("scrobbling_source", RETRO_MUSIC_PACKAGE_NAME)
+        intent.putExtra("scrobbling_source", hoa_MUSIC_PACKAGE_NAME)
         @Suppress("Deprecation")
         sendStickyBroadcast(intent)
     }
@@ -1408,35 +1408,35 @@ class MusicService : MediaBrowserServiceCompat(),
 
     companion object {
         val TAG: String = MusicService::class.java.simpleName
-        const val RETRO_MUSIC_PACKAGE_NAME = "com.helpofai.hoa.musicplayer"
+        const val hoa_MUSIC_PACKAGE_NAME = "com.helpofai.hoa.musicplayer"
         const val MUSIC_PACKAGE_NAME = "com.android.music"
-        const val ACTION_TOGGLE_PAUSE = "$RETRO_MUSIC_PACKAGE_NAME.togglepause"
-        const val ACTION_PLAY = "$RETRO_MUSIC_PACKAGE_NAME.play"
-        const val ACTION_PLAY_PLAYLIST = "$RETRO_MUSIC_PACKAGE_NAME.play.playlist"
-        const val ACTION_PAUSE = "$RETRO_MUSIC_PACKAGE_NAME.pause"
-        const val ACTION_STOP = "$RETRO_MUSIC_PACKAGE_NAME.stop"
-        const val ACTION_SKIP = "$RETRO_MUSIC_PACKAGE_NAME.skip"
-        const val ACTION_REWIND = "$RETRO_MUSIC_PACKAGE_NAME.rewind"
-        const val ACTION_QUIT = "$RETRO_MUSIC_PACKAGE_NAME.quitservice"
-        const val ACTION_PENDING_QUIT = "$RETRO_MUSIC_PACKAGE_NAME.pendingquitservice"
-        const val INTENT_EXTRA_PLAYLIST = RETRO_MUSIC_PACKAGE_NAME + "intentextra.playlist"
+        const val ACTION_TOGGLE_PAUSE = "$hoa_MUSIC_PACKAGE_NAME.togglepause"
+        const val ACTION_PLAY = "$hoa_MUSIC_PACKAGE_NAME.play"
+        const val ACTION_PLAY_PLAYLIST = "$hoa_MUSIC_PACKAGE_NAME.play.playlist"
+        const val ACTION_PAUSE = "$hoa_MUSIC_PACKAGE_NAME.pause"
+        const val ACTION_STOP = "$hoa_MUSIC_PACKAGE_NAME.stop"
+        const val ACTION_SKIP = "$hoa_MUSIC_PACKAGE_NAME.skip"
+        const val ACTION_REWIND = "$hoa_MUSIC_PACKAGE_NAME.rewind"
+        const val ACTION_QUIT = "$hoa_MUSIC_PACKAGE_NAME.quitservice"
+        const val ACTION_PENDING_QUIT = "$hoa_MUSIC_PACKAGE_NAME.pendingquitservice"
+        const val INTENT_EXTRA_PLAYLIST = hoa_MUSIC_PACKAGE_NAME + "intentextra.playlist"
         const val INTENT_EXTRA_SHUFFLE_MODE =
-            "$RETRO_MUSIC_PACKAGE_NAME.intentextra.shufflemode"
-        const val APP_WIDGET_UPDATE = "$RETRO_MUSIC_PACKAGE_NAME.appwidgetupdate"
-        const val EXTRA_APP_WIDGET_NAME = RETRO_MUSIC_PACKAGE_NAME + "app_widget_name"
+            "$hoa_MUSIC_PACKAGE_NAME.intentextra.shufflemode"
+        const val APP_WIDGET_UPDATE = "$hoa_MUSIC_PACKAGE_NAME.appwidgetupdate"
+        const val EXTRA_APP_WIDGET_NAME = hoa_MUSIC_PACKAGE_NAME + "app_widget_name"
 
         // Do not change these three strings as it will break support with other apps (e.g. last.fm
         // scrobbling)
-        const val META_CHANGED = "$RETRO_MUSIC_PACKAGE_NAME.metachanged"
-        const val QUEUE_CHANGED = "$RETRO_MUSIC_PACKAGE_NAME.queuechanged"
-        const val PLAY_STATE_CHANGED = "$RETRO_MUSIC_PACKAGE_NAME.playstatechanged"
-        const val FAVORITE_STATE_CHANGED = "$RETRO_MUSIC_PACKAGE_NAME.favoritestatechanged"
-        const val REPEAT_MODE_CHANGED = "$RETRO_MUSIC_PACKAGE_NAME.repeatmodechanged"
-        const val SHUFFLE_MODE_CHANGED = "$RETRO_MUSIC_PACKAGE_NAME.shufflemodechanged"
-        const val MEDIA_STORE_CHANGED = "$RETRO_MUSIC_PACKAGE_NAME.mediastorechanged"
-        const val CYCLE_REPEAT = "$RETRO_MUSIC_PACKAGE_NAME.cyclerepeat"
-        const val TOGGLE_SHUFFLE = "$RETRO_MUSIC_PACKAGE_NAME.toggleshuffle"
-        const val TOGGLE_FAVORITE = "$RETRO_MUSIC_PACKAGE_NAME.togglefavorite"
+        const val META_CHANGED = "$hoa_MUSIC_PACKAGE_NAME.metachanged"
+        const val QUEUE_CHANGED = "$hoa_MUSIC_PACKAGE_NAME.queuechanged"
+        const val PLAY_STATE_CHANGED = "$hoa_MUSIC_PACKAGE_NAME.playstatechanged"
+        const val FAVORITE_STATE_CHANGED = "$hoa_MUSIC_PACKAGE_NAME.favoritestatechanged"
+        const val REPEAT_MODE_CHANGED = "$hoa_MUSIC_PACKAGE_NAME.repeatmodechanged"
+        const val SHUFFLE_MODE_CHANGED = "$hoa_MUSIC_PACKAGE_NAME.shufflemodechanged"
+        const val MEDIA_STORE_CHANGED = "$hoa_MUSIC_PACKAGE_NAME.mediastorechanged"
+        const val CYCLE_REPEAT = "$hoa_MUSIC_PACKAGE_NAME.cyclerepeat"
+        const val TOGGLE_SHUFFLE = "$hoa_MUSIC_PACKAGE_NAME.toggleshuffle"
+        const val TOGGLE_FAVORITE = "$hoa_MUSIC_PACKAGE_NAME.togglefavorite"
         const val SAVED_POSITION = "POSITION"
         const val SAVED_POSITION_IN_TRACK = "POSITION_IN_TRACK"
         const val SAVED_SHUFFLE_MODE = "SHUFFLE_MODE"

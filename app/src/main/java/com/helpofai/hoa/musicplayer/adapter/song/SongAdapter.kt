@@ -32,7 +32,7 @@ import com.helpofai.hoa.musicplayer.adapter.base.MediaEntryViewHolder
 import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension
 import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.asBitmapPalette
 import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.songCoverOptions
-import com.helpofai.hoa.musicplayer.glide.RetroMusicColoredTarget
+import com.helpofai.hoa.musicplayer.glide.HoaMusicColoredTarget
 import com.helpofai.hoa.musicplayer.helper.MusicPlayerRemote
 import com.helpofai.hoa.musicplayer.helper.SortOrder
 import com.helpofai.hoa.musicplayer.helper.menu.SongMenuHelper
@@ -122,7 +122,7 @@ open class SongAdapter(
             .asBitmapPalette()
             .songCoverOptions(song)
             .load(HoaGlideExtension.getSongModel(song))
-            .into(object : RetroMusicColoredTarget(holder.image!!) {
+            .into(object : HoaMusicColoredTarget(holder.image!!) {
                 override fun onColorReady(colors: MediaNotificationProcessor) {
                     setColors(colors, holder)
                 }

@@ -1,9 +1,9 @@
 package com.helpofai.hoa.musicplayer.cast
 
 import androidx.core.net.toUri
-import com.helpofai.hoa.musicplayer.cast.RetroWebServer.Companion.MIME_TYPE_AUDIO
-import com.helpofai.hoa.musicplayer.cast.RetroWebServer.Companion.PART_COVER_ART
-import com.helpofai.hoa.musicplayer.cast.RetroWebServer.Companion.PART_SONG
+import com.helpofai.hoa.musicplayer.cast.HoaWebServer.Companion.MIME_TYPE_AUDIO
+import com.helpofai.hoa.musicplayer.cast.HoaWebServer.Companion.PART_COVER_ART
+import com.helpofai.hoa.musicplayer.cast.HoaWebServer.Companion.PART_SONG
 import com.helpofai.hoa.musicplayer.model.Song
 import com.helpofai.hoa.musicplayer.util.HoaUtil
 import com.google.android.gms.cast.MediaInfo

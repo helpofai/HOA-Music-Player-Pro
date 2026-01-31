@@ -28,7 +28,7 @@
 -dontwarn **$$Lambda$*
 -dontwarn javax.annotation.**
 
-# RetroFit
+# retrofit
 -dontwarn retrofit.**
 -keep class retrofit.** { *; }
 -keep,allowobfuscation,allowshrinking interface retrofit2.Call

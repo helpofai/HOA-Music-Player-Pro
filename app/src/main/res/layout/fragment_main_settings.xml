@@ -48,7 +48,7 @@
                     android:layout_height="wrap_content"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
-                    android:text="@string/retro_music_pro"
+                    android:text="@string/hoa_music_pro"
                     android:textAppearance="@style/TextViewSubtitle1"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"

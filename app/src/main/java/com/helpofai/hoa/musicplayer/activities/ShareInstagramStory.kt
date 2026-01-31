@@ -37,7 +37,7 @@ import com.helpofai.hoa.musicplayer.extensions.setStatusBarColor
 import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension
 import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.asBitmapPalette
 import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.songCoverOptions
-import com.helpofai.hoa.musicplayer.glide.RetroMusicColoredTarget
+import com.helpofai.hoa.musicplayer.glide.HoaMusicColoredTarget
 import com.helpofai.hoa.musicplayer.model.Song
 import com.helpofai.hoa.musicplayer.util.Share
 import com.helpofai.hoa.musicplayer.util.color.MediaNotificationProcessor
@@ -78,7 +78,7 @@ class ShareInstagramStory : AbsThemeActivity() {
                 .asBitmapPalette()
                 .songCoverOptions(songFinal)
                 .load(HoaGlideExtension.getSongModel(songFinal))
-                .into(object : RetroMusicColoredTarget(binding.image) {
+                .into(object : HoaMusicColoredTarget(binding.image) {
                     override fun onColorReady(colors: MediaNotificationProcessor) {
                         setColors(colors.backgroundColor)
                     }

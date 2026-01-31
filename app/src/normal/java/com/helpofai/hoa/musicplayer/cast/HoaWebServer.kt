@@ -10,7 +10,7 @@ import java.io.*
 const val DEFAULT_SERVER_PORT = 9090
 private var currentServerPort = DEFAULT_SERVER_PORT
 
-class RetroWebServer(val context: Context) : NanoHTTPD(findAndInitializePort()) {
+class HoaWebServer(val context: Context) : NanoHTTPD(findAndInitializePort()) {
     companion object {
         private const val MIME_TYPE_IMAGE = "image/jpg"
         const val MIME_TYPE_AUDIO = "audio/mp3"

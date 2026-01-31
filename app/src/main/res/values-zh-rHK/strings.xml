@@ -334,8 +334,8 @@
     <string name="restored_previous_purchase_please_restart">已恢復上次購買狀態。請重新啟動程式來應用所有功能。</string>
     <string name="restored_previous_purchases">回復購買狀態</string>
     <string name="restoring_purchase">正在恢復購買狀態...</string>
-    <string name="retro_music_player">HOA Music Player</string>
-    <string name="retro_music_pro">HOA Music Pro</string>
+    <string name="hoa_music_player">HOA Music Player</string>
+    <string name="hoa_music_pro">HOA Music Pro</string>
     <string name="saf_delete_failed">刪除檔案失敗: %s</string>
     <!-- SAF -->
     <string name="saf_error_uri">獲取SAF URI失敗</string>

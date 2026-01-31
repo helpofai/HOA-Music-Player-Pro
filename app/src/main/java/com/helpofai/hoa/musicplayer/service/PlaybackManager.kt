@@ -102,14 +102,14 @@ class PlaybackManager(val context: Context) {
      * @return Whether switched playback
      */
     fun maybeSwitchToCrossFade(crossFadeDuration: Int): Boolean {
-        /* Switch to RetroExoPlayer if CrossFade duration is 0 and
-                Playback is not an instance of RetroExoPlayer */
-        if (playback !is RetroExoPlayer && crossFadeDuration == 0) {
+        /* Switch to hoaExoPlayer if CrossFade duration is 0 and
+                Playback is not an instance of hoaExoPlayer */
+        if (playback !is hoaExoPlayer && crossFadeDuration == 0) {
             if (playback != null) {
                 playback?.release()
             }
             playback = null
-            playback = RetroExoPlayer(context)
+            playback = hoaExoPlayer(context)
             return true
         } else if (playback !is CrossFadePlayer && crossFadeDuration > 0) {
             if (playback != null) {
@@ -172,9 +172,9 @@ class PlaybackManager(val context: Context) {
     }
 
     private fun createLocalPlayback(): Playback {
-        // Set RetroExoPlayer when crossfade duration is 0 i.e. off
+        // Set hoaExoPlayer when crossfade duration is 0 i.e. off
         return if (PreferenceUtil.crossFadeDuration == 0) {
-            RetroExoPlayer(context)
+            hoaExoPlayer(context)
         } else {
             CrossFadePlayer(context)
         }

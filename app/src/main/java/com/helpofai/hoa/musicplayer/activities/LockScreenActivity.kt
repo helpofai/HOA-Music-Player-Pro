@@ -29,7 +29,7 @@ import com.helpofai.hoa.musicplayer.fragments.player.lockscreen.LockScreenContro
 import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension
 import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.asBitmapPalette
 import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.songCoverOptions
-import com.helpofai.hoa.musicplayer.glide.RetroMusicColoredTarget
+import com.helpofai.hoa.musicplayer.glide.HoaMusicColoredTarget
 import com.helpofai.hoa.musicplayer.helper.MusicPlayerRemote
 import com.helpofai.hoa.musicplayer.util.color.MediaNotificationProcessor
 import com.bumptech.glide.Glide
@@ -112,7 +112,7 @@ class LockScreenActivity : AbsMusicServiceActivity() {
             .songCoverOptions(song)
             .load(HoaGlideExtension.getSongModel(song))
             .dontAnimate()
-            .into(object : RetroMusicColoredTarget(binding.image) {
+            .into(object : HoaMusicColoredTarget(binding.image) {
                 override fun onColorReady(colors: MediaNotificationProcessor) {
                     fragment?.setColor(colors)
                 }

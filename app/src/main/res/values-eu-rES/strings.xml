@@ -343,8 +343,8 @@
     <string name="restored_previous_purchase_please_restart">Aurreko erosketa leheneratua. Mesedez aplikazioa berrabiarazi ezaugarri guztiak erabiltzeko</string>
     <string name="restored_previous_purchases">Aurreko erosketa leheneratua</string>
     <string name="restoring_purchase">Erosketa leheneratzen...</string>
-    <string name="retro_music_player">HOA Music Player</string>
-    <string name="retro_music_pro">HOA Music Pro</string>
+    <string name="hoa_music_player">HOA Music Player</string>
+    <string name="hoa_music_pro">HOA Music Pro</string>
     <string name="saf_delete_failed">File delete failed: %s</string>
     <!-- SAF -->
     <string name="saf_error_uri">Can\'t get SAF URI</string>
@@ -417,7 +417,7 @@
     <string name="track_list">Pista zenbakia</string>
     <string name="translate">Itzuli</string>
     <string name="translate_community">Lagun iezaguzu aplikazioa zure hizkuntzara itzultzen</string>
-    <string name="try_retro_music_premium">Try HOA Music Premium</string>
+    <string name="try_hoa_music_premium">Try HOA Music Premium</string>
     <string name="twitter_page">Twitter</string>
     <string name="twitter_page_summary">Partekatu zure HOA Music-en diseinua</string>
     <string name="unlabeled">Etiketa gabe</string>

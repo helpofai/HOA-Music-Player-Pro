@@ -22,7 +22,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 /**
- * BillingManager handles all Google Play Billing operations for the RetroMusicPlayer app.
+ * BillingManager handles all Google Play Billing operations for the hoaMusicPlayer app.
  * This class manages in-app purchases for the Pro version upgrade, using Google Play Billing Library 7.0.0.
  *
  * Key Features:

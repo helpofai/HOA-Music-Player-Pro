@@ -447,8 +447,8 @@
     <string name="restored_previous_purchases">خریدهای قبلی بازیابی شد.</string>
     <string name="restoring_purchase">در حال برگرداندن پول…</string>
     <string name="billing_error">An error occurred while communicating with Google Play Billing</string>
-    <string name="retro_music_player">پخش‌کننده موسیقی Retro</string>
-    <string name="retro_music_pro">پخش‌کننده موسیقی Retro نسخه ویژه</string>
+    <string name="hoa_music_player">پخش‌کننده موسیقی hoa</string>
+    <string name="hoa_music_pro">پخش‌کننده موسیقی hoa نسخه ویژه</string>
     <string name="ringtone_summary">برنامه برای دسترسی به تنظیمات دستگاه شما برای تنظیم موسیقی به عنوان آهنگ زنگ نیاز به مجوز دارد</string>
     <string name="ringtone_title">آهنگ زنگ (اختیاری)</string>
     <string name="permission_alarm_summary">این برنامه برای تنظیم تایمر خواب نیازمند دسترسی به برنامه‌ریزی آلارم دارد</string>
@@ -532,9 +532,9 @@
     <string name="track_list">شماره  آهنگ</string>
     <string name="translate">ترجمه کردن</string>
     <string name="translate_community">به ما کمک کنید تا برنامه را به زبان شما ترجمه کنیم</string>
-    <string name="try_retro_music_premium">نسخه ویژه موزیک پلیر Retro را امتحان کنید</string>
+    <string name="try_hoa_music_premium">نسخه ویژه موزیک پلیر hoa را امتحان کنید</string>
     <string name="twitter_page">توییتر</string>
-    <string name="twitter_page_summary">طرح خود را با موسیقی Retro به اشتراک بگذارید</string>
+    <string name="twitter_page_summary">طرح خود را با موسیقی hoa به اشتراک بگذارید</string>
     <string name="unlabeled">بدون برچسب</string>
     <string name="unplayable_file">این آهنگ پخش نمیشود.</string>
     <string name="up_next">تا بعدی</string>

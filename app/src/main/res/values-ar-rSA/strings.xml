@@ -458,8 +458,8 @@
     <string name="restored_previous_purchases">تم </string>
     <string name="restoring_purchase">استرداد عملية الشراء...</string>
     <string name="billing_error">An error occurred while communicating with Google Play Billing</string>
-    <string name="retro_music_player">مشغل الموسيقى Retro</string>
-    <string name="retro_music_pro">ريترو ميوزك - الكامل</string>
+    <string name="hoa_music_player">مشغل الموسيقى hoa</string>
+    <string name="hoa_music_pro">ريترو ميوزك - الكامل</string>
     <string name="ringtone_summary">يحتاج التطبيق إلى إذن للوصول إلى إعدادات جهازك من أجل تعيين الموسيقى كنغمة رنين</string>
     <string name="ringtone_title">نغمة الرنين (إختياري)</string>
     <string name="permission_alarm_summary">The app needs permission to schedule exact alarms to set sleep timers</string>
@@ -543,7 +543,7 @@
     <string name="track_list">رقم المسار</string>
     <string name="translate">ترجمة</string>
     <string name="translate_community">ساعدها لترجمة التطبيق الى لغتك</string>
-    <string name="try_retro_music_premium">جرب ريترو الموسيقى الإصدار المميز</string>
+    <string name="try_hoa_music_premium">جرب ريترو الموسيقى الإصدار المميز</string>
     <string name="twitter_page">تويتر</string>
     <string name="twitter_page_summary">شارك تصميمك مع ريترو ميوزك</string>
     <string name="unlabeled">غير معنون</string>

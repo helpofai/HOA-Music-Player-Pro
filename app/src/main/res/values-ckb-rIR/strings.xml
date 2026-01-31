@@ -447,8 +447,8 @@
     <string name="restored_previous_purchases">Restored previous purchases.</string>
     <string name="restoring_purchase">Restoring purchase…</string>
     <string name="billing_error">An error occurred while communicating with Google Play Billing</string>
-    <string name="retro_music_player">HOA Music Player</string>
-    <string name="retro_music_pro">HOA Music Pro</string>
+    <string name="hoa_music_player">HOA Music Player</string>
+    <string name="hoa_music_pro">HOA Music Pro</string>
     <string name="ringtone_summary">The app needs permission to access your device settings in order to set music as Ringtone</string>
     <string name="ringtone_title">زەنگ لێدان (دڵخواز)</string>
     <string name="permission_alarm_summary">The app needs permission to schedule exact alarms to set sleep timers</string>
@@ -532,7 +532,7 @@
     <string name="track_list">Track number</string>
     <string name="translate">وەرگێڕان</string>
     <string name="translate_community">کراوە بە کوردی لەلایەن گۆران غەریب</string>
-    <string name="try_retro_music_premium">Try HOA Music Premium</string>
+    <string name="try_hoa_music_premium">Try HOA Music Premium</string>
     <string name="twitter_page">تویته‌ر</string>
     <string name="twitter_page_summary">Share your design with HOA Music</string>
     <string name="unlabeled">Unlabeled</string>

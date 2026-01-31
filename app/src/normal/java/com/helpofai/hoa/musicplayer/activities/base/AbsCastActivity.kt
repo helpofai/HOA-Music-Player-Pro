@@ -1,7 +1,7 @@
 package com.helpofai.hoa.musicplayer.activities.base
 
-import com.helpofai.hoa.musicplayer.cast.RetroSessionManagerListener
-import com.helpofai.hoa.musicplayer.cast.RetroWebServer
+import com.helpofai.hoa.musicplayer.cast.HoaSessionManagerListener
+import com.helpofai.hoa.musicplayer.cast.HoaWebServer
 import com.helpofai.hoa.musicplayer.helper.MusicPlayerRemote
 import com.helpofai.hoa.musicplayer.service.CastPlayer
 import com.google.android.gms.cast.framework.CastContext
@@ -18,7 +18,7 @@ abstract class AbsCastActivity : AbsSlidingMusicPanelActivity() {
         CastContext.getSharedInstance(this).sessionManager
     }
 
-    private val webServer: RetroWebServer by inject()
+    private val webServer: HoaWebServer by inject()
 
     private val playServicesAvailable: Boolean by lazy {
         try {
@@ -30,7 +30,7 @@ abstract class AbsCastActivity : AbsSlidingMusicPanelActivity() {
     }
 
     private val sessionManagerListener by lazy {
-        object : RetroSessionManagerListener {
+        object : HoaSessionManagerListener {
             override fun onSessionStarting(castSession: CastSession) {
                 webServer.start()
             }

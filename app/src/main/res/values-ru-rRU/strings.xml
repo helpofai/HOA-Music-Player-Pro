@@ -451,8 +451,8 @@
     <string name="restored_previous_purchases">Предыдущие покупки восстановлены.</string>
     <string name="restoring_purchase">Восстановление покупки…</string>
     <string name="billing_error">An error occurred while communicating with Google Play Billing</string>
-    <string name="retro_music_player">HOA Music Player</string>
-    <string name="retro_music_pro">HOA Music Pro</string>
+    <string name="hoa_music_player">HOA Music Player</string>
+    <string name="hoa_music_pro">HOA Music Pro</string>
     <string name="ringtone_summary">Приложению требуется разрешение на доступ к изменению настроек вашего устройства, чтобы устанавливать музыку в качестве мелодии звонка</string>
     <string name="ringtone_title">Мелодия звонка (необязательно)</string>
     <string name="permission_alarm_summary">Приложению нужно разрешение на установку будильников, чтобы устанавливать таймеры сна</string>
@@ -536,7 +536,7 @@
     <string name="track_list">Номер трека</string>
     <string name="translate">Помочь с переводом</string>
     <string name="translate_community">Помогите нам перевести приложение на ваш язык</string>
-    <string name="try_retro_music_premium">Попробуйте HOA Music Premium</string>
+    <string name="try_hoa_music_premium">Попробуйте HOA Music Premium</string>
     <string name="twitter_page">Twitter</string>
     <string name="twitter_page_summary">Поделитесь своим дизайном HOA Music</string>
     <string name="unlabeled">Не показывать</string>

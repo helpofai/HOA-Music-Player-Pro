@@ -1,29 +1,12 @@
 import os
 
 replacements = {
-    # Classes and Files
-    "hoaShapeableImageView": "HoaShapeableImageView",
-    "hoaUtil": "HoaUtil",
-    "hoaColorUtil": "HoaColorUtil",
-    "hoaGlideExtension": "HoaGlideExtension",
-    
-    # Attributes
-    "hoaCornerSize": "hoaCornerSize",
-    
-    # Themes (XML and Code references)
-    "Theme.hoaMusic": "Theme.HOAMusic",
-    "Theme_hoaMusic": "Theme_HOAMusic",
-    
-    # String Content (UI)
-    "hoa Music": "HOA Music",
-    "hoa music": "HOA Music",
-    "hoa music": "HOA Music"
+    "hoaMusicColoredTarget": "HoaMusicColoredTarget",
+    "hoaMusicGlideModule": "HoaMusicGlideModule"
 }
 
-# Directories to skip
-ignore_dirs = {'.git', '.gradle', 'build', '.idea', 'gradle'}
 # Extensions to process
-extensions = ('.java', '.kt', '.xml', '.gradle', '.kts', '.pro', '.html')
+extensions = ('.java', '.kt')
 
 def process_file(filepath):
     try:
@@ -42,7 +25,8 @@ def process_file(filepath):
         print(f"Skipping {filepath}: {e}")
 
 for root, dirs, files in os.walk("."):
-    dirs[:] = [d for d in dirs if d not in ignore_dirs]
+    if 'build' in dirs:
+        dirs.remove('build')
     for file in files:
         if file.endswith(extensions):
             process_file(os.path.join(root, file))

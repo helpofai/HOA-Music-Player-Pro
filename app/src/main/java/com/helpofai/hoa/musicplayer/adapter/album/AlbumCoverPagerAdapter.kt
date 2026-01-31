@@ -32,7 +32,7 @@ import com.helpofai.hoa.musicplayer.fragments.base.goToLyrics
 import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension
 import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.asBitmapPalette
 import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.songCoverOptions
-import com.helpofai.hoa.musicplayer.glide.RetroMusicColoredTarget
+import com.helpofai.hoa.musicplayer.glide.HoaMusicColoredTarget
 import com.helpofai.hoa.musicplayer.misc.CustomFragmentStatePagerAdapter
 import com.helpofai.hoa.musicplayer.model.Song
 import com.helpofai.hoa.musicplayer.util.MusicUtil
@@ -183,7 +183,7 @@ class AlbumCoverPagerAdapter(
                 //.checkIgnoreMediaStore()
                 .load(HoaGlideExtension.getSongModel(song))
                 .dontAnimate()
-                .into(object : RetroMusicColoredTarget(albumCover) {
+                .into(object : HoaMusicColoredTarget(albumCover) {
                     override fun onColorReady(colors: MediaNotificationProcessor) {
                         setColor(colors)
                     }

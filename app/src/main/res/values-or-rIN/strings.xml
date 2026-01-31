@@ -447,8 +447,8 @@
     <string name="restored_previous_purchases">ପୂର୍ବ କ୍ରୟଗୁଡ଼ିକ ରିଷ୍ଟୋର୍ କରାଗଲା।</string>
     <string name="restoring_purchase">କ୍ରୟ ରିଷ୍ଟୋର୍ କରୁଛି…</string>
     <string name="billing_error">ଗୁଗଲ୍ ପ୍ଲେ ବିଲିଂ ସହ ଯୋଗାଯୋଗ କରିବା ସମୟରେ ଏକ ତ୍ରୁଟି ଘଟିଲା</string>
-    <string name="retro_music_player">ରେଟ୍ରୋ ମ୍ୟୁଜିକ୍ ପ୍ଲେୟାର୍</string>
-    <string name="retro_music_pro">ରେଟ୍ରୋ ମ୍ୟୁଜିକ୍ ପ୍ରୋ</string>
+    <string name="hoa_music_player">ରେଟ୍ରୋ ମ୍ୟୁଜିକ୍ ପ୍ଲେୟାର୍</string>
+    <string name="hoa_music_pro">ରେଟ୍ରୋ ମ୍ୟୁଜିକ୍ ପ୍ରୋ</string>
     <string name="ringtone_summary">ମ୍ୟୁଜିକ୍‌କୁ ରିଙ୍ଗଟୋନ୍ ଭାବରେ ସେଟ୍ କରିବା ପାଇଁ ଆପ୍‌କୁ ଆପଣଙ୍କ ଡିଭାଇସ୍ ସେଟିଂସମୂହ ଆକ୍ସେସ୍ କରିବାର ଅନୁମତି ଆବଶ୍ୟକ</string>
     <string name="ringtone_title">ରିଙ୍ଗଟୋନ୍ (ବୈକଳ୍ପିକ)</string>
     <string name="permission_alarm_summary">ସ୍ଲିପ୍ ଟାଇମର୍ ସେଟ୍ କରିବା ପାଇଁ ଆପ୍‌କୁ ସଠିକ୍ ଆଲାର୍ମ ସିଡ୍ୟୁଲ୍ କରିବାର ଅନୁମତି ଆବଶ୍ୟକ</string>
@@ -532,7 +532,7 @@
     <string name="track_list">ଟ୍ରାକ୍ ସଂଖ୍ୟା</string>
     <string name="translate">ଅନୁବାଦ କରନ୍ତୁ</string>
     <string name="translate_community">ଆପ୍‌କୁ ଆପଣଙ୍କ ଭାଷାରେ ଅନୁବାଦ କରିବାରେ ଆମକୁ ସାହାଯ୍ୟ କରନ୍ତୁ</string>
-    <string name="try_retro_music_premium">ରେଟ୍ରୋ ମ୍ୟୁଜିକ୍ ପ୍ରିମିୟମ୍ ଚେଷ୍ଟା କରନ୍ତୁ</string>
+    <string name="try_hoa_music_premium">ରେଟ୍ରୋ ମ୍ୟୁଜିକ୍ ପ୍ରିମିୟମ୍ ଚେଷ୍ଟା କରନ୍ତୁ</string>
     <string name="twitter_page">ଟ୍ୱିଟର୍</string>
     <string name="twitter_page_summary">ଆପଣଙ୍କ ଡିଜାଇନ୍ ରେଟ୍ରୋ ମ୍ୟୁଜିକ୍ ସହ ସେୟାର କରନ୍ତୁ</string>
     <string name="unlabeled">ବିନା ଲେବଲ୍‌ରେ</string>

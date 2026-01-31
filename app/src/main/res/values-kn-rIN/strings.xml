@@ -448,8 +448,8 @@
     <string name="restored_previous_purchases">ಹಿಂದಿನ ಖರೀದಿಗಳನ್ನು ಮರುಸ್ಥಾಪಿಸಲಾಗಿದೆ.</string>
     <string name="restoring_purchase">ಖರೀದಿಯನ್ನು ಮರುಸ್ಥಾಪಿಸಲಾಗುತ್ತಿದೆ…</string>
     <string name="billing_error">An error occurred while communicating with Google Play Billing</string>
-    <string name="retro_music_player">HOA Music Player</string>
-    <string name="retro_music_pro">HOA Music Pro</string>
+    <string name="hoa_music_player">HOA Music Player</string>
+    <string name="hoa_music_pro">HOA Music Pro</string>
     <string name="ringtone_summary">ಸಂಗೀತವನ್ನು ರಿಂಗ್‌ಟೋನ್‌ನಂತೆ ಹೊಂದಿಸಲು ನಿಮ್ಮ ಸಾಧನದ ಸಂಯೋಜನೆಗಳನ್ನು ಪ್ರವೇಶಿಸಲು ಅಪ್ಲಿಕೇಶನ್‌ಗೆ ಅನುಮತಿಯ ಅಗತ್ಯವಿದೆ</string>
     <string name="ringtone_title">ರಿಂಗ್‌ಟೋನ್‌ (ಐಚ್ಛಿಕ)</string>
     <string name="permission_alarm_summary">The app needs permission to schedule exact alarms to set sleep timers</string>
@@ -533,7 +533,7 @@
     <string name="track_list">ಸುರುಳಿ ಸಂಖ್ಯೆ</string>
     <string name="translate">ಅನುವಾದಿಸಿ</string>
     <string name="translate_community">ಅಪ್ಲಿಕೇಶನ್ ಅನ್ನು ನಿಮ್ಮ ಭಾಷೆಗೆ ಭಾಷಾಂತರಿಸಲು ನಮಗೆ ಸಹಾಯ ಮಾಡಿ</string>
-    <string name="try_retro_music_premium">HOA Music ಪ್ರೀಮಿಯಂ ಅನ್ನು ಪ್ರಯತ್ನಿಸಿ</string>
+    <string name="try_hoa_music_premium">HOA Music ಪ್ರೀಮಿಯಂ ಅನ್ನು ಪ್ರಯತ್ನಿಸಿ</string>
     <string name="twitter_page">Twitter</string>
     <string name="twitter_page_summary">HOA Music ನೊಂದಿಗೆ ನಿಮ್ಮ ವಿನ್ಯಾಸವನ್ನು ಹಂಚಿಕೊಳ್ಳಿ</string>
     <string name="unlabeled">ಲೇಬಲ್ ಮಾಡಲಾಗಿಲ್ಲ</string>

@@ -2,9 +2,9 @@ package com.helpofai.hoa.musicplayer
 
 import androidx.room.Room
 import com.helpofai.hoa.musicplayer.auto.AutoMusicProvider
-import com.helpofai.hoa.musicplayer.cast.RetroWebServer
+import com.helpofai.hoa.musicplayer.cast.HoaWebServer
 import com.helpofai.hoa.musicplayer.db.MIGRATION_23_24
-import com.helpofai.hoa.musicplayer.db.RetroDatabase
+import com.helpofai.hoa.musicplayer.db.HoaDatabase
 import com.helpofai.hoa.musicplayer.fragments.LibraryViewModel
 import com.helpofai.hoa.musicplayer.fragments.albums.AlbumDetailsViewModel
 import com.helpofai.hoa.musicplayer.fragments.artists.ArtistDetailsViewModel
@@ -40,21 +40,21 @@ val networkModule = module {
 private val roomModule = module {
 
     single {
-        Room.databaseBuilder(androidContext(), RetroDatabase::class.java, "playlist.db")
+        Room.databaseBuilder(androidContext(), HoaDatabase::class.java, "playlist.db")
             .addMigrations(MIGRATION_23_24)
             .build()
     }
 
     factory {
-        get<RetroDatabase>().playlistDao()
+        get<HoaDatabase>().playlistDao()
     }
 
     factory {
-        get<RetroDatabase>().playCountDao()
+        get<HoaDatabase>().playCountDao()
     }
 
     factory {
-        get<RetroDatabase>().historyDao()
+        get<HoaDatabase>().historyDao()
     }
 
     single {
@@ -79,7 +79,7 @@ private val mainModule = module {
         androidContext().contentResolver
     }
     single {
-        RetroWebServer(get())
+        HoaWebServer(get())
     }
 }
 private val dataModule = module {

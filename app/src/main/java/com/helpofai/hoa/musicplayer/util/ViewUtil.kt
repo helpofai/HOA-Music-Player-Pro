@@ -29,7 +29,7 @@ import com.helpofai.hoa.appthemehelper.util.MaterialValueHelper
 
 object ViewUtil {
 
-    const val RETRO_MUSIC_ANIM_TIME = 1000
+    const val hoa_MUSIC_ANIM_TIME = 1000
 
     fun setProgressDrawable(progressSlider: SeekBar, newColor: Int, thumbTint: Boolean = false) {
 

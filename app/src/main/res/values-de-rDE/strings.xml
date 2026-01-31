@@ -447,8 +447,8 @@
     <string name="restored_previous_purchases">Frühere Käufe wiederhergestellt.</string>
     <string name="restoring_purchase">Kauf wird wiederhergestellt…</string>
     <string name="billing_error">An error occurred while communicating with Google Play Billing</string>
-    <string name="retro_music_player">HOA Music Player</string>
-    <string name="retro_music_pro">HOA Music Pro</string>
+    <string name="hoa_music_player">HOA Music Player</string>
+    <string name="hoa_music_pro">HOA Music Pro</string>
     <string name="ringtone_summary">Die App benötigt die Berechtigung zum Ändern von Systemeinstellungen, um Musik als Klingelton festlegen zu können</string>
     <string name="ringtone_title">Klingelton (optional)</string>
     <string name="permission_alarm_summary">Die App benötigt für den Einschlafmodus die Berechtigung, einen genauen Wecker zu stellen</string>
@@ -532,7 +532,7 @@
     <string name="track_list">Titel-Nummer</string>
     <string name="translate">Übersetzen</string>
     <string name="translate_community">Hilf uns, die App in deine Sprache zu übersetzen</string>
-    <string name="try_retro_music_premium">HOA Music Premium testen</string>
+    <string name="try_hoa_music_premium">HOA Music Premium testen</string>
     <string name="twitter_page">Twitter</string>
     <string name="twitter_page_summary">Teile dein Design mit HOA Music</string>
     <string name="unlabeled">Unbenannt</string>

@@ -445,8 +445,8 @@
     <string name="restored_previous_purchases">ယခင်ဝယ်ယူမှုအား ပြန်လည်ရယူပြီးပါပြီ</string>
     <string name="restoring_purchase">ယခင်ဝယ်ယူမှုအား ပြန်လည်ရယူနေသည်...</string>
     <string name="billing_error">An error occurred while communicating with Google Play Billing</string>
-    <string name="retro_music_player">HOA Music Player</string>
-    <string name="retro_music_pro">HOA Music Pro</string>
+    <string name="hoa_music_player">HOA Music Player</string>
+    <string name="hoa_music_pro">HOA Music Pro</string>
     <string name="ringtone_summary">သီချင်းများကို Ringtone ထားရန် app အား System Settings များကိုပြင်ဆင်ခွင့်ပေးရန်လိုသည်။</string>
     <string name="ringtone_title">Ringtone (Optional)</string>
     <string name="permission_alarm_summary">The app needs permission to schedule exact alarms to set sleep timers</string>
@@ -530,7 +530,7 @@
     <string name="track_list">အပုဒ်နံပါတ်</string>
     <string name="translate">ဘာသာပြန်ခြင်း</string>
     <string name="translate_community">App ကိုသင့်ဘာသာစကားသို့ ကူပြန်ပေးပါ</string>
-    <string name="try_retro_music_premium">HOA Music Premium ကိုစမ်းကြည့်ပါ</string>
+    <string name="try_hoa_music_premium">HOA Music Premium ကိုစမ်းကြည့်ပါ</string>
     <string name="twitter_page">Twitter</string>
     <string name="twitter_page_summary">သင့် HOA Music ဒီဇိုင်းများကိုမျှဝေပါ</string>
     <string name="unlabeled">Label မထိုးပါ</string>

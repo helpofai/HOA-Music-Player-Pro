@@ -447,8 +447,8 @@
     <string name="restored_previous_purchases">Korábbi vásárlások visszaállítása.</string>
     <string name="restoring_purchase">A vásárlás visszaállítása ...</string>
     <string name="billing_error">An error occurred while communicating with Google Play Billing</string>
-    <string name="retro_music_player">HOA Music Player</string>
-    <string name="retro_music_pro">HOA Music Pro</string>
+    <string name="hoa_music_player">HOA Music Player</string>
+    <string name="hoa_music_pro">HOA Music Pro</string>
     <string name="ringtone_summary">Az alkalmazásnak engedélyre van szüksége a készülék beállításaihoz a zeneszám csengőhangként való beállításához</string>
     <string name="ringtone_title">Csengőhang (Opcionális)</string>
     <string name="permission_alarm_summary">The app needs permission to schedule exact alarms to set sleep timers</string>
@@ -532,7 +532,7 @@
     <string name="track_list">Sáv száma</string>
     <string name="translate">Fordítás</string>
     <string name="translate_community">Segítsen lefordítani az alkalmazást az Ön nyelvére</string>
-    <string name="try_retro_music_premium">Próbálja ki a HOA Music Premium alkalmazást</string>
+    <string name="try_hoa_music_premium">Próbálja ki a HOA Music Premium alkalmazást</string>
     <string name="twitter_page">Twitter oldal</string>
     <string name="twitter_page_summary">Osszd meg kinézeted a HOA Music App segítségével</string>
     <string name="unlabeled">Címkézetlen</string>

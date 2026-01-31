@@ -352,7 +352,7 @@
     <string name="pref_summary_home_banner">Tampilkan atau sembunyikan spanduk beranda</string>
     <string name="pref_summary_ignore_media_store_artwork">Dapat meningkatkan kualitas sampul album, namun menyebabkan waktu pemuatan lebih lambat. Aktifkan jika Anda bermasalah dengan resolusi gambar album yang rendah</string>
     <string name="pref_summary_library_categories">Mengkonfigurasi visibilitas dan susunan kategori perpustakaan.</string>
-    <string name="pref_summary_lock_screen">Gunakan kontrol layar kunci khusus Musik Retro</string>
+    <string name="pref_summary_lock_screen">Gunakan kontrol layar kunci khusus Musik hoa</string>
     <string name="pref_summary_manage_audio_focus">Selalu putar audio di latar belakang tanpa pedulikan apapun lainnya yang diputar</string>
     <string name="pref_summary_open_source_licences">Detail lisensi untuk perangkat lunak sumber terbuka</string>
     <string name="pref_summary_pause_history">Saat diaktifkan, lagu yang baru diputar tidak akan muncul di riwayat</string>
@@ -445,8 +445,8 @@
     <string name="restored_previous_purchases">Memulihkan pembelian sebelumnya.</string>
     <string name="restoring_purchase">Memulihkan pembelian…</string>
     <string name="billing_error">An error occurred while communicating with Google Play Billing</string>
-    <string name="retro_music_player">HOA Music Player</string>
-    <string name="retro_music_pro">HOA Music Pro</string>
+    <string name="hoa_music_player">HOA Music Player</string>
+    <string name="hoa_music_pro">HOA Music Pro</string>
     <string name="ringtone_summary">Aplikasi memerlukan izin untuk mengakses setelan perangkat Anda untuk mengatur musik sebagai Nada Dering</string>
     <string name="ringtone_title">Nada Dering (Opsional)</string>
     <string name="permission_alarm_summary">Aplikasi membutuhkan izin untuk menjadwalkan alarm yang tepat untuk mengatur waktu tidur</string>
@@ -530,9 +530,9 @@
     <string name="track_list">Nomor trek</string>
     <string name="translate">Terjemahan</string>
     <string name="translate_community">Bantu kami terjemahkan aplikasi ke dalam bahasa Anda</string>
-    <string name="try_retro_music_premium">Coba Retro Musik Premium</string>
+    <string name="try_hoa_music_premium">Coba hoa Musik Premium</string>
     <string name="twitter_page">Twitter</string>
-    <string name="twitter_page_summary">Bagikan desain Anda dengan Musik Retro</string>
+    <string name="twitter_page_summary">Bagikan desain Anda dengan Musik hoa</string>
     <string name="unlabeled">Tidak berlabel</string>
     <string name="unplayable_file">Tidak dapat\u2019 memutar lagu ini.</string>
     <string name="up_next">Berikutnya</string>

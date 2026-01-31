@@ -20,7 +20,7 @@ import androidx.fragment.app.FragmentActivity
 import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension
 import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.albumCoverOptions
 import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.asBitmapPalette
-import com.helpofai.hoa.musicplayer.glide.RetroMusicColoredTarget
+import com.helpofai.hoa.musicplayer.glide.HoaMusicColoredTarget
 import com.helpofai.hoa.musicplayer.helper.HorizontalAdapterHelper
 import com.helpofai.hoa.musicplayer.interfaces.IAlbumClickListener
 import com.helpofai.hoa.musicplayer.model.Album
@@ -53,7 +53,7 @@ class HorizontalAlbumAdapter(
             .asBitmapPalette()
             .albumCoverOptions(album.safeGetFirstSong())
             .load(HoaGlideExtension.getSongModel(album.safeGetFirstSong()))
-            .into(object : RetroMusicColoredTarget(holder.image!!) {
+            .into(object : HoaMusicColoredTarget(holder.image!!) {
                 override fun onColorReady(colors: MediaNotificationProcessor) {
                     setColors(colors, holder)
                 }

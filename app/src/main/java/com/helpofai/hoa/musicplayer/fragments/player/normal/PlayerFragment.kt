@@ -73,7 +73,7 @@ class PlayerFragment : AbsPlayerFragment(R.layout.fragment_player),
                 binding.colorGradientBackground.background = drawable
             }
         }
-        valueAnimator?.setDuration(ViewUtil.RETRO_MUSIC_ANIM_TIME.toLong())?.start()
+        valueAnimator?.setDuration(ViewUtil.hoa_MUSIC_ANIM_TIME.toLong())?.start()
     }
 
     override fun onShow() {

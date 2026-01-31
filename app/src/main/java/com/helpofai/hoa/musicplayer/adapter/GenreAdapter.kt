@@ -26,7 +26,7 @@ import com.helpofai.hoa.musicplayer.databinding.ItemGenreBinding
 import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension
 import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.asBitmapPalette
 import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.songCoverOptions
-import com.helpofai.hoa.musicplayer.glide.RetroMusicColoredTarget
+import com.helpofai.hoa.musicplayer.glide.HoaMusicColoredTarget
 import com.helpofai.hoa.musicplayer.interfaces.IGenreClickListener
 import com.helpofai.hoa.musicplayer.model.Genre
 import com.helpofai.hoa.musicplayer.util.MusicUtil
@@ -74,7 +74,7 @@ class GenreAdapter(
             .asBitmapPalette()
             .songCoverOptions(genreSong)
             .load(HoaGlideExtension.getSongModel(genreSong))
-            .into(object : RetroMusicColoredTarget(holder.binding.image) {
+            .into(object : HoaMusicColoredTarget(holder.binding.image) {
                 override fun onColorReady(colors: MediaNotificationProcessor) {
                     setColors(holder, colors)
                 }

@@ -35,8 +35,8 @@ class BassBoostProcessor : AudioProcessor {
         this.inputAudioFormat = inputAudioFormat
         this.outputAudioFormat = inputAudioFormat
 
-        // Calculate alpha for ~120Hz Low Pass Filter
-        val cutOffFreq = 120.0
+        // Calculate alpha for ~90Hz Low Pass Filter (Deep Bass focus)
+        val cutOffFreq = 90.0
         val sampleRate = inputAudioFormat.sampleRate.toDouble()
         val dt = 1.0 / sampleRate
         val rc = 1.0 / (2.0 * PI * cutOffFreq)
@@ -62,9 +62,9 @@ class BassBoostProcessor : AudioProcessor {
             buffer.clear()
         }
 
-        // Boost factor: scale strength to a reasonable gain (e.g. max +12dB boost effect)
-        // We add the filtered signal (bass) back to original.
-        val boostAmount = strength * 4.0f 
+        // Boost factor: scale strength to a much higher gain (e.g. max +18dB boost effect)
+        // We really want that "thump".
+        val boostAmount = strength * 10.0f 
 
         var i = position
         while (i < limit) {
@@ -84,6 +84,7 @@ class BassBoostProcessor : AudioProcessor {
             val rightOut = rightIn + (rightLow * boostAmount)
 
             // Soft Clip to prevent harsh digital clipping (makes sound smoother/cleaner)
+            // Using tanh gives a nice analog saturation feel at high gain
             buffer.putFloat(tanh(leftOut))
             buffer.putFloat(tanh(rightOut))
             

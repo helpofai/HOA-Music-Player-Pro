@@ -23,7 +23,7 @@ import com.helpofai.hoa.musicplayer.glide.palette.BitmapPaletteWrapper
 import com.helpofai.hoa.musicplayer.util.color.MediaNotificationProcessor
 import com.bumptech.glide.request.transition.Transition
 
-abstract class RetroMusicColoredTarget(view: ImageView) : BitmapPaletteTarget(view) {
+abstract class HoaMusicColoredTarget(view: ImageView) : BitmapPaletteTarget(view) {
 
     protected val defaultFooterColor: Int
         get() = getView().context.colorControlNormal()

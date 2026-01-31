@@ -30,7 +30,7 @@ import com.helpofai.hoa.musicplayer.util.PreferenceUtil.playbackSpeed
 import com.helpofai.hoa.musicplayer.util.logE
 
 @OptIn(UnstableApi::class)
-class RetroExoPlayer(context: Context) : AudioManagerPlayback(context), Player.Listener {
+class hoaExoPlayer(context: Context) : AudioManagerPlayback(context), Player.Listener {
     private val stereoProcessor = StereoProcessor()
     private val reverbProcessor = ReverbProcessor()
     private val bassBoostProcessor = BassBoostProcessor()
@@ -299,6 +299,6 @@ class RetroExoPlayer(context: Context) : AudioManagerPlayback(context), Player.L
     }
 
     companion object {
-        val TAG: String = RetroExoPlayer::class.java.simpleName
+        val TAG: String = hoaExoPlayer::class.java.simpleName
     }
 }

@@ -449,8 +449,8 @@
     <string name="restored_previous_purchases">Au fost restabilite achizițiile anterioare.</string>
     <string name="restoring_purchase">Se restabilește achiziția...</string>
     <string name="billing_error">A apărut o eroare la comunicarea cu Google Play Billing</string>
-    <string name="retro_music_player">HOA Music Player</string>
-    <string name="retro_music_pro">Cumpărați RetroMusic Pro</string>
+    <string name="hoa_music_player">HOA Music Player</string>
+    <string name="hoa_music_pro">Cumpărați hoaMusic Pro</string>
     <string name="ringtone_summary">Aplicația are nevoie de permisiunea de a accesa setările dispozitivului pentru a seta muzica ca ton de apel</string>
     <string name="ringtone_title">Ton sonerie (opțional)</string>
     <string name="permission_alarm_summary">Aplicația are nevoie de permisiunea de a programa alarmele exacte pentru a seta temporizatoarele de somn</string>
@@ -534,7 +534,7 @@
     <string name="track_list">Numărul piesei</string>
     <string name="translate">Traducere</string>
     <string name="translate_community">Ajută-ne să traducem aplicația</string>
-    <string name="try_retro_music_premium">Încearcă Retro Muzică Premium</string>
+    <string name="try_hoa_music_premium">Încearcă hoa Muzică Premium</string>
     <string name="twitter_page">Twitter</string>
     <string name="twitter_page_summary">Împărtășește design-ul tău cu HOA Music</string>
     <string name="unlabeled">Neetichetat</string>
