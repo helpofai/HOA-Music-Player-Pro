@@ -79,6 +79,17 @@ class AudioSettings : AbsSettingsFragment() {
             applyAudioSignature(newValue as String)
             true
         }
+
+        // Auto-switch to "Custom" when sliders are touched
+        val sliderListener = Preference.OnPreferenceChangeListener { _, _ ->
+            (findPreference("audio_signature") as? com.helpofai.hoa.appthemehelper.common.prefs.supportv7.ATEListPreference)?.value = "custom"
+            true
+        }
+        findPreference<Preference>("audio_balance")?.onPreferenceChangeListener = sliderListener
+        findPreference<Preference>("audio_stereo_width")?.onPreferenceChangeListener = sliderListener
+        findPreference<Preference>("audio_clarity")?.onPreferenceChangeListener = sliderListener
+        findPreference<Preference>("audio_bass_strength")?.onPreferenceChangeListener = sliderListener
+        findPreference<Preference>("audio_reverb_amount")?.onPreferenceChangeListener = sliderListener
     }
 
     private fun applyAudioSignature(signature: String) {
