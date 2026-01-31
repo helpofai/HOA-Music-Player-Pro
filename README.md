@@ -12,45 +12,48 @@
 
 ___
 
-## 💎 Professional Audio Experience
-HOA Music Player Pro is a material-you designed music player featuring a custom-built **High-Resolution Audio Engine**. Unlike standard players, it processes audio in **32-bit Floating Point**, delivering studio-quality sound with advanced DSP effects.
+## 💎 Professional Hi-Fi Experience
+HOA Music Player Pro is a Material-You designed player featuring a **State-of-the-Art Audio Engine**. Unlike standard players, it uses **32-bit Floating Point Modeling** to simulate high-end analog hardware and psychoacoustic effects for a truly "Real" music experience.
 
-## 🚀 Key Audio Features (New!)
-- **High-Res Audio Engine**: Forces 32-bit Floating Point output for maximum dynamic range and precision.
-- **Diamond Clarity**: Proprietary processing that enhances vocal presence and adds "air" to the treble without harshness.
-- **Stereo Width**: Frequency-dependent stereo expansion that widens the soundstage while keeping the bass solid and centered.
-- **Bass Boost**: Analog-modeled bass enhancement with Soft Clipping (tanh) for deep, punchy, distortion-free lows.
-- **Room Effect**: Studio-grade reverb to add depth and ambience to your music.
-- **Audio Offload**: Hardware offload support for improved battery life and playback stability.
+## 🚀 Advanced Audio Engine (New!)
+- **Vacuum Tube Saturator**: Adds even-order harmonics to emulate the warm, organic sound of vintage tube amplifiers.
+- **Phantom Bass (Psychoacoustic)**: Generates 2nd harmonics of the low-end, allowing you to hear deep sub-bass even on small phone speakers and earbuds.
+- **Binaural Crossfeed**: Simulates a live speaker environment by gently blending channels, reducing headphone fatigue and creating a natural center image.
+- **Diamond Clarity**: Proprietary "Harmonic Exciter" that adds air and sparkle to the treble without harshness.
+- **Sub-Bass Rumble Filter**: A 20Hz high-pass filter that cleans up subsonic mud, keeping your bass tight and punchy.
+- **High-Res Output**: Forces 32-bit Float PCM output for maximum dynamic range.
+
+## 🎚️ Signature Audio Presets
+One-tap professional tunings to instantly transform your sound:
+- **The HOA Signature**: Balanced, warm, and highly detailed (Golden Sound).
+- **Bass Head**: Focused on deep sub-bass and massive impact.
+- **Vocal Air**: Highlights every breath and detail in acoustic/pop tracks.
+- **Live Stadium**: Creates an immersive, wide, and ambient 3D soundstage.
+- **Vinyl Warmth**: Rich analog texture with classic rolled-off highs.
 
 ## 🎨 Modern Design
 - **Material You**: Fully adapts to your system colors (Android 12+).
-- **Extended Colors**: Choose from a wide range of accent colors and themes to personalize your player.
 - **Professional UI**: Sleek "Equalizer Play" branding and polished, animated interfaces.
-- **Themes**: Choose between Clearly White, Kinda Dark, and Just Black.
+- **Extended Colors**: Choose from a wide range of accent colors and themes.
+- **Themes**: Clearly White, Kinda Dark, and Just Black.
 
 ## 📦 Standard Features
-- Chromecast support
-- Driving Mode
+- Chromecast & Android Auto support
+- Driving Mode & Sleep Timer
 - Headset/Bluetooth auto-play
-- Android Auto support
 - Gapless playback
-- Volume controls
-- Home screen widgets
 - Lock screen playback controls
-- Lyrics screen (synced)
-- Sleep timer
-- Tag editor
-- Create, edit, and import playlists
+- Synced Lyrics support
+- Advanced Tag editor & Playlist management
 
 ___
 
 ## ❓ FAQ
 **Q: How do I enable the High-Res Audio Engine?**
-A: Go to **Settings > Audio** and toggle "High-Res Audio Engine". Note: This requires an app restart to take full effect.
+A: Go to **Settings > Audio** and toggle "High-Res Audio Engine". Tweak the **Audio Signature** to "The HOA Signature" for the best experience. (Note: High-Res toggle requires app restart).
 
-**Q: Why do I need to restart for High-Res Audio?**
-A: The app needs to rebuild the fundamental audio sink pipeline to request the specific floating-point output format from the Android system.
+**Q: Does Phantom Bass work on all speakers?**
+A: Yes! It is specifically designed to help small speakers and cheap earbuds reproduce the *feeling* of deep bass by using psychoacoustic harmonic generation.
 
 ## 🗂️ License
 HOA Music Player is released under the GNU General Public License v3.0 (GPLv3).
