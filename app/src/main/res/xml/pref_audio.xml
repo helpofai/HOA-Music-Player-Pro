@@ -34,6 +34,16 @@
         android:title="@string/pref_title_high_res"
         app:icon="@drawable/ic_star" />
 
+    <com.helpofai.hoa.appthemehelper.common.prefs.supportv7.ATEListPreference
+        android:defaultValue="signature"
+        android:key="audio_signature"
+        android:entries="@array/pref_audio_signature_titles"
+        android:entryValues="@array/pref_audio_signature_values"
+        android:layout="@layout/list_item_view"
+        android:summary="@string/pref_summary_audio_signature"
+        android:title="@string/pref_title_audio_signature"
+        app:icon="@drawable/ic_queue_music" />
+
     <com.helpofai.hoa.appthemehelper.common.prefs.supportv7.ATESeekBarPreference
         android:defaultValue="0"
         android:key="cross_fade_duration"

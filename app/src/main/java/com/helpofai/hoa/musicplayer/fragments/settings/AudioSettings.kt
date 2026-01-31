@@ -73,6 +73,68 @@ class AudioSettings : AbsSettingsFragment() {
             resetAudioSettings()
             true
         }
+
+        val signaturePreference: Preference? = findPreference("audio_signature")
+        signaturePreference?.setOnPreferenceChangeListener { _, newValue ->
+            applyAudioSignature(newValue as String)
+            true
+        }
+    }
+
+    private fun applyAudioSignature(signature: String) {
+        if (signature == "custom") return
+
+        var width = 100
+        var clarity = 0
+        var bass = 0
+        var reverb = 0
+
+        when (signature) {
+            "signature" -> { // Balanced, Warm, Clear
+                width = 100
+                clarity = 30
+                bass = 40
+                reverb = 10
+            }
+            "bass_head" -> { // Heavy Bass
+                width = 100
+                clarity = 20
+                bass = 85
+                reverb = 0
+            }
+            "vocal_air" -> { // Mid-Side emphasis
+                width = 120
+                clarity = 80
+                bass = 20
+                reverb = 20
+            }
+            "live_stadium" -> { // Wide and Ambient
+                width = 140
+                clarity = 40
+                bass = 50
+                reverb = 60
+            }
+            "vinyl_warmth" -> { // Thick and Narrower
+                width = 90
+                clarity = 10
+                bass = 60
+                reverb = 30
+            }
+        }
+
+        // Apply to Persistence (Engine picks this up)
+        PreferenceUtil.stereoWidth = width / 100f
+        PreferenceUtil.clarity = clarity / 100f
+        PreferenceUtil.bassStrength = bass / 100f
+        PreferenceUtil.reverbAmount = reverb / 100f
+
+        // Update UI Sliders
+        (findPreference("audio_stereo_width") as? SeekBarPreference)?.value = width
+        (findPreference("audio_clarity") as? SeekBarPreference)?.value = clarity
+        (findPreference("audio_bass_strength") as? SeekBarPreference)?.value = bass
+        (findPreference("audio_reverb_amount") as? SeekBarPreference)?.value = reverb
+        
+        Toast.makeText(requireContext(), "$signature applied", Toast.LENGTH_SHORT).show()
     }
 
     private fun resetAudioSettings() {

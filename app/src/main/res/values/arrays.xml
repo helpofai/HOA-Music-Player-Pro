@@ -221,4 +221,22 @@
         <item>@string/choose_image</item>
         <item>@string/remove_image</item>
     </string-array>
+
+    <string-array name="pref_audio_signature_titles">
+        <item>@string/preset_hoa_signature</item>
+        <item>@string/preset_bass_head</item>
+        <item>@string/preset_vocal_air</item>
+        <item>@string/preset_live_stadium</item>
+        <item>@string/preset_vinyl_warmth</item>
+        <item>@string/preset_custom</item>
+    </string-array>
+
+    <string-array name="pref_audio_signature_values">
+        <item>signature</item>
+        <item>bass_head</item>
+        <item>vocal_air</item>
+        <item>live_stadium</item>
+        <item>vinyl_warmth</item>
+        <item>custom</item>
+    </string-array>
 </resources>

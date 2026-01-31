@@ -584,6 +584,14 @@
     <string name="sleep_timer_no_permission">No permission to schedule alarms, please allow HOA Music.</string>
     <string name="scanning_folders_files">Scanning folders and files…</string>
     <string name="scan_complete">Scan complete: %1$d media items found.</string>
+    <string name="pref_title_audio_signature">Audio Signature</string>
+    <string name="pref_summary_audio_signature">One-tap professional tuning presets</string>
+    <string name="preset_hoa_signature">The HOA Signature</string>
+    <string name="preset_bass_head">Bass Head</string>
+    <string name="preset_vocal_air">Vocal Air</string>
+    <string name="preset_live_stadium">Live Stadium</string>
+    <string name="preset_vinyl_warmth">Vinyl Warmth</string>
+    <string name="preset_custom">Custom</string>
     <string name="pref_save_last_directory_summary">When switching to folder view, restore last used directory</string>
     <string name="pref_save_last_directory_title">Save Last Directory</string>
 
