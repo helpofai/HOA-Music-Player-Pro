@@ -39,6 +39,11 @@ class StereoProcessor : AudioProcessor {
     private var sideLowState: Float = 0f
     private var sideXoverAlpha: Float = 0.1f
 
+    // Filter state for Binaural Crossfeed (Head Shadow simulation)
+    private var headShadowL: Float = 0f
+    private var headShadowR: Float = 0f
+    private var headShadowAlpha: Float = 0.08f // ~400Hz cutoff for head shadow
+
     // Filter state for Air (High Pass) - Side Channel
     private var airHpState: Float = 0f
     private var airHpAlpha: Float = 0.1f
@@ -190,7 +195,24 @@ class StereoProcessor : AudioProcessor {
             var leftProcessed = mid + processedSide
             var rightProcessed = mid - processedSide
 
-            // --- 3. Balance ---
+            // --- 3. Binaural Crossfeed (Speaker Simulation) ---
+            // Simulates sound bending around the head (Head Shadow).
+            // Reduces headphone fatigue and creates a natural "Phantom Center".
+            // We use the "Shadow" signal (Low Passed) to mimic head obstruction.
+            val shadowL = headShadowL + headShadowAlpha * (leftOriginal - headShadowL)
+            val shadowR = headShadowR + headShadowAlpha * (rightOriginal - headShadowR)
+            headShadowL = shadowL
+            headShadowR = shadowR
+            
+            // Mix Shadow into Opposite Channel (delayed slightly by filter phase lag)
+            // Only apply if Clarity is active (High-Res Mode) to keep standard mode pure
+            if (clarity > 0f) {
+                val feedAmount = 0.15f // Natural crossfeed level (~ -16dB)
+                leftProcessed += shadowR * feedAmount
+                rightProcessed += shadowL * feedAmount
+            }
+
+            // --- 4. Balance ---
             leftProcessed *= balanceLeftVol
             rightProcessed *= balanceRightVol
 
@@ -224,6 +246,8 @@ class StereoProcessor : AudioProcessor {
         inputEnded = false
         sideLowState = 0f
         airHpState = 0f
+        headShadowL = 0f
+        headShadowR = 0f
         vocalBpX1 = 0f; vocalBpX2 = 0f; vocalBpY1 = 0f; vocalBpY2 = 0f
     }
 

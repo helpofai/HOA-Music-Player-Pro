@@ -105,9 +105,25 @@ class BassBoostProcessor : AudioProcessor {
             lastOutputL = leftLow
             lastOutputR = rightLow
 
-            // Mix: Original + Bass * Boost
-            val leftOut = leftIn + (leftLow * boostAmount)
-            val rightOut = rightIn + (rightLow * boostAmount)
+            // --- PHANTOM BASS (Psychoacoustic Harmonics) ---
+            // Generate 2nd Harmonic (Octave Up) to trick the brain into hearing lower bass
+            // on small speakers (The "Missing Fundamental" effect).
+            // Formula: x^2 (Squared) generates 2nd harmonic.
+            val phantomL = leftLow * leftLow
+            val phantomR = rightLow * rightLow
+            
+            // Note: x^2 creates a DC offset (always positive). We remove it by flipping phase 
+            // based on original signal or using a high-pass. 
+            // Simplified "MaxxBass" style approximation: Mix the harmonic back in.
+            // We multiply by sign(original) to keep dynamic movement roughly aligned, 
+            // essentially x * |x| which is cleaner than pure x^2 for audio.
+            val phantomBassL = leftLow * kotlin.math.abs(leftLow)
+            val phantomBassR = rightLow * kotlin.math.abs(rightLow)
+
+            // Mix: Original + Bass * Boost + PhantomBass
+            // We give Phantom Bass a specific boost ratio (e.g. 50% of the main boost)
+            val leftOut = leftIn + (leftLow * boostAmount) + (phantomBassL * boostAmount * 0.5f)
+            val rightOut = rightIn + (rightLow * boostAmount) + (phantomBassR * boostAmount * 0.5f)
 
             // Soft Clip to prevent harsh digital clipping (makes sound smoother/cleaner)
             // Using tanh gives a nice analog saturation feel at high gain
