@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Hemanth Savarla.
+ * Copyright (c) 2026 HOA Music Player Pro contributors.
  *
  * Licensed under the GNU General Public License v3
  *
