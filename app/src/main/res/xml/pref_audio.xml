@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.helpofai.hoa.musicplayer.preferences.DurationPreference
+        android:defaultValue="0"
+        android:key="audio_fade_duration"
+        android:layout="@layout/list_item_view"
+        android:summary="@string/pref_summary_audio_fade"
+        android:title="@string/pref_title_audio_fade"
+        app:icon="@drawable/ic_volume_down" />
+
+    <com.helpofai.hoa.appthemehelper.common.prefs.supportv7.ATESwitchPreference
+        android:defaultValue="false"
+        android:key="manage_audio_focus"
+        android:layout="@layout/list_item_view_switch"
+        android:summary="@string/pref_summary_manage_audio_focus"
+        android:title="@string/pref_title_manage_audio_focus"
+        app:icon="@drawable/ic_notifications_active" />
+
+    <com.helpofai.hoa.appthemehelper.common.prefs.supportv7.ATESwitchPreference
+        android:defaultValue="false"
+        android:key="toggle_audio_offload"
+        android:layout="@layout/list_item_view_switch"
+        android:summary="@string/pref_summary_audio_offload"
+        android:title="@string/pref_title_audio_offload"
+        app:icon="@drawable/ic_settings" />
+
+    <com.helpofai.hoa.appthemehelper.common.prefs.supportv7.ATESwitchPreference
+        android:defaultValue="false"
+        android:key="toggle_high_res"
+        android:layout="@layout/list_item_view_switch"
+        android:summary="@string/pref_summary_high_res"
+        android:title="@string/pref_title_high_res"
+        app:icon="@drawable/ic_star" />
+
+    <com.helpofai.hoa.appthemehelper.common.prefs.supportv7.ATESeekBarPreference
+        android:defaultValue="0"
+        android:key="cross_fade_duration"
+        android:layout="@layout/list_item_view_seekbar"
+        app:ateKey_pref_unit="s"
+        android:max="12"
+        android:summary="@string/pref_summary_cross_fade"
+        android:title="@string/pref_title_cross_fade"
+        app:icon="@drawable/ic_blur_on"
+        app:showSeekBarValue="true" />
+
+    <com.helpofai.hoa.appthemehelper.common.prefs.supportv7.ATESeekBarPreference
+        android:defaultValue="100"
+        android:key="audio_balance"
+        android:layout="@layout/list_item_view_seekbar"
+        android:max="200"
+        android:summary="@string/pref_summary_audio_balance"
+        android:title="@string/pref_title_audio_balance"
+        app:icon="@drawable/ic_settings_brightness"
+        app:showSeekBarValue="true" />
+
+    <com.helpofai.hoa.appthemehelper.common.prefs.supportv7.ATESeekBarPreference
+        android:defaultValue="100"
+        android:key="audio_stereo_width"
+        android:layout="@layout/list_item_view_seekbar"
+        android:max="200"
+        android:summary="@string/pref_summary_audio_stereo_width"
+        android:title="@string/pref_title_audio_stereo_width"
+        app:ateKey_pref_unit="%"
+        app:icon="@drawable/ic_fullscreen"
+        app:showSeekBarValue="true" />
+
+    <com.helpofai.hoa.appthemehelper.common.prefs.supportv7.ATESeekBarPreference
+        android:defaultValue="0"
+        android:key="audio_clarity"
+        android:layout="@layout/list_item_view_seekbar"
+        android:max="100"
+        android:summary="@string/pref_summary_audio_clarity"
+        android:title="@string/pref_title_audio_clarity"
+        app:ateKey_pref_unit="%"
+        app:icon="@drawable/ic_diamond"
+        app:showSeekBarValue="true" />
+
+    <com.helpofai.hoa.appthemehelper.common.prefs.supportv7.ATESeekBarPreference
+        android:defaultValue="0"
+        android:key="audio_bass_strength"
+        android:layout="@layout/list_item_view_seekbar"
+        android:max="100"
+        android:summary="@string/pref_summary_audio_bass_boost"
+        android:title="@string/pref_title_audio_bass_boost"
+        app:ateKey_pref_unit="%"
+        app:icon="@drawable/ic_equalizer"
+        app:showSeekBarValue="true" />
+
+    <com.helpofai.hoa.appthemehelper.common.prefs.supportv7.ATESeekBarPreference
+        android:defaultValue="0"
+        android:key="audio_reverb_amount"
+        android:layout="@layout/list_item_view_seekbar"
+        android:max="100"
+        android:summary="@string/pref_summary_audio_reverb"
+        android:title="@string/pref_title_audio_reverb"
+        app:ateKey_pref_unit="%"
+        app:icon="@drawable/ic_home"
+        app:showSeekBarValue="true" />
+
+    <com.helpofai.hoa.appthemehelper.common.prefs.supportv7.ATEPreference
+        android:key="equalizer"
+        android:layout="@layout/list_item_view_no_title"
+        android:title="@string/equalizer"
+        app:icon="@drawable/ic_equalizer" />
+
+    <com.helpofai.hoa.appthemehelper.common.prefs.supportv7.ATESwitchPreference
+        android:defaultValue="false"
+        android:key="toggle_headset"
+        android:layout="@layout/list_item_view_switch"
+        android:summary="@string/pref_summary_toggle_headset"
+        android:title="@string/pref_title_toggle_toggle_headset"
+        app:icon="@drawable/ic_play_circle" />
+
+    <com.helpofai.hoa.appthemehelper.common.prefs.supportv7.ATESwitchPreference
+        android:defaultValue="false"
+        android:key="bluetooth_playback"
+        android:layout="@layout/list_item_view_switch"
+        android:summary="@string/pref_summary_bluetooth_playback"
+        android:title="@string/pref_title_bluetooth_playback"
+        app:icon="@drawable/ic_bluetooth_connect" />
+
+    <com.helpofai.hoa.appthemehelper.common.prefs.supportv7.ATEPreference
+        android:key="restore_default_audio"
+        android:layout="@layout/list_item_view_no_title"
+        android:summary="@string/pref_summary_reset_audio"
+        android:title="@string/pref_title_reset_audio"
+        app:icon="@drawable/ic_restore" />
+
+</androidx.preference.PreferenceScreen>
