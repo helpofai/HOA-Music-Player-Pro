@@ -25,6 +25,7 @@ HOA Music Player Pro is a material-you designed music player featuring a custom-
 
 ## 🎨 Modern Design
 - **Material You**: Fully adapts to your system colors (Android 12+).
+- **Extended Colors**: Choose from a wide range of accent colors and themes to personalize your player.
 - **Professional UI**: Sleek "Equalizer Play" branding and polished, animated interfaces.
 - **Themes**: Choose between Clearly White, Kinda Dark, and Just Black.
 
