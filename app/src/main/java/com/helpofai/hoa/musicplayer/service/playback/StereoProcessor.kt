@@ -9,6 +9,7 @@ import java.nio.ByteOrder
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
+import kotlin.math.tanh
 
 @UnstableApi
 class StereoProcessor : AudioProcessor {
@@ -145,8 +146,27 @@ class StereoProcessor : AudioProcessor {
                 airHpState = airLpf
                 val airHigh = side - airLpf
                 
-                // Add air to Side (This brings out reverb tails and wide panning details)
-                side += airHigh * airGain
+                // Harmonic Exciter: Generate harmonics using saturation
+                // Drive the high freq content to create "sparkle" and detail
+                val airHarmonics = tanh(airHigh * 2.0f)
+                
+                // Add air harmonics to Side
+                side += airHarmonics * airGain
+
+                // --- ANALOG TUBE SATURATION (The "Real" Feel) ---
+                // Adds Even-Order Harmonics (Warmth) to the Mid channel (Vocals/Bass)
+                // f(x) = x + alpha * (x^2)
+                // We use a safe approximation to avoid DC offset issues or extreme distortion
+                val tubeWarmth = 0.15f * clarity // Amount of warmth linked to clarity
+                if (tubeWarmth > 0) {
+                    val evenHarmonic = mid * mid 
+                    // Mix standard signal with its warmth, preserving phase
+                    if (mid >= 0) {
+                        mid += evenHarmonic * tubeWarmth
+                    } else {
+                        mid -= evenHarmonic * tubeWarmth // Maintain symmetry to avoid DC drift, but creates 'thick' sound
+                    }
+                }
             }
 
             // --- 2. Stereo Width Processing ---

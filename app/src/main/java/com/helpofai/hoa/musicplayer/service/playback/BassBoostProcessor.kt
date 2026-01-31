@@ -28,6 +28,13 @@ class BassBoostProcessor : AudioProcessor {
     private var lastOutputR: Float = 0f
     private var alpha: Float = 0.05f
 
+    // Rumble Filter state (20Hz HPF)
+    private var rumbleXL: Float = 0f
+    private var rumbleXR: Float = 0f
+    private var rumbleYL: Float = 0f
+    private var rumbleYR: Float = 0f
+    private var rumbleAlpha: Float = 0.99f
+
     override fun configure(inputAudioFormat: AudioFormat): AudioFormat {
         if (inputAudioFormat.channelCount != 2 || inputAudioFormat.encoding != C.ENCODING_PCM_FLOAT) {
             return AudioFormat.NOT_SET
@@ -35,12 +42,18 @@ class BassBoostProcessor : AudioProcessor {
         this.inputAudioFormat = inputAudioFormat
         this.outputAudioFormat = inputAudioFormat
 
+        val sampleRate = inputAudioFormat.sampleRate.toDouble()
+
         // Calculate alpha for ~90Hz Low Pass Filter (Deep Bass focus)
         val cutOffFreq = 90.0
-        val sampleRate = inputAudioFormat.sampleRate.toDouble()
         val dt = 1.0 / sampleRate
         val rc = 1.0 / (2.0 * PI * cutOffFreq)
         alpha = (dt / (rc + dt)).toFloat()
+
+        // Calculate alpha for 20Hz High Pass Rumble Filter
+        val rumbleFreq = 20.0
+        val rumbleRc = 1.0 / (2.0 * PI * rumbleFreq)
+        rumbleAlpha = (rumbleRc / (rumbleRc + dt)).toFloat()
 
         return outputAudioFormat
     }
@@ -68,8 +81,21 @@ class BassBoostProcessor : AudioProcessor {
 
         var i = position
         while (i < limit) {
-            val leftIn = inputBuffer.getFloat(i)
-            val rightIn = inputBuffer.getFloat(i + 4)
+            var leftIn = inputBuffer.getFloat(i)
+            var rightIn = inputBuffer.getFloat(i + 4)
+
+            // 1. Rumble Filter (20Hz HPF) - Clean up DC and subsonic mud BEFORE boosting
+            // y[i] := α * (y[i-1] + x[i] - x[i-1])
+            val rYL = rumbleAlpha * (rumbleYL + leftIn - rumbleXL)
+            val rYR = rumbleAlpha * (rumbleYR + rightIn - rumbleXR)
+            
+            rumbleXL = leftIn
+            rumbleXR = rightIn
+            rumbleYL = rYL
+            rumbleYR = rYR
+            
+            leftIn = rYL
+            rightIn = rYR
 
             // Simple Low Pass Filter
             // y[n] = y[n-1] + alpha * (x[n] - y[n-1])
@@ -115,6 +141,10 @@ class BassBoostProcessor : AudioProcessor {
         inputEnded = false
         lastOutputL = 0f
         lastOutputR = 0f
+        rumbleXL = 0f
+        rumbleXR = 0f
+        rumbleYL = 0f
+        rumbleYR = 0f
     }
 
     override fun reset() {
