@@ -540,9 +540,9 @@ object PreferenceUtil {
 
     fun themeResFromPrefValue(themePrefValue: String): Int {
         return when (themePrefValue) {
-            "light" -> R.style.Theme_RetroMusic_Light
-            "dark" -> R.style.Theme_RetroMusic
-            else -> R.style.Theme_RetroMusic
+            "light" -> R.style.Theme_HOAMusic_Light
+            "dark" -> R.style.Theme_HOAMusic
+            else -> R.style.Theme_HOAMusic
         }
     }
 

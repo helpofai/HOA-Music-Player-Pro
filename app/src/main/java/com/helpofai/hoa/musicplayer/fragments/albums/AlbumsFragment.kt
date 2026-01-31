@@ -32,7 +32,7 @@ import com.helpofai.hoa.musicplayer.helper.SortOrder.AlbumSortOrder
 import com.helpofai.hoa.musicplayer.interfaces.IAlbumClickListener
 import com.helpofai.hoa.musicplayer.service.MusicService
 import com.helpofai.hoa.musicplayer.util.PreferenceUtil
-import com.helpofai.hoa.musicplayer.util.RetroUtil
+import com.helpofai.hoa.musicplayer.util.HoaUtil
 
 class AlbumsFragment : AbsRecyclerViewCustomGridSizeFragment<AlbumAdapter, GridLayoutManager>(),
     IAlbumClickListener {
@@ -145,7 +145,7 @@ class AlbumsFragment : AbsRecyclerViewCustomGridSizeFragment<AlbumAdapter, GridL
     override fun onCreateMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateMenu(menu, inflater)
         val gridSizeItem: MenuItem = menu.findItem(R.id.action_grid_size)
-        if (RetroUtil.isLandscape) {
+        if (HoaUtil.isLandscape) {
             gridSizeItem.setTitle(R.string.action_grid_size_land)
         }
         setUpGridSizeMenu(gridSizeItem.subMenu!!)

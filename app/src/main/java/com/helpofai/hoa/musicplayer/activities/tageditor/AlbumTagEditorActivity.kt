@@ -31,14 +31,14 @@ import com.helpofai.hoa.appthemehelper.util.MaterialValueHelper
 import com.helpofai.hoa.musicplayer.R
 import com.helpofai.hoa.musicplayer.databinding.ActivityAlbumTagEditorBinding
 import com.helpofai.hoa.musicplayer.extensions.*
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension.asBitmapPalette
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.asBitmapPalette
 import com.helpofai.hoa.musicplayer.glide.palette.BitmapPaletteWrapper
 import com.helpofai.hoa.musicplayer.model.ArtworkInfo
 import com.helpofai.hoa.musicplayer.model.Song
 import com.helpofai.hoa.musicplayer.util.ImageUtil
 import com.helpofai.hoa.musicplayer.util.MusicUtil
-import com.helpofai.hoa.musicplayer.util.RetroColorUtil.generatePalette
-import com.helpofai.hoa.musicplayer.util.RetroColorUtil.getColor
+import com.helpofai.hoa.musicplayer.util.HoaColorUtil.generatePalette
+import com.helpofai.hoa.musicplayer.util.HoaColorUtil.getColor
 import com.helpofai.hoa.musicplayer.util.logD
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy

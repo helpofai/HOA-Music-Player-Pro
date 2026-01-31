@@ -23,9 +23,9 @@ import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.helpofai.hoa.musicplayer.R
 import com.helpofai.hoa.musicplayer.databinding.ItemGenreBinding
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension.asBitmapPalette
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension.songCoverOptions
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.asBitmapPalette
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.songCoverOptions
 import com.helpofai.hoa.musicplayer.glide.RetroMusicColoredTarget
 import com.helpofai.hoa.musicplayer.interfaces.IGenreClickListener
 import com.helpofai.hoa.musicplayer.model.Genre
@@ -73,7 +73,7 @@ class GenreAdapter(
         Glide.with(activity)
             .asBitmapPalette()
             .songCoverOptions(genreSong)
-            .load(RetroGlideExtension.getSongModel(genreSong))
+            .load(HoaGlideExtension.getSongModel(genreSong))
             .into(object : RetroMusicColoredTarget(holder.binding.image) {
                 override fun onColorReady(colors: MediaNotificationProcessor) {
                     setColors(holder, colors)

@@ -27,8 +27,8 @@ import com.helpofai.hoa.musicplayer.db.toSongEntity
 import com.helpofai.hoa.musicplayer.extensions.accentColor
 import com.helpofai.hoa.musicplayer.extensions.drawAboveSystemBars
 import com.helpofai.hoa.musicplayer.glide.BlurTransformation
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension.songCoverOptions
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.songCoverOptions
 import com.helpofai.hoa.musicplayer.helper.MusicPlayerRemote
 import com.helpofai.hoa.musicplayer.helper.MusicProgressViewUpdateHelper
 import com.helpofai.hoa.musicplayer.helper.MusicProgressViewUpdateHelper.Callback
@@ -242,7 +242,7 @@ class DriveModeActivity : AbsMusicServiceActivity(), Callback {
         binding.songText.text = song.artistName
 
         Glide.with(this)
-            .load(RetroGlideExtension.getSongModel(song))
+            .load(HoaGlideExtension.getSongModel(song))
             .songCoverOptions(song)
             .transform(BlurTransformation.Builder(this).build())
             .into(binding.image)

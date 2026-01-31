@@ -2,7 +2,7 @@ package com.helpofai.hoa.musicplayer.cast
 
 import android.content.Context
 import com.helpofai.hoa.musicplayer.util.MusicUtil
-import com.helpofai.hoa.musicplayer.util.RetroUtil
+import com.helpofai.hoa.musicplayer.util.HoaUtil
 import fi.iki.elonen.NanoHTTPD
 import fi.iki.elonen.NanoHTTPD.Response.Status
 import java.io.*
@@ -40,7 +40,7 @@ class RetroWebServer(val context: Context) : NanoHTTPD(findAndInitializePort()) 
     override fun start() {
         try {
             super.start()
-            val ipAddress = RetroUtil.getIpAddress(true)
+            val ipAddress = HoaUtil.getIpAddress(true)
             CastServerUtils.logInfo("Server started successfully on port $currentServerPort with IP: $ipAddress")
         } catch (e: Exception) {
             CastServerUtils.logError("Failed to start server: ${e.message}")

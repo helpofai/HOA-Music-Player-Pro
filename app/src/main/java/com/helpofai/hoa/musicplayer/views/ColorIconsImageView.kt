@@ -26,7 +26,7 @@ import com.helpofai.hoa.appthemehelper.util.ATHUtil
 import com.helpofai.hoa.appthemehelper.util.ColorUtil
 import com.helpofai.hoa.musicplayer.R
 import com.helpofai.hoa.musicplayer.util.PreferenceUtil
-import com.helpofai.hoa.musicplayer.util.RetroColorUtil
+import com.helpofai.hoa.musicplayer.util.HoaColorUtil
 import com.google.android.material.color.MaterialColors
 
 
@@ -48,7 +48,7 @@ class ColorIconsImageView @JvmOverloads constructor(
     fun setIconBackgroundColor(color: Int) {
         background = ContextCompat.getDrawable(context, R.drawable.color_circle_gradient)
         if (ATHUtil.isWindowBackgroundDark(context) && PreferenceUtil.isDesaturatedColor) {
-            val desaturatedColor = RetroColorUtil.desaturateColor(color, 0.4f)
+            val desaturatedColor = HoaColorUtil.desaturateColor(color, 0.4f)
             backgroundTintList = ColorStateList.valueOf(desaturatedColor)
             imageTintList =
                 ColorStateList.valueOf(ATHUtil.resolveColor(context, com.google.android.material.R.attr.colorSurface))

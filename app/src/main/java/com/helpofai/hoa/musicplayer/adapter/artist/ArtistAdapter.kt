@@ -27,9 +27,9 @@ import com.helpofai.hoa.musicplayer.R
 import com.helpofai.hoa.musicplayer.adapter.base.AbsMultiSelectAdapter
 import com.helpofai.hoa.musicplayer.adapter.base.MediaEntryViewHolder
 import com.helpofai.hoa.musicplayer.extensions.hide
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension.artistImageOptions
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension.asBitmapPalette
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.artistImageOptions
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.asBitmapPalette
 import com.helpofai.hoa.musicplayer.glide.RetroMusicColoredTarget
 import com.helpofai.hoa.musicplayer.helper.menu.SongsMenuHelper
 import com.helpofai.hoa.musicplayer.interfaces.IAlbumArtistClickListener
@@ -114,8 +114,8 @@ class ArtistAdapter(
         Glide.with(activity)
             .asBitmapPalette()
             .artistImageOptions(artist)
-            .load(RetroGlideExtension.getArtistModel(artist))
-            .transition(RetroGlideExtension.getDefaultTransition())
+            .load(HoaGlideExtension.getArtistModel(artist))
+            .transition(HoaGlideExtension.getDefaultTransition())
             .into(object : RetroMusicColoredTarget(holder.image!!) {
                 override fun onColorReady(colors: MediaNotificationProcessor) {
                     setColors(colors, holder)

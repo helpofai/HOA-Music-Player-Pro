@@ -23,7 +23,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.helpofai.hoa.musicplayer.R
 import com.helpofai.hoa.musicplayer.extensions.openUrl
 import com.helpofai.hoa.musicplayer.model.Contributor
-import com.helpofai.hoa.musicplayer.views.RetroShapeableImageView
+import com.helpofai.hoa.musicplayer.views.HoaShapeableImageView
 import com.bumptech.glide.Glide
 
 class ContributorAdapter(
@@ -81,7 +81,7 @@ class ContributorAdapter(
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val title: TextView = itemView.findViewById(R.id.title)
         val text: TextView = itemView.findViewById(R.id.text)
-        val image: RetroShapeableImageView = itemView.findViewById(R.id.icon)
+        val image: HoaShapeableImageView = itemView.findViewById(R.id.icon)
 
         internal fun bindData(contributor: Contributor) {
             title.text = contributor.name

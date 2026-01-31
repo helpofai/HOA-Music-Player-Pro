@@ -19,8 +19,8 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentActivity
 import com.helpofai.hoa.musicplayer.R
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension.songCoverOptions
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.songCoverOptions
 import com.helpofai.hoa.musicplayer.helper.MusicPlayerRemote
 import com.helpofai.hoa.musicplayer.helper.MusicPlayerRemote.isPlaying
 import com.helpofai.hoa.musicplayer.helper.MusicPlayerRemote.playNextSong
@@ -78,7 +78,7 @@ class PlayingQueueAdapter(
             return
         }
         Glide.with(activity)
-            .load(RetroGlideExtension.getSongModel(song))
+            .load(HoaGlideExtension.getSongModel(song))
             .songCoverOptions(song)
             .into(holder.image!!)
     }

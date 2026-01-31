@@ -31,8 +31,8 @@ import com.helpofai.hoa.musicplayer.extensions.whichFragment
 import com.helpofai.hoa.musicplayer.fragments.base.AbsPlayerFragment
 import com.helpofai.hoa.musicplayer.fragments.player.PlayerAlbumCoverFragment
 import com.helpofai.hoa.musicplayer.glide.BlurTransformation
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension.simpleSongCoverOptions
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.simpleSongCoverOptions
 import com.helpofai.hoa.musicplayer.glide.crossfadeListener
 import com.helpofai.hoa.musicplayer.helper.MusicPlayerRemote
 import com.helpofai.hoa.musicplayer.model.Song
@@ -116,7 +116,7 @@ class BlurPlayerFragment : AbsPlayerFragment(R.layout.fragment_blur),
     private fun updateBlur() {
         // https://github.com/bumptech/glide/issues/527#issuecomment-148840717
         Glide.with(this)
-            .load(RetroGlideExtension.getSongModel(MusicPlayerRemote.currentSong))
+            .load(HoaGlideExtension.getSongModel(MusicPlayerRemote.currentSong))
             .simpleSongCoverOptions(MusicPlayerRemote.currentSong)
             .transform(
                 BlurTransformation.Builder(requireContext()).blurRadius(blurAmount.toFloat())

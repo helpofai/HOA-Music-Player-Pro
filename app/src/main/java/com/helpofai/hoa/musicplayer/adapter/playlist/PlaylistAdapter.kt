@@ -33,7 +33,7 @@ import com.helpofai.hoa.musicplayer.db.PlaylistEntity
 import com.helpofai.hoa.musicplayer.db.PlaylistWithSongs
 import com.helpofai.hoa.musicplayer.db.toSongs
 import com.helpofai.hoa.musicplayer.extensions.dipToPix
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension.playlistOptions
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.playlistOptions
 import com.helpofai.hoa.musicplayer.glide.playlistPreview.PlaylistPreview
 import com.helpofai.hoa.musicplayer.helper.SortOrder.PlaylistSortOrder
 import com.helpofai.hoa.musicplayer.helper.menu.PlaylistMenuHelper

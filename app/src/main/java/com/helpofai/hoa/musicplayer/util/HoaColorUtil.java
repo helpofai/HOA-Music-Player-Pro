@@ -36,7 +36,7 @@ import com.helpofai.hoa.appthemehelper.ThemeStore;
 import com.helpofai.hoa.appthemehelper.util.ColorUtil;
 import com.helpofai.hoa.appthemehelper.util.VersionUtils;
 
-public class RetroColorUtil {
+public class HoaColorUtil {
   public static int desaturateColor(int color, float ratio) {
     float[] hsv = new float[3];
     Color.colorToHSV(color, hsv);

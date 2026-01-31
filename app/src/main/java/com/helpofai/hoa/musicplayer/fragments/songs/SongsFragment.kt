@@ -26,7 +26,7 @@ import com.helpofai.hoa.musicplayer.fragments.ReloadType
 import com.helpofai.hoa.musicplayer.fragments.base.AbsRecyclerViewCustomGridSizeFragment
 import com.helpofai.hoa.musicplayer.helper.SortOrder.SongSortOrder
 import com.helpofai.hoa.musicplayer.util.PreferenceUtil
-import com.helpofai.hoa.musicplayer.util.RetroUtil
+import com.helpofai.hoa.musicplayer.util.HoaUtil
 
 class SongsFragment : AbsRecyclerViewCustomGridSizeFragment<SongAdapter, GridLayoutManager>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -111,7 +111,7 @@ class SongsFragment : AbsRecyclerViewCustomGridSizeFragment<SongAdapter, GridLay
     override fun onCreateMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateMenu(menu, inflater)
         val gridSizeItem: MenuItem = menu.findItem(R.id.action_grid_size)
-        if (RetroUtil.isLandscape) {
+        if (HoaUtil.isLandscape) {
             gridSizeItem.setTitle(R.string.action_grid_size_land)
         }
         setUpGridSizeMenu(gridSizeItem.subMenu!!)

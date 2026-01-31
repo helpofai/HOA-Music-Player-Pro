@@ -23,7 +23,7 @@
     android:paddingBottom="24dp"
     tools:ignore="PrivateResource">
 
-    <com.helpofai.hoa.musicplayer.views.RetroShapeableImageView
+    <com.helpofai.hoa.musicplayer.views.HoaShapeableImageView
         android:id="@+id/icon"
         android:layout_width="72dp"
         android:layout_height="72dp"
@@ -31,7 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:retroCornerSize="36dp"
+        app:hoaCornerSize="36dp"
         app:srcCompat="@drawable/ic_account"
         tools:srcCompat="@tools:sample/backgrounds/scenic[20]" />
 

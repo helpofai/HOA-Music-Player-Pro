@@ -13,8 +13,8 @@
   -->
 
 <resources>
-    <declare-styleable name="RetroShapeableImageView">
-        <attr name="retroCornerSize" format="dimension" />
+    <declare-styleable name="HoaShapeableImageView">
+        <attr name="hoaCornerSize" format="dimension" />
         <attr name="circleShape" format="boolean" />
     </declare-styleable>
 </resources>

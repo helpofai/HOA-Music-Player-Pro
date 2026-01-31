@@ -8,7 +8,7 @@
     android:background="?attr/rectSelector"
     android:orientation="vertical">
 
-    <com.helpofai.hoa.musicplayer.views.RetroShapeableImageView
+    <com.helpofai.hoa.musicplayer.views.HoaShapeableImageView
         android:id="@+id/image"
         android:layout_width="156dp"
         android:layout_height="156dp"
@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:retroCornerSize="72dp"
+        app:hoaCornerSize="72dp"
         tools:src="@tools:sample/avatars" />
 
     <com.google.android.material.textview.MaterialTextView

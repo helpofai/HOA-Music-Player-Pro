@@ -38,8 +38,8 @@ import com.helpofai.hoa.musicplayer.fragments.MusicSeekSkipTouchListener
 import com.helpofai.hoa.musicplayer.fragments.base.AbsPlayerFragment
 import com.helpofai.hoa.musicplayer.fragments.base.goToAlbum
 import com.helpofai.hoa.musicplayer.fragments.base.goToArtist
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension.simpleSongCoverOptions
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.simpleSongCoverOptions
 import com.helpofai.hoa.musicplayer.glide.crossfadeListener
 import com.helpofai.hoa.musicplayer.helper.MusicPlayerRemote
 import com.helpofai.hoa.musicplayer.helper.MusicProgressViewUpdateHelper
@@ -240,7 +240,7 @@ class CirclePlayerFragment : AbsPlayerFragment(R.layout.fragment_circle_player),
             binding.songInfo.hide()
         }
         Glide.with(this)
-            .load(RetroGlideExtension.getSongModel(MusicPlayerRemote.currentSong))
+            .load(HoaGlideExtension.getSongModel(MusicPlayerRemote.currentSong))
             .simpleSongCoverOptions(MusicPlayerRemote.currentSong)
             .thumbnail(lastRequest)
             .error(Glide.with(this).load(R.drawable.default_audio_art).fitCenter())

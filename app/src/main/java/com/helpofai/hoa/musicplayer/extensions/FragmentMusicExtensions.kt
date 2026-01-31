@@ -3,7 +3,7 @@ package com.helpofai.hoa.musicplayer.extensions
 import android.webkit.MimeTypeMap
 import androidx.core.net.toUri
 import com.helpofai.hoa.musicplayer.model.Song
-import com.helpofai.hoa.musicplayer.util.RetroUtil
+import com.helpofai.hoa.musicplayer.util.HoaUtil
 import org.jaudiotagger.audio.AudioFileIO
 import java.io.File
 import java.net.URLEncoder
@@ -20,7 +20,7 @@ fun getSongInfo(song: Song): String {
                 string.append(audioHeader.bitsPerSample).append("-bit").append(" • ")
             }
             string.append(audioHeader.bitRate).append(" kb/s").append(" • ")
-            string.append(RetroUtil.frequencyCount(audioHeader.sampleRate.toInt()))
+            string.append(HoaUtil.frequencyCount(audioHeader.sampleRate.toInt()))
                 .append(" kHz")
             string.toString()
         } catch (er: Exception) {

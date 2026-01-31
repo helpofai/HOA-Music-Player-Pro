@@ -31,13 +31,13 @@ import com.helpofai.hoa.musicplayer.extensions.show
 import com.helpofai.hoa.musicplayer.extensions.textColorPrimary
 import com.helpofai.hoa.musicplayer.extensions.textColorSecondary
 import com.helpofai.hoa.musicplayer.fragments.base.AbsMusicServiceFragment
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension.songCoverOptions
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.songCoverOptions
 import com.helpofai.hoa.musicplayer.helper.MusicPlayerRemote
 import com.helpofai.hoa.musicplayer.helper.MusicProgressViewUpdateHelper
 import com.helpofai.hoa.musicplayer.helper.PlayPauseButtonOnClickHandler
 import com.helpofai.hoa.musicplayer.util.PreferenceUtil
-import com.helpofai.hoa.musicplayer.util.RetroUtil
+import com.helpofai.hoa.musicplayer.util.HoaUtil
 import com.bumptech.glide.Glide
 import kotlin.math.abs
 
@@ -69,7 +69,7 @@ open class MiniPlayerFragment : AbsMusicServiceFragment(R.layout.fragment_mini_p
     }
 
     fun setUpButtons() {
-        if (RetroUtil.isTablet) {
+        if (HoaUtil.isTablet) {
             binding.actionNext.show()
             binding.actionPrevious.show()
         } else {
@@ -115,8 +115,8 @@ open class MiniPlayerFragment : AbsMusicServiceFragment(R.layout.fragment_mini_p
     private fun updateSongCover() {
         val song = MusicPlayerRemote.currentSong
         Glide.with(requireContext())
-            .load(RetroGlideExtension.getSongModel(song))
-            .transition(RetroGlideExtension.getDefaultTransition())
+            .load(HoaGlideExtension.getSongModel(song))
+            .transition(HoaGlideExtension.getDefaultTransition())
             .songCoverOptions(song)
             .into(binding.image)
     }

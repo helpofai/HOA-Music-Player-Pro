@@ -31,8 +31,8 @@ import androidx.media.app.NotificationCompat.MediaStyle
 import com.helpofai.hoa.appthemehelper.util.VersionUtils
 import com.helpofai.hoa.musicplayer.R
 import com.helpofai.hoa.musicplayer.activities.MainActivity
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension.songCoverOptions
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.songCoverOptions
 import com.helpofai.hoa.musicplayer.model.Song
 import com.helpofai.hoa.musicplayer.service.MusicService
 import com.helpofai.hoa.musicplayer.service.MusicService.Companion.ACTION_QUIT
@@ -128,7 +128,7 @@ class PlayingNotification(
         currentTarget = Glide.with(context)
             .asBitmap()
             .songCoverOptions(song)
-            .load(RetroGlideExtension.getSongModel(song))
+            .load(HoaGlideExtension.getSongModel(song))
             //.checkIgnoreMediaStore()
             .centerCrop()
             .into(object : CustomTarget<Bitmap>(

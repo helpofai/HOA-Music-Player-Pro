@@ -26,9 +26,9 @@ import com.helpofai.hoa.musicplayer.extensions.hideStatusBar
 import com.helpofai.hoa.musicplayer.extensions.setTaskDescriptionColorAuto
 import com.helpofai.hoa.musicplayer.extensions.whichFragment
 import com.helpofai.hoa.musicplayer.fragments.player.lockscreen.LockScreenControlsFragment
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension.asBitmapPalette
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension.songCoverOptions
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.asBitmapPalette
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.songCoverOptions
 import com.helpofai.hoa.musicplayer.glide.RetroMusicColoredTarget
 import com.helpofai.hoa.musicplayer.helper.MusicPlayerRemote
 import com.helpofai.hoa.musicplayer.util.color.MediaNotificationProcessor
@@ -110,7 +110,7 @@ class LockScreenActivity : AbsMusicServiceActivity() {
         Glide.with(this)
             .asBitmapPalette()
             .songCoverOptions(song)
-            .load(RetroGlideExtension.getSongModel(song))
+            .load(HoaGlideExtension.getSongModel(song))
             .dontAnimate()
             .into(object : RetroMusicColoredTarget(binding.image) {
                 override fun onColorReady(colors: MediaNotificationProcessor) {

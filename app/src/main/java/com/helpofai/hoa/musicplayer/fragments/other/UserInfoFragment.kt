@@ -38,9 +38,9 @@ import com.helpofai.hoa.musicplayer.extensions.accentColor
 import com.helpofai.hoa.musicplayer.extensions.applyToolbar
 import com.helpofai.hoa.musicplayer.extensions.showToast
 import com.helpofai.hoa.musicplayer.fragments.LibraryViewModel
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension.profileBannerOptions
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension.userProfileOptions
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.profileBannerOptions
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.userProfileOptions
 import com.helpofai.hoa.musicplayer.util.ImageUtil
 import com.helpofai.hoa.musicplayer.util.PreferenceUtil.userName
 import com.bumptech.glide.Glide
@@ -159,13 +159,13 @@ class UserInfoFragment : Fragment() {
     private fun loadProfile() {
         binding.bannerImage.let {
             Glide.with(this)
-                .load(RetroGlideExtension.getBannerModel())
-                .profileBannerOptions(RetroGlideExtension.getBannerModel())
+                .load(HoaGlideExtension.getBannerModel())
+                .profileBannerOptions(HoaGlideExtension.getBannerModel())
                 .into(it)
         }
         Glide.with(this)
-            .load(RetroGlideExtension.getUserModel())
-            .userProfileOptions(RetroGlideExtension.getUserModel(), requireContext())
+            .load(HoaGlideExtension.getUserModel())
+            .userProfileOptions(HoaGlideExtension.getUserModel(), requireContext())
             .into(binding.userImage)
     }
 

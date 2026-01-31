@@ -36,7 +36,7 @@ import androidx.core.view.*
 import com.helpofai.hoa.appthemehelper.ThemeStore
 import com.helpofai.hoa.appthemehelper.util.TintHelper
 import com.helpofai.hoa.musicplayer.util.PreferenceUtil
-import com.helpofai.hoa.musicplayer.util.RetroUtil
+import com.helpofai.hoa.musicplayer.util.HoaUtil
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.card.MaterialCardView
@@ -227,7 +227,7 @@ fun View.focusAndShowKeyboard() {
  */
 fun View.drawAboveSystemBars(onlyPortrait: Boolean = true) {
     if (PreferenceUtil.isFullScreenMode) return
-    if (onlyPortrait && RetroUtil.isLandscape) return
+    if (onlyPortrait && HoaUtil.isLandscape) return
     applyInsetter {
         type(navigationBars = true) {
             margin()

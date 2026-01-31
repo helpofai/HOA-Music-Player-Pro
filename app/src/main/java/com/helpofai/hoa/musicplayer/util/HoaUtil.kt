@@ -23,7 +23,7 @@ import java.text.DecimalFormat
 import java.util.*
 import android.util.Log
 
-object RetroUtil {
+object HoaUtil {
     fun formatValue(numValue: Float): String {
         var value = numValue
         val arr = arrayOf("", "K", "M", "B", "T", "P", "E")
@@ -95,7 +95,7 @@ object RetroUtil {
                                 // Skip local and link-local addresses
                                 if (isIPv4 && !addr.isLinkLocalAddress && !addr.isSiteLocalAddress) continue
                                 if (isIPv4) {
-                                    Log.d("RetroUtil", "Using IP address: $sAddr")
+                                    Log.d("HoaUtil", "Using IP address: $sAddr")
                                     return sAddr
                                 }
                             } else {
@@ -106,7 +106,7 @@ object RetroUtil {
                                     } else {
                                         sAddr.substring(0, delim).uppercase()
                                     }
-                                    Log.d("RetroUtil", "Using IPv6 address: $processedAddr")
+                                    Log.d("HoaUtil", "Using IPv6 address: $processedAddr")
                                     return processedAddr
                                 }
                             }
@@ -114,9 +114,9 @@ object RetroUtil {
                     }
                 }
             }
-            Log.e("RetroUtil", "No suitable network interface found")
+            Log.e("HoaUtil", "No suitable network interface found")
         } catch (e: Exception) {
-            Log.e("RetroUtil", "Error getting IP address: ${e.message}")
+            Log.e("HoaUtil", "Error getting IP address: ${e.message}")
         }
         return null
     }

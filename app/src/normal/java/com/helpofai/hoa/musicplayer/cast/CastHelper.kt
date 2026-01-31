@@ -5,7 +5,7 @@ import com.helpofai.hoa.musicplayer.cast.RetroWebServer.Companion.MIME_TYPE_AUDI
 import com.helpofai.hoa.musicplayer.cast.RetroWebServer.Companion.PART_COVER_ART
 import com.helpofai.hoa.musicplayer.cast.RetroWebServer.Companion.PART_SONG
 import com.helpofai.hoa.musicplayer.model.Song
-import com.helpofai.hoa.musicplayer.util.RetroUtil
+import com.helpofai.hoa.musicplayer.util.HoaUtil
 import com.google.android.gms.cast.MediaInfo
 import com.google.android.gms.cast.MediaInfo.STREAM_TYPE_BUFFERED
 import com.google.android.gms.cast.MediaMetadata
@@ -24,7 +24,7 @@ object CastHelper {
         val song = this
         val baseUrl: URL
         try {
-            baseUrl = URL(CAST_URL_PROTOCOL, RetroUtil.getIpAddress(true), getCurrentServerPort(), "")
+            baseUrl = URL(CAST_URL_PROTOCOL, HoaUtil.getIpAddress(true), getCurrentServerPort(), "")
         } catch (e: MalformedURLException) {
             return null
         }

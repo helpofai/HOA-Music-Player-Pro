@@ -24,9 +24,9 @@ import androidx.fragment.app.FragmentActivity
 import com.helpofai.hoa.musicplayer.R
 import com.helpofai.hoa.musicplayer.adapter.base.AbsMultiSelectAdapter
 import com.helpofai.hoa.musicplayer.adapter.base.MediaEntryViewHolder
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension.albumCoverOptions
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension.asBitmapPalette
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.albumCoverOptions
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.asBitmapPalette
 import com.helpofai.hoa.musicplayer.glide.RetroMusicColoredTarget
 import com.helpofai.hoa.musicplayer.helper.SortOrder
 import com.helpofai.hoa.musicplayer.helper.menu.SongsMenuHelper
@@ -116,7 +116,7 @@ open class AlbumAdapter(
             .asBitmapPalette()
             .albumCoverOptions(song)
             //.checkIgnoreMediaStore()
-            .load(RetroGlideExtension.getSongModel(song))
+            .load(HoaGlideExtension.getSongModel(song))
             .into(object : RetroMusicColoredTarget(holder.image!!) {
                 override fun onColorReady(colors: MediaNotificationProcessor) {
                     setColors(colors, holder)

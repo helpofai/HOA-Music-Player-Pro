@@ -26,7 +26,7 @@ import com.helpofai.hoa.musicplayer.R
 import com.helpofai.hoa.musicplayer.adapter.base.AbsMultiSelectAdapter
 import com.helpofai.hoa.musicplayer.adapter.base.MediaEntryViewHolder
 import com.helpofai.hoa.musicplayer.extensions.getTintedDrawable
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension
 import com.helpofai.hoa.musicplayer.glide.audiocover.AudioFileCover
 import com.helpofai.hoa.musicplayer.interfaces.ICallbacks
 import com.helpofai.hoa.musicplayer.util.MusicUtil
@@ -114,7 +114,7 @@ class SongFileAdapter(
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .error(error)
                 .placeholder(error)
-                .transition(RetroGlideExtension.getDefaultTransition())
+                .transition(HoaGlideExtension.getDefaultTransition())
                 .signature(MediaStoreSignature("", file.lastModified(), 0))
                 .into(holder.image!!)
         }

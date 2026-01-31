@@ -31,7 +31,7 @@ import com.helpofai.hoa.musicplayer.fragments.ReloadType
 import com.helpofai.hoa.musicplayer.fragments.base.AbsRecyclerViewFragment
 import com.helpofai.hoa.musicplayer.interfaces.IGenreClickListener
 import com.helpofai.hoa.musicplayer.model.Genre
-import com.helpofai.hoa.musicplayer.util.RetroUtil
+import com.helpofai.hoa.musicplayer.util.HoaUtil
 import com.google.android.material.transition.MaterialSharedAxis
 
 class
@@ -48,7 +48,7 @@ GenresFragment : AbsRecyclerViewFragment<GenreAdapter, LinearLayoutManager>(),
     }
 
     override fun createLayoutManager(): LinearLayoutManager {
-        return if (RetroUtil.isLandscape) {
+        return if (HoaUtil.isLandscape) {
             GridLayoutManager(activity, 4)
         } else {
             GridLayoutManager(activity, 2)

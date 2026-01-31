@@ -29,10 +29,10 @@ import com.helpofai.hoa.appthemehelper.ThemeStore
 import com.helpofai.hoa.musicplayer.*
 import com.helpofai.hoa.musicplayer.adapter.base.MediaEntryViewHolder
 import com.helpofai.hoa.musicplayer.db.PlaylistWithSongs
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension.albumCoverOptions
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension.artistImageOptions
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension.songCoverOptions
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.albumCoverOptions
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.artistImageOptions
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.songCoverOptions
 import com.helpofai.hoa.musicplayer.helper.MusicPlayerRemote
 import com.helpofai.hoa.musicplayer.helper.menu.SongMenuHelper
 import com.helpofai.hoa.musicplayer.model.Album
@@ -95,7 +95,7 @@ class SearchAdapter(
                 holder.title?.text = album.title
                 holder.text?.text = album.artistName
                 Glide.with(activity).asDrawable().albumCoverOptions(album.safeGetFirstSong())
-                    .load(RetroGlideExtension.getSongModel(album.safeGetFirstSong()))
+                    .load(HoaGlideExtension.getSongModel(album.safeGetFirstSong()))
                     .into(holder.image!!)
             }
 
@@ -105,7 +105,7 @@ class SearchAdapter(
                 holder.title?.text = artist.name
                 holder.text?.text = MusicUtil.getArtistInfoString(activity, artist)
                 Glide.with(activity).asDrawable().artistImageOptions(artist).load(
-                    RetroGlideExtension.getArtistModel(artist)
+                    HoaGlideExtension.getArtistModel(artist)
                 ).into(holder.image!!)
             }
 
@@ -115,7 +115,7 @@ class SearchAdapter(
                 holder.title?.text = song.title
                 holder.text?.text = song.albumName
                 Glide.with(activity).asDrawable().songCoverOptions(song)
-                    .load(RetroGlideExtension.getSongModel(song)).into(holder.image!!)
+                    .load(HoaGlideExtension.getSongModel(song)).into(holder.image!!)
             }
 
             GENRE -> {
@@ -143,7 +143,7 @@ class SearchAdapter(
                 holder.title?.text = artist.name
                 holder.text?.text = MusicUtil.getArtistInfoString(activity, artist)
                 Glide.with(activity).asDrawable().artistImageOptions(artist).load(
-                    RetroGlideExtension.getArtistModel(artist)
+                    HoaGlideExtension.getArtistModel(artist)
                 ).into(holder.image!!)
             }
 

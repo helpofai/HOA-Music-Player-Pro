@@ -77,8 +77,8 @@ import com.helpofai.hoa.musicplayer.extensions.showToast
 import com.helpofai.hoa.musicplayer.extensions.toMediaSessionQueue
 import com.helpofai.hoa.musicplayer.extensions.uri
 import com.helpofai.hoa.musicplayer.glide.BlurTransformation
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension.getSongModel
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension.songCoverOptions
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.getSongModel
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.songCoverOptions
 import com.helpofai.hoa.musicplayer.helper.ShuffleHelper.makeShuffleList
 import com.helpofai.hoa.musicplayer.model.Song
 import com.helpofai.hoa.musicplayer.model.Song.Companion.emptySong
@@ -1074,7 +1074,7 @@ class MusicService : MediaBrowserServiceCompat(),
         // We must send the album art in METADATA_KEY_ALBUM_ART key on A13+ or
         // else album art is blurry in notification
         if (isAlbumArtOnLockScreen || VersionUtils.hasT()) {
-            // val screenSize: Point = RetroUtil.getScreenSize(this)
+            // val screenSize: Point = HoaUtil.getScreenSize(this)
             val request = Glide.with(this)
                 .asBitmap()
                 .songCoverOptions(song)

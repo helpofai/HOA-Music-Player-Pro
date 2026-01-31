@@ -28,16 +28,16 @@ import com.helpofai.hoa.musicplayer.R
 import com.helpofai.hoa.musicplayer.activities.MainActivity
 import com.helpofai.hoa.musicplayer.appwidgets.base.BaseAppWidget
 import com.helpofai.hoa.musicplayer.extensions.getTintedDrawable
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension.asBitmapPalette
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension.songCoverOptions
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.asBitmapPalette
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.songCoverOptions
 import com.helpofai.hoa.musicplayer.glide.palette.BitmapPaletteWrapper
 import com.helpofai.hoa.musicplayer.service.MusicService
 import com.helpofai.hoa.musicplayer.service.MusicService.Companion.ACTION_TOGGLE_PAUSE
 import com.helpofai.hoa.musicplayer.service.MusicService.Companion.TOGGLE_FAVORITE
 import com.helpofai.hoa.musicplayer.util.MusicUtil
 import com.helpofai.hoa.musicplayer.util.PreferenceUtil
-import com.helpofai.hoa.musicplayer.util.RetroUtil
+import com.helpofai.hoa.musicplayer.util.HoaUtil
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.CustomTarget
@@ -106,7 +106,7 @@ class AppWidgetCircle : BaseAppWidget() {
         linkButtons(service, appWidgetView)
 
         if (imageSize == 0) {
-            val p = RetroUtil.getScreenSize(service)
+            val p = HoaUtil.getScreenSize(service)
             imageSize = p.x.coerceAtMost(p.y)
         }
 
@@ -118,7 +118,7 @@ class AppWidgetCircle : BaseAppWidget() {
             target = Glide.with(service)
                 .asBitmapPalette()
                 .songCoverOptions(song)
-                .load(RetroGlideExtension.getSongModel(song))
+                .load(HoaGlideExtension.getSongModel(song))
                 .apply(RequestOptions.circleCropTransform())
                 .into(object : CustomTarget<BitmapPaletteWrapper>(imageSize, imageSize) {
                     override fun onResourceReady(

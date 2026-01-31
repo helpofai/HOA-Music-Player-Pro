@@ -29,9 +29,9 @@ import com.helpofai.hoa.musicplayer.activities.MainActivity
 import com.helpofai.hoa.musicplayer.fragments.AlbumCoverStyle
 import com.helpofai.hoa.musicplayer.fragments.NowPlayingScreen.*
 import com.helpofai.hoa.musicplayer.fragments.base.goToLyrics
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension.asBitmapPalette
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension.songCoverOptions
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.asBitmapPalette
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.songCoverOptions
 import com.helpofai.hoa.musicplayer.glide.RetroMusicColoredTarget
 import com.helpofai.hoa.musicplayer.misc.CustomFragmentStatePagerAdapter
 import com.helpofai.hoa.musicplayer.model.Song
@@ -181,7 +181,7 @@ class AlbumCoverPagerAdapter(
                 .asBitmapPalette()
                 .songCoverOptions(song)
                 //.checkIgnoreMediaStore()
-                .load(RetroGlideExtension.getSongModel(song))
+                .load(HoaGlideExtension.getSongModel(song))
                 .dontAnimate()
                 .into(object : RetroMusicColoredTarget(albumCover) {
                     override fun onColorReady(colors: MediaNotificationProcessor) {

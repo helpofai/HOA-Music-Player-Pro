@@ -31,13 +31,13 @@ import com.helpofai.hoa.appthemehelper.util.MaterialValueHelper
 import com.helpofai.hoa.musicplayer.R
 import com.helpofai.hoa.musicplayer.databinding.ActivitySongTagEditorBinding
 import com.helpofai.hoa.musicplayer.extensions.*
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension.asBitmapPalette
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.asBitmapPalette
 import com.helpofai.hoa.musicplayer.glide.palette.BitmapPaletteWrapper
 import com.helpofai.hoa.musicplayer.model.ArtworkInfo
 import com.helpofai.hoa.musicplayer.repository.SongRepository
 import com.helpofai.hoa.musicplayer.util.ImageUtil
 import com.helpofai.hoa.musicplayer.util.MusicUtil
-import com.helpofai.hoa.musicplayer.util.RetroColorUtil
+import com.helpofai.hoa.musicplayer.util.HoaColorUtil
 import com.helpofai.hoa.musicplayer.util.logD
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -111,8 +111,8 @@ class SongTagEditorActivity : AbsTagEditorActivity<ActivitySongTagEditorBinding>
         val bitmap = albumArt
         setImageBitmap(
             bitmap,
-            RetroColorUtil.getColor(
-                RetroColorUtil.generatePalette(bitmap),
+            HoaColorUtil.getColor(
+                HoaColorUtil.generatePalette(bitmap),
                 defaultFooterColor()
             )
         )
@@ -181,11 +181,11 @@ class SongTagEditorActivity : AbsTagEditorActivity<ActivitySongTagEditorBinding>
                     resource: BitmapPaletteWrapper,
                     transition: Transition<in BitmapPaletteWrapper>?
                 ) {
-                    RetroColorUtil.getColor(resource.palette, Color.TRANSPARENT)
+                    HoaColorUtil.getColor(resource.palette, Color.TRANSPARENT)
                     albumArtBitmap = resource.bitmap?.let { ImageUtil.resizeBitmap(it, 2048) }
                     setImageBitmap(
                         albumArtBitmap,
-                        RetroColorUtil.getColor(
+                        HoaColorUtil.getColor(
                             resource.palette,
                             defaultFooterColor()
                         )

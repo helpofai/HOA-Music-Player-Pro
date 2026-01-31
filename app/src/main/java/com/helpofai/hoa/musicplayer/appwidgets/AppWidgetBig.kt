@@ -29,13 +29,13 @@ import com.helpofai.hoa.musicplayer.R
 import com.helpofai.hoa.musicplayer.activities.MainActivity
 import com.helpofai.hoa.musicplayer.appwidgets.base.BaseAppWidget
 import com.helpofai.hoa.musicplayer.extensions.getTintedDrawable
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension
 import com.helpofai.hoa.musicplayer.service.MusicService
 import com.helpofai.hoa.musicplayer.service.MusicService.Companion.ACTION_REWIND
 import com.helpofai.hoa.musicplayer.service.MusicService.Companion.ACTION_SKIP
 import com.helpofai.hoa.musicplayer.service.MusicService.Companion.ACTION_TOGGLE_PAUSE
 import com.helpofai.hoa.musicplayer.util.PreferenceUtil
-import com.helpofai.hoa.musicplayer.util.RetroUtil
+import com.helpofai.hoa.musicplayer.util.HoaUtil
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.target.Target
@@ -144,7 +144,7 @@ class AppWidgetBig : BaseAppWidget() {
         linkButtons(service, appWidgetView)
 
         // Load the album cover async and push the update on completion
-        val p = RetroUtil.getScreenSize(service)
+        val p = HoaUtil.getScreenSize(service)
         val widgetImageSize = p.x.coerceAtMost(p.y)
         val appContext = service.applicationContext
         service.runOnUiThread {
@@ -154,7 +154,7 @@ class AppWidgetBig : BaseAppWidget() {
             target = Glide.with(appContext)
                 .asBitmap()
                 //.checkIgnoreMediaStore()
-                .load(RetroGlideExtension.getSongModel(song))
+                .load(HoaGlideExtension.getSongModel(song))
                 .into(object : CustomTarget<Bitmap>(widgetImageSize, widgetImageSize) {
                     override fun onResourceReady(
                         resource: Bitmap,

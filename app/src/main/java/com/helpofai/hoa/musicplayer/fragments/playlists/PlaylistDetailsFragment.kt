@@ -24,7 +24,7 @@ import com.helpofai.hoa.musicplayer.extensions.elevatedAccentColor
 import com.helpofai.hoa.musicplayer.extensions.surfaceColor
 import com.helpofai.hoa.musicplayer.fragments.base.AbsMainActivityFragment
 import com.helpofai.hoa.musicplayer.fragments.search.clearText
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension.playlistOptions
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.playlistOptions
 import com.helpofai.hoa.musicplayer.glide.playlistPreview.PlaylistPreview
 import com.helpofai.hoa.musicplayer.helper.MusicPlayerRemote
 import com.helpofai.hoa.musicplayer.helper.menu.PlaylistMenuHelper

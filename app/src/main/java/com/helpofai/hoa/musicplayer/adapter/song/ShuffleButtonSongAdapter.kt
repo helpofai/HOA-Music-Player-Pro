@@ -23,7 +23,7 @@ import com.helpofai.hoa.musicplayer.extensions.accentOutlineColor
 import com.helpofai.hoa.musicplayer.helper.MusicPlayerRemote
 import com.helpofai.hoa.musicplayer.model.Song
 import com.helpofai.hoa.musicplayer.util.PreferenceUtil
-import com.helpofai.hoa.musicplayer.util.RetroUtil
+import com.helpofai.hoa.musicplayer.util.HoaUtil
 import com.google.android.material.button.MaterialButton
 
 class ShuffleButtonSongAdapter(
@@ -58,7 +58,7 @@ class ShuffleButtonSongAdapter(
             }
         } else {
             super.onBindViewHolder(holder, position - 1)
-            val landscape = RetroUtil.isLandscape
+            val landscape = HoaUtil.isLandscape
             if ((PreferenceUtil.songGridSize > 2 && !landscape) || (PreferenceUtil.songGridSizeLand > 5 && landscape)) {
                 holder.menu?.isVisible = false
             }

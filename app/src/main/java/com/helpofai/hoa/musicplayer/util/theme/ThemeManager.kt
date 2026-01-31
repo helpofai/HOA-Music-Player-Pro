@@ -11,14 +11,14 @@ import com.helpofai.hoa.musicplayer.util.theme.ThemeMode.*
 @StyleRes
 fun Context.getThemeResValue(): Int =
     if (PreferenceUtil.materialYou) {
-        if (generalThemeValue == BLACK) R.style.Theme_RetroMusic_MD3_Black
-        else R.style.Theme_RetroMusic_MD3
+        if (generalThemeValue == BLACK) R.style.Theme_HOAMusic_MD3_Black
+        else R.style.Theme_HOAMusic_MD3
     } else {
         when (generalThemeValue) {
-            LIGHT -> R.style.Theme_RetroMusic_Light
-            DARK -> R.style.Theme_RetroMusic_Base
-            BLACK -> R.style.Theme_RetroMusic_Black
-            AUTO -> R.style.Theme_RetroMusic_FollowSystem
+            LIGHT -> R.style.Theme_HOAMusic_Light
+            DARK -> R.style.Theme_HOAMusic_Base
+            BLACK -> R.style.Theme_HOAMusic_Black
+            AUTO -> R.style.Theme_HOAMusic_FollowSystem
         }
     }
 

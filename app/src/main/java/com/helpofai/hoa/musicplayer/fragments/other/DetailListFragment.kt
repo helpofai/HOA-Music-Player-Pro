@@ -40,7 +40,7 @@ import com.helpofai.hoa.musicplayer.interfaces.IAlbumClickListener
 import com.helpofai.hoa.musicplayer.interfaces.IArtistClickListener
 import com.helpofai.hoa.musicplayer.model.Album
 import com.helpofai.hoa.musicplayer.model.Artist
-import com.helpofai.hoa.musicplayer.util.RetroUtil
+import com.helpofai.hoa.musicplayer.util.HoaUtil
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.MaterialSharedAxis
@@ -213,10 +213,10 @@ class DetailListFragment : AbsMainActivityFragment(R.layout.fragment_playlist_de
         GridLayoutManager(requireContext(), gridCount(), GridLayoutManager.VERTICAL, false)
 
     private fun gridCount(): Int {
-        if (RetroUtil.isTablet) {
-            return if (RetroUtil.isLandscape) 6 else 4
+        if (HoaUtil.isTablet) {
+            return if (HoaUtil.isLandscape) 6 else 4
         }
-        return if (RetroUtil.isLandscape) 4 else 2
+        return if (HoaUtil.isLandscape) 4 else 2
     }
 
 

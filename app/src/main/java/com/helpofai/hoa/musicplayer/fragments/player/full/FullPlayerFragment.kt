@@ -30,8 +30,8 @@ import com.helpofai.hoa.musicplayer.fragments.base.AbsPlayerFragment
 import com.helpofai.hoa.musicplayer.fragments.base.goToArtist
 import com.helpofai.hoa.musicplayer.fragments.player.CoverLyricsFragment
 import com.helpofai.hoa.musicplayer.fragments.player.PlayerAlbumCoverFragment
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension.artistImageOptions
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.artistImageOptions
 import com.helpofai.hoa.musicplayer.helper.MusicPlayerRemote
 import com.helpofai.hoa.musicplayer.model.Song
 import com.helpofai.hoa.musicplayer.util.color.MediaNotificationProcessor
@@ -133,7 +133,7 @@ class FullPlayerFragment : AbsPlayerFragment(R.layout.fragment_full) {
             .observe(viewLifecycleOwner) { artist ->
                 if (artist.id != -1L) {
                     Glide.with(requireActivity())
-                        .load(RetroGlideExtension.getArtistModel(artist))
+                        .load(HoaGlideExtension.getArtistModel(artist))
                         .artistImageOptions(artist)
                         .into(binding.artistImage)
                 }

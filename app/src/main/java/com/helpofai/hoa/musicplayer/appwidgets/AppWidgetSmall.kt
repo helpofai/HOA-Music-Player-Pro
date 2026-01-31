@@ -29,9 +29,9 @@ import com.helpofai.hoa.musicplayer.R
 import com.helpofai.hoa.musicplayer.activities.MainActivity
 import com.helpofai.hoa.musicplayer.appwidgets.base.BaseAppWidget
 import com.helpofai.hoa.musicplayer.extensions.getTintedDrawable
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension.asBitmapPalette
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension.songCoverOptions
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.asBitmapPalette
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.songCoverOptions
 import com.helpofai.hoa.musicplayer.glide.palette.BitmapPaletteWrapper
 import com.helpofai.hoa.musicplayer.service.MusicService
 import com.helpofai.hoa.musicplayer.service.MusicService.Companion.ACTION_REWIND
@@ -127,7 +127,7 @@ class AppWidgetSmall : BaseAppWidget() {
                 .asBitmapPalette()
                 .songCoverOptions(song)
                 //.checkIgnoreMediaStore()
-                .load(RetroGlideExtension.getSongModel(song))
+                .load(HoaGlideExtension.getSongModel(song))
                 .centerCrop()
                 .into(object : CustomTarget<BitmapPaletteWrapper>(imageSize, imageSize) {
                     override fun onResourceReady(

@@ -28,9 +28,9 @@ import com.helpofai.hoa.musicplayer.databinding.FragmentArtistDetailsBinding
 import com.helpofai.hoa.musicplayer.dialogs.AddToPlaylistDialog
 import com.helpofai.hoa.musicplayer.extensions.*
 import com.helpofai.hoa.musicplayer.fragments.base.AbsMainActivityFragment
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension.artistImageOptions
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension.asBitmapPalette
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.artistImageOptions
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.asBitmapPalette
 import com.helpofai.hoa.musicplayer.glide.SingleColorTarget
 import com.helpofai.hoa.musicplayer.helper.MusicPlayerRemote
 import com.helpofai.hoa.musicplayer.helper.SortOrder
@@ -187,9 +187,9 @@ abstract class AbsArtistDetailsFragment : AbsMainActivityFragment(R.layout.fragm
                         scrobbles.show()
                         scrobblesLabel.show()
                         listeners.text =
-                            RetroUtil.formatValue(lastFmArtist.artist.stats.listeners.toFloat())
+                            HoaUtil.formatValue(lastFmArtist.artist.stats.listeners.toFloat())
                         scrobbles.text =
-                            RetroUtil.formatValue(lastFmArtist.artist.stats.playcount.toFloat())
+                            HoaUtil.formatValue(lastFmArtist.artist.stats.playcount.toFloat())
                     }
                 }
             }
@@ -203,7 +203,7 @@ abstract class AbsArtistDetailsFragment : AbsMainActivityFragment(R.layout.fragm
 
     private fun loadArtistImage(artist: Artist) {
         Glide.with(requireContext()).asBitmapPalette().artistImageOptions(artist)
-            .load(RetroGlideExtension.getArtistModel(artist)).dontAnimate()
+            .load(HoaGlideExtension.getArtistModel(artist)).dontAnimate()
             .into(object : SingleColorTarget(binding.image) {
                 override fun onColorReady(color: Int) {
                     setColors(color)

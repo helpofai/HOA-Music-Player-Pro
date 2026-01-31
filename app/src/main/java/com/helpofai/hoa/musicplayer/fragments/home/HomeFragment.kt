@@ -41,10 +41,10 @@ import com.helpofai.hoa.musicplayer.extensions.elevatedAccentColor
 import com.helpofai.hoa.musicplayer.extensions.setUpMediaRouteButton
 import com.helpofai.hoa.musicplayer.fragments.ReloadType
 import com.helpofai.hoa.musicplayer.fragments.base.AbsMainActivityFragment
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension.profileBannerOptions
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension.songCoverOptions
-import com.helpofai.hoa.musicplayer.glide.RetroGlideExtension.userProfileOptions
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.profileBannerOptions
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.songCoverOptions
+import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.userProfileOptions
 import com.helpofai.hoa.musicplayer.helper.MusicPlayerRemote
 import com.helpofai.hoa.musicplayer.interfaces.IScrollHelper
 import com.helpofai.hoa.musicplayer.model.Song
@@ -172,13 +172,13 @@ class HomeFragment :
     private fun loadProfile() {
         binding.bannerImage?.let {
             Glide.with(requireContext())
-                .load(RetroGlideExtension.getBannerModel())
-                .profileBannerOptions(RetroGlideExtension.getBannerModel())
+                .load(HoaGlideExtension.getBannerModel())
+                .profileBannerOptions(HoaGlideExtension.getBannerModel())
                 .into(it)
         }
         Glide.with(requireActivity())
-            .load(RetroGlideExtension.getUserModel())
-            .userProfileOptions(RetroGlideExtension.getUserModel(), requireContext())
+            .load(HoaGlideExtension.getUserModel())
+            .userProfileOptions(HoaGlideExtension.getUserModel(), requireContext())
             .into(binding.userImage)
     }
 
@@ -268,7 +268,7 @@ class HomeFragment :
                 }
             }
             Glide.with(this)
-                .load(RetroGlideExtension.getSongModel(songs[index]))
+                .load(HoaGlideExtension.getSongModel(songs[index]))
                 .songCoverOptions(songs[index])
                 .into(imageView)
         }

@@ -159,7 +159,7 @@
     <string name="depth">Мащабиране</string>
     <string name="description">Описание</string>
     <string name="device_info">Информация за устройството</string>
-    <string name="dialog_message_set_ringtone">Разрешете на Retro Music да променя аудио настройките</string>
+    <string name="dialog_message_set_ringtone">Разрешете на HOA Music да променя аудио настройките</string>
     <string name="dialog_title_set_ringtone">Изберете мелодия</string>
     <string name="disc_hint">Номер на диска</string>
     <string name="do_you_want_to_clear_the_blacklist">Изчистване на черния списък?</string>
@@ -302,7 +302,7 @@
     <string name="personalize_settings_summary">Персонализиране на екрана за възпроизвеждане и интерфейса за управление на музиката</string>
     <string name="pick_from_local_storage">Изберете от хранилището</string>
     <string name="pinterest_page">Пинтерест</string>
-    <string name="pinterest_page_summary">Следвайте Retro Music в Pinterest</string>
+    <string name="pinterest_page_summary">Следвайте HOA Music в Pinterest</string>
     <string name="plain">Гладка</string>
     <string name="playList_already_exits">Плейлистът вече съществува</string>
     <string name="playback_pitch">Височина</string>
@@ -328,7 +328,7 @@
     <string name="pref_header_library">Библиотека</string>
     <string name="pref_header_lockscreen">Заключен екран</string>
     <string name="pref_header_playlists">Плейлисти</string>
-    <string name="pref_keep_pause_on_zero_volume_summary">Поставете музиката на пауза, когато силата на звука се намали до нула, и продължете да възпроизвеждате, когато силата на звука се увеличи. Предупреждение: когато увеличите звука извън приложението, Retro Music също ще започне да се възпроизвежда</string>
+    <string name="pref_keep_pause_on_zero_volume_summary">Поставете музиката на пауза, когато силата на звука се намали до нула, и продължете да възпроизвеждате, когато силата на звука се увеличи. Предупреждение: когато увеличите звука извън приложението, HOA Music също ще започне да се възпроизвежда</string>
     <string name="pref_keep_pause_on_zero_volume_title">Пауза при сила на звука нула</string>
     <string name="pref_keep_screen_on_summary">Моля, обърнете внимание, че активирането на тази функция може да повлияе на живота на батерията.</string>
     <string name="pref_keep_screen_on_title">Остави екрана включен</string>
@@ -355,7 +355,7 @@
     <string name="pref_summary_home_banner">Показвай начален бутон</string>
     <string name="pref_summary_ignore_media_store_artwork">Може да подобри качеството на обложката на албума, но да доведе до по-бавно зареждане на изображението. Активирайте това само ако имате проблеми със снимки с ниска резолюция</string>
     <string name="pref_summary_library_categories">Персонализирайте вида и реда на разделите в библиотеката.</string>
-    <string name="pref_summary_lock_screen">Използвайте свой собствен екран за заключване на Retro Music</string>
+    <string name="pref_summary_lock_screen">Използвайте свой собствен екран за заключване на HOA Music</string>
     <string name="pref_summary_manage_audio_focus">Винаги възпроизвеждайте звук във фонов режим, независимо от други източници на звук</string>
     <string name="pref_summary_open_source_licences">Относно лицензите за отворен код</string>
     <string name="pref_summary_pause_history">Ако е активирано, новите песни няма да се показват в хронологията</string>
@@ -533,9 +533,9 @@
     <string name="track_list">Номер на песента</string>
     <string name="translate">Помощ за превод</string>
     <string name="translate_community">Помогнете ни да преведем приложението на вашия език</string>
-    <string name="try_retro_music_premium">Изпробвайте Retro Music Premium</string>
+    <string name="try_retro_music_premium">Изпробвайте HOA Music Premium</string>
     <string name="twitter_page">Туитър</string>
-    <string name="twitter_page_summary">Споделете своя дизайн за Retro Music</string>
+    <string name="twitter_page_summary">Споделете своя дизайн за HOA Music</string>
     <string name="unlabeled">Не показвай</string>
     <string name="unplayable_file">Не мога да пусна този запис.</string>
     <string name="up_next">Следващи песни</string>
@@ -563,7 +563,7 @@
     <string name="you_will_be_forwarded_to_the_issue_tracker_website">Ще бъде по-вероятно да проверите уебсайта за проследимост на грешки.</string>
     <string name="your_account_data_is_only_used_for_authentication">Информацията за вашия акаунт се използва само за удостоверяване.</string>
     <string name="could_not_write_tags_to_file">Неуспешно записване на етикети към музикален файл!</string>
-    <string name="sleep_timer_no_permission">No permission to schedule alarms, please allow Retro Music.</string>
+    <string name="sleep_timer_no_permission">No permission to schedule alarms, please allow HOA Music.</string>
     <string name="scanning_folders_files">Scanning folders and files…</string>
     <string name="scan_complete">Scan complete: %1$d media items found.</string>
     <string name="pref_save_last_directory_summary">When switching to folder view, restore last used directory</string>
