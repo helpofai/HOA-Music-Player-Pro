@@ -113,9 +113,9 @@ class StereoProcessor : AudioProcessor {
         val balanceLeftVol = if (balance > 0f) 1f - balance else 1f
         val balanceRightVol = if (balance < 0f) 1f + balance else 1f
         
-        // Clarity Gains
-        val vocalGain = clarity * 0.8f // +dB for vocals (Increased)
-        val airGain = clarity * 1.0f // +dB for air (Increased)
+        // Clarity Gains (Upgraded for "Clearly Present L/R")
+        val vocalGain = clarity * 1.5f // Stronger Vocal Presence
+        val airGain = clarity * 2.5f // Much stronger Air/Detail for Side channel
 
         var i = position
         while (i < limit) {
@@ -140,18 +140,12 @@ class StereoProcessor : AudioProcessor {
                 mid += vocalOut * vocalGain
 
                 // Air (Side Channel) - HPF
-                val airOut = airHpAlpha * (airHpState + side - sideLowState) // Approximate input as current side (using sideLowState as prev approx is noisy, let's use proper state)
-                // Proper HPF: y[i] := α * (y[i-1] + x[i] - x[i-1])
-                // We need `prevSide`. Let's assume input signal is clean. 
-                // Actually, let's use the simple implementation:
-                // air = prev_air + alpha * (in - prev_air) -> LPF
-                // HPF = in - LPF
-                // Re-using airHpState as LPF state for air calc
-                val airLpf = airHpState + (1f - airHpAlpha) * (side - airHpState) // Correct 1-pole LPF
+                // Use simple 1-pole LPF to derive HPF
+                val airLpf = airHpState + (1f - airHpAlpha) * (side - airHpState) 
                 airHpState = airLpf
                 val airHigh = side - airLpf
                 
-                // Add air to Side
+                // Add air to Side (This brings out reverb tails and wide panning details)
                 side += airHigh * airGain
             }
 
@@ -165,8 +159,10 @@ class StereoProcessor : AudioProcessor {
             val sideHigh = side - sideLow
 
             // Apply width
+            // We boost the sideHigh slightly more when widening to enhance "Small effects"
             val processedSide = if (stereoWidth >= 1.0f) {
-                sideLow + (sideHigh * stereoWidth)
+                // Progressive widening: wider sounds get wider
+                sideLow + (sideHigh * stereoWidth * 1.2f) 
             } else {
                 side * stereoWidth
             }
