@@ -1,0 +1,92 @@
+<animated-vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt">
+    <aapt:attr name="android:drawable">
+        <vector
+            android:name="vector"
+            android:width="411dp"
+            android:height="411dp"
+            android:viewportWidth="108"
+            android:viewportHeight="108">
+            <group
+                android:name="logo_group"
+                android:pivotX="54"
+                android:pivotY="54"
+                android:scaleX="0.3"
+                android:scaleY="0.3"
+                android:alpha="1">
+                
+                <!-- Left Bar -->
+                <path
+                    android:pathData="M36,38 L36,70 A6,6 0 0 1 24,70 L24,38 A6,6 0 0 1 36,38 Z">
+                    <aapt:attr name="android:fillColor">
+                        <gradient 
+                            android:startY="32" android:startX="30" 
+                            android:endY="76" android:endX="30" 
+                            android:type="linear">
+                            <item android:offset="0" android:color="#FF6200EE"/>
+                            <item android:offset="1" android:color="#FFB00020"/>
+                        </gradient>
+                    </aapt:attr>
+                </path>
+
+                <!-- Center Bar -->
+                <path
+                    android:pathData="M60,28 L60,80 A6,6 0 0 1 48,80 L48,28 A6,6 0 0 1 60,28 Z">
+                    <aapt:attr name="android:fillColor">
+                        <gradient 
+                            android:startY="22" android:startX="54" 
+                            android:endY="86" android:endX="54" 
+                            android:type="linear">
+                            <item android:offset="0" android:color="#FFB00020"/>
+                            <item android:offset="1" android:color="#FFFF0266"/>
+                        </gradient>
+                    </aapt:attr>
+                </path>
+
+                <!-- Right Bar -->
+                <path
+                    android:pathData="M84,38 L84,70 A6,6 0 0 1 72,70 L72,38 A6,6 0 0 1 84,38 Z">
+                    <aapt:attr name="android:fillColor">
+                        <gradient 
+                            android:startY="32" android:startX="78" 
+                            android:endY="76" android:endX="78" 
+                            android:type="linear">
+                            <item android:offset="0" android:color="#FFFF0266"/>
+                            <item android:offset="1" android:color="#FFFFC107"/>
+                        </gradient>
+                    </aapt:attr>
+                </path>
+            </group>
+        </vector>
+    </aapt:attr>
+
+    <target android:name="logo_group">
+        <aapt:attr name="android:animation">
+            <set>
+                <!-- Overshoot Entry Animation -->
+                <objectAnimator
+                    android:propertyName="scaleX"
+                    android:duration="600"
+                    android:valueFrom="0.3"
+                    android:valueTo="1.0"
+                    android:valueType="floatType"
+                    android:interpolator="@android:interpolator/overshoot"/>
+                <objectAnimator
+                    android:propertyName="scaleY"
+                    android:duration="600"
+                    android:valueFrom="0.3"
+                    android:valueTo="1.0"
+                    android:valueType="floatType"
+                    android:interpolator="@android:interpolator/overshoot"/>
+                <objectAnimator
+                    android:propertyName="alpha"
+                    android:duration="200"
+                    android:valueFrom="0.5"
+                    android:valueTo="1.0"
+                    android:valueType="floatType"
+                    android:interpolator="@android:interpolator/linear"/>
+            </set>
+        </aapt:attr>
+    </target>
+</animated-vector>
