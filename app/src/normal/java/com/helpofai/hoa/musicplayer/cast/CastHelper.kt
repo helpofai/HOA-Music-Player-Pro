@@ -1,0 +1,50 @@
+package com.helpofai.hoa.musicplayer.cast
+
+import androidx.core.net.toUri
+import com.helpofai.hoa.musicplayer.cast.HoaWebServer.Companion.MIME_TYPE_AUDIO
+import com.helpofai.hoa.musicplayer.cast.HoaWebServer.Companion.PART_COVER_ART
+import com.helpofai.hoa.musicplayer.cast.HoaWebServer.Companion.PART_SONG
+import com.helpofai.hoa.musicplayer.model.Song
+import com.helpofai.hoa.musicplayer.util.HoaUtil
+import com.google.android.gms.cast.MediaInfo
+import com.google.android.gms.cast.MediaInfo.STREAM_TYPE_BUFFERED
+import com.google.android.gms.cast.MediaMetadata
+import com.google.android.gms.cast.MediaMetadata.*
+import com.google.android.gms.common.images.WebImage
+import java.net.MalformedURLException
+import java.net.URL
+
+object CastHelper {
+
+    private const val CAST_MUSIC_METADATA_ID = "metadata_id"
+    private const val CAST_MUSIC_METADATA_ALBUM_ID = "metadata_album_id"
+    private const val CAST_URL_PROTOCOL = "http"
+
+    fun Song.toMediaInfo(): MediaInfo? {
+        val song = this
+        val baseUrl: URL
+        try {
+            baseUrl = URL(CAST_URL_PROTOCOL, HoaUtil.getIpAddress(true), getCurrentServerPort(), "")
+        } catch (e: MalformedURLException) {
+            return null
+        }
+
+        val songUrl = "$baseUrl/$PART_SONG?id=${song.id}"
+        val albumArtUrl = "$baseUrl/$PART_COVER_ART?id=${song.albumId}"
+        val musicMetadata = MediaMetadata(MEDIA_TYPE_MUSIC_TRACK).apply {
+            putInt(CAST_MUSIC_METADATA_ID, song.id.toInt())
+            putInt(CAST_MUSIC_METADATA_ALBUM_ID, song.albumId.toInt())
+            putString(KEY_TITLE, song.title)
+            putString(KEY_ARTIST, song.artistName)
+            putString(KEY_ALBUM_TITLE, song.albumName)
+            putInt(KEY_TRACK_NUMBER, song.trackNumber)
+            addImage(WebImage(albumArtUrl.toUri()))
+        }
+        return MediaInfo.Builder(songUrl).apply {
+            setStreamType(STREAM_TYPE_BUFFERED)
+            setContentType(MIME_TYPE_AUDIO)
+            setMetadata(musicMetadata)
+            setStreamDuration(song.duration)
+        }.build()
+    }
+}
