@@ -1,0 +1,456 @@
+package com.helpofai.hoa.musicplayer.service
+
+import android.animation.Animator
+import android.content.Context
+import android.media.AudioAttributes
+import android.media.MediaPlayer
+import android.media.PlaybackParams
+import android.net.Uri
+import android.os.PowerManager
+import androidx.core.net.toUri
+import com.helpofai.hoa.musicplayer.R
+import com.helpofai.hoa.musicplayer.extensions.showToast
+import com.helpofai.hoa.musicplayer.extensions.uri
+import com.helpofai.hoa.musicplayer.helper.MusicPlayerRemote
+import com.helpofai.hoa.musicplayer.model.Song
+import com.helpofai.hoa.musicplayer.service.AudioFader.Companion.createFadeAnimator
+import com.helpofai.hoa.musicplayer.service.playback.Playback
+import com.helpofai.hoa.musicplayer.service.playback.Playback.PlaybackCallbacks
+import com.helpofai.hoa.musicplayer.util.PreferenceUtil
+import com.helpofai.hoa.musicplayer.util.PreferenceUtil.playbackPitch
+import com.helpofai.hoa.musicplayer.util.PreferenceUtil.playbackSpeed
+import com.helpofai.hoa.musicplayer.util.logE
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
+
+/** @author Prathamesh M */
+
+/*
+* To make Crossfade work we need two MediaPlayer's
+* Basically, we switch back and forth between those two mp's
+* e.g. When song is about to end (Reaches Crossfade duration) we let current mediaplayer
+* play but with decreasing volume and start the player with the next song with increasing volume
+* and vice versa for upcoming song and so on.
+*/
+class CrossFadePlayer(context: Context) : AudioManagerPlayback(context),
+    MediaPlayer.OnErrorListener, MediaPlayer.OnCompletionListener, Playback {
+
+    private var currentPlayer: CurrentPlayer = CurrentPlayer.NOT_SET
+    private var player1 = MediaPlayer()
+    private var player2 = MediaPlayer()
+    private val player1Wrapper = object : Playback {
+        override val isInitialized: Boolean get() = true
+        override val isPlaying: Boolean get() = player1.isPlaying
+        override val audioSessionId: Int get() = player1.audioSessionId
+        override fun setDataSource(song: Song, force: Boolean, completion: (success: Boolean) -> Unit) {}
+        override fun setNextDataSource(path: Uri?) {}
+        override var callbacks: PlaybackCallbacks? = null
+        override fun start(): Boolean { player1.start(); return true }
+        override fun stop() { player1.stop() }
+        override fun release() { player1.release() }
+        override fun pause(): Boolean { player1.pause(); return true }
+        override fun duration(): Int = player1.duration
+        override fun position(): Int = player1.currentPosition
+        override fun seek(whereto: Int, force: Boolean): Int { player1.seekTo(whereto); return whereto }
+        override fun setVolume(vol: Float): Boolean { player1.setVolume(vol, vol); return true }
+        override fun setAudioSessionId(sessionId: Int): Boolean { player1.audioSessionId = sessionId; return true }
+        override fun setCrossFadeDuration(duration: Int) {}
+        override fun setPlaybackSpeedPitch(speed: Float, pitch: Float) { player1.setPlaybackSpeedPitch(speed, pitch) }
+    }
+
+    private val player2Wrapper = object : Playback {
+        override val isInitialized: Boolean get() = true
+        override val isPlaying: Boolean get() = player2.isPlaying
+        override val audioSessionId: Int get() = player2.audioSessionId
+        override fun setDataSource(song: Song, force: Boolean, completion: (success: Boolean) -> Unit) {}
+        override fun setNextDataSource(path: Uri?) {}
+        override var callbacks: PlaybackCallbacks? = null
+        override fun start(): Boolean { player2.start(); return true }
+        override fun stop() { player2.stop() }
+        override fun release() { player2.release() }
+        override fun pause(): Boolean { player2.pause(); return true }
+        override fun duration(): Int = player2.duration
+        override fun position(): Int = player2.currentPosition
+        override fun seek(whereto: Int, force: Boolean): Int { player2.seekTo(whereto); return whereto }
+        override fun setVolume(vol: Float): Boolean { player2.setVolume(vol, vol); return true }
+        override fun setAudioSessionId(sessionId: Int): Boolean { player2.audioSessionId = sessionId; return true }
+        override fun setCrossFadeDuration(duration: Int) {}
+        override fun setPlaybackSpeedPitch(speed: Float, pitch: Float) { player2.setPlaybackSpeedPitch(speed, pitch) }
+    }
+    private var durationListener = DurationListener()
+    private var mIsInitialized = false
+    private var hasDataSource: Boolean = false /* Whether first player has DataSource */
+    private var nextDataSource: String? = null
+    private var crossFadeAnimator: Animator? = null
+    override var callbacks: PlaybackCallbacks? = null
+    private var crossFadeDuration = PreferenceUtil.crossFadeDuration
+    var isCrossFading = false
+
+    init {
+        player1.setWakeMode(context, PowerManager.PARTIAL_WAKE_LOCK)
+        player2.setWakeMode(context, PowerManager.PARTIAL_WAKE_LOCK)
+        currentPlayer = CurrentPlayer.PLAYER_ONE
+    }
+
+    override fun start(): Boolean {
+        super.start()
+        durationListener.start()
+        resumeFade()
+        return try {
+            getCurrentPlayer()?.start()
+            if (isCrossFading) {
+                getNextPlayer()?.start()
+            }
+            true
+        } catch (e: IllegalStateException) {
+            e.printStackTrace()
+            false
+        }
+    }
+
+    override fun release() {
+        stop()
+        cancelFade()
+        getCurrentPlayer()?.release()
+        getNextPlayer()?.release()
+        durationListener.cancel()
+    }
+
+    override fun stop() {
+        super.stop()
+        getCurrentPlayer()?.reset()
+        mIsInitialized = false
+    }
+
+    override fun pause(): Boolean {
+        super.pause()
+        durationListener.stop()
+        pauseFade()
+        getCurrentPlayer()?.let {
+            if (it.isPlaying) {
+                it.pause()
+            }
+        }
+        getNextPlayer()?.let {
+            if (it.isPlaying) {
+                it.pause()
+            }
+        }
+        return true
+    }
+
+    override fun seek(whereto: Int, force: Boolean): Int {
+        if (force) {
+            endFade()
+        }
+        getNextPlayer()?.stop()
+        return try {
+            getCurrentPlayer()?.seekTo(whereto)
+            whereto
+        } catch (e: java.lang.IllegalStateException) {
+            e.printStackTrace()
+            -1
+        }
+    }
+
+    override fun setVolume(vol: Float): Boolean {
+        cancelFade()
+        return try {
+            getCurrentPlayer()?.setVolume(vol, vol)
+            true
+        } catch (e: IllegalStateException) {
+            e.printStackTrace()
+            false
+        }
+    }
+
+    override val isInitialized: Boolean
+        get() = mIsInitialized
+
+    override val isPlaying: Boolean
+        get() = mIsInitialized && getCurrentPlayer()?.isPlaying == true
+
+    override fun setDataSource(
+        song: Song,
+        force: Boolean,
+        completion: (success: Boolean) -> Unit,
+    ) {
+        if (force) hasDataSource = false
+        mIsInitialized = false
+        /* We've already set DataSource if initialized is true in setNextDataSource */
+        if (!hasDataSource) {
+            getCurrentPlayer()?.let {
+                setDataSourceImpl(it, song.uri.toString()) { success ->
+                    mIsInitialized = success
+                    completion(success)
+                }
+            }
+            hasDataSource = true
+        } else {
+            completion(true)
+            mIsInitialized = true
+        }
+    }
+
+    override fun setNextDataSource(path: Uri?) {
+        // Store the next song path in nextDataSource, we'll need this just in case
+        // if the user closes the app, then we can't get the nextSong from musicService
+        // As MusicPlayerRemote won't have access to the musicService
+        nextDataSource = path.toString()
+    }
+
+    override fun setAudioSessionId(sessionId: Int): Boolean {
+        return try {
+            getCurrentPlayer()?.audioSessionId = sessionId
+            true
+        } catch (e: IllegalArgumentException) {
+            e.printStackTrace()
+            false
+        } catch (e: IllegalStateException) {
+            e.printStackTrace()
+            false
+        }
+    }
+
+    override val audioSessionId: Int
+        get() = getCurrentPlayer()?.audioSessionId!!
+
+    /**
+     * Gets the duration of the file.
+     *
+     * @return The duration in milliseconds
+     */
+    override fun duration(): Int {
+        return if (!mIsInitialized) {
+            -1
+        } else try {
+            getCurrentPlayer()?.duration!!
+        } catch (e: IllegalStateException) {
+            e.printStackTrace()
+            -1
+        }
+    }
+
+    /**
+     * Gets the current position in audio.
+     * @return The position in milliseconds
+     */
+    override fun position(): Int {
+        return if (!mIsInitialized) {
+            -1
+        } else try {
+            getCurrentPlayer()?.currentPosition!!
+        } catch (e: IllegalStateException) {
+            e.printStackTrace()
+            -1
+        }
+    }
+
+    override fun onCompletion(mp: MediaPlayer?) {
+        if (mp == getCurrentPlayer()) {
+            callbacks?.onTrackEnded()
+        }
+    }
+
+    private fun getCurrentPlayer(): MediaPlayer? {
+        return when (currentPlayer) {
+            CurrentPlayer.PLAYER_ONE -> {
+                player1
+            }
+
+            CurrentPlayer.PLAYER_TWO -> {
+                player2
+            }
+
+            CurrentPlayer.NOT_SET -> {
+                null
+            }
+        }
+    }
+
+    private fun getNextPlayer(): MediaPlayer? {
+        return when (currentPlayer) {
+            CurrentPlayer.PLAYER_ONE -> {
+                player2
+            }
+
+            CurrentPlayer.PLAYER_TWO -> {
+                player1
+            }
+
+            CurrentPlayer.NOT_SET -> {
+                null
+            }
+        }
+    }
+
+    private fun crossFade(fadeInMp: MediaPlayer, fadeOutMp: MediaPlayer) {
+        isCrossFading = true
+        val fadeInWrapper = if (fadeInMp == player1) player1Wrapper else player2Wrapper
+        val fadeOutWrapper = if (fadeOutMp == player1) player1Wrapper else player2Wrapper
+        crossFadeAnimator = createFadeAnimator(context, fadeInWrapper, fadeOutWrapper) {
+            crossFadeAnimator = null
+            durationListener.start()
+            isCrossFading = false
+        }
+        crossFadeAnimator?.start()
+    }
+
+    private fun endFade() {
+        crossFadeAnimator?.end()
+        crossFadeAnimator = null
+    }
+
+    private fun cancelFade() {
+        crossFadeAnimator?.cancel()
+        crossFadeAnimator = null
+    }
+
+    private fun pauseFade() {
+        crossFadeAnimator?.pause()
+    }
+
+    private fun resumeFade() {
+        if (crossFadeAnimator?.isPaused == true) {
+            crossFadeAnimator?.resume()
+        }
+    }
+
+    override fun onError(mp: MediaPlayer?, what: Int, extra: Int): Boolean {
+        mIsInitialized = false
+        mp?.release()
+        player1 = MediaPlayer()
+        player2 = MediaPlayer()
+        mIsInitialized = true
+        mp?.setWakeMode(context, PowerManager.PARTIAL_WAKE_LOCK)
+        context.showToast(R.string.unplayable_file)
+        logE(what.toString() + extra)
+        return false
+    }
+
+    enum class CurrentPlayer {
+        PLAYER_ONE,
+        PLAYER_TWO,
+        NOT_SET
+    }
+
+    inner class DurationListener : CoroutineScope by crossFadeScope() {
+
+        private var job: Job? = null
+
+        fun start() {
+            job?.cancel()
+            job = launch {
+                while (isActive) {
+                    delay(250)
+                    onDurationUpdated(position(), duration())
+                }
+            }
+        }
+
+        fun stop() {
+            job?.cancel()
+        }
+    }
+
+    fun onDurationUpdated(progress: Int, total: Int) {
+        if (total > 0 && (total - progress).div(1000) == crossFadeDuration) {
+            getNextPlayer()?.let { player ->
+                val nextSong = MusicPlayerRemote.nextSong
+                // Switch to other player (Crossfade) only if next song exists
+                // If we get an empty song it's can be because the app was cleared from background
+                // And MusicPlayerRemote don't have access to MusicService
+                if (nextSong != null && nextSong != Song.emptySong) {
+                    nextDataSource = null
+                    setDataSourceImpl(player, nextSong.uri.toString()) { success ->
+                        if (success) switchPlayer()
+                    }
+
+                }
+                // So we have to use the previously stored nextDataSource value
+                else if (!nextDataSource.isNullOrEmpty()) {
+                    setDataSourceImpl(player, nextDataSource!!) { success ->
+                        if (success) switchPlayer()
+                        nextDataSource = null
+                    }
+                }
+            }
+        }
+    }
+
+    private fun switchPlayer() {
+        getNextPlayer()?.start()
+        crossFade(getNextPlayer()!!, getCurrentPlayer()!!)
+        currentPlayer =
+            if (currentPlayer == CurrentPlayer.PLAYER_ONE || currentPlayer == CurrentPlayer.NOT_SET) {
+                CurrentPlayer.PLAYER_TWO
+            } else {
+                CurrentPlayer.PLAYER_ONE
+            }
+        callbacks?.onTrackEndedWithCrossfade()
+    }
+
+    override fun setCrossFadeDuration(duration: Int) {
+        crossFadeDuration = duration
+    }
+
+    override fun setPlaybackSpeedPitch(speed: Float, pitch: Float) {
+        getCurrentPlayer()?.setPlaybackSpeedPitch(speed, pitch)
+        if (getNextPlayer()?.isPlaying == true) {
+            getNextPlayer()?.setPlaybackSpeedPitch(speed, pitch)
+        }
+    }
+
+    private fun setDataSourceImpl(
+        player: MediaPlayer,
+        path: String,
+        completion: (success: Boolean) -> Unit,
+    ) {
+        player.reset()
+        try {
+            if (path.startsWith("content://")) {
+                player.setDataSource(context, path.toUri())
+            } else {
+                player.setDataSource(path)
+            }
+            player.setAudioAttributes(
+                AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_MEDIA)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                    .build()
+            )
+            player.playbackParams =
+                PlaybackParams().setSpeed(playbackSpeed).setPitch(playbackPitch)
+
+            player.setOnPreparedListener {
+                player.setOnPreparedListener(null)
+                completion(true)
+            }
+            player.prepare()
+        } catch (e: Exception) {
+            completion(false)
+            e.printStackTrace()
+        }
+        player.setOnCompletionListener(this)
+        player.setOnErrorListener(this)
+    }
+
+    companion object {
+        val TAG: String = CrossFadePlayer::class.java.simpleName
+    }
+}
+
+internal fun crossFadeScope(): CoroutineScope = CoroutineScope(Job() + Dispatchers.Default)
+
+fun MediaPlayer.setPlaybackSpeedPitch(speed: Float, pitch: Float) {
+    val wasPlaying = isPlaying
+    playbackParams = PlaybackParams().setSpeed(speed).setPitch(pitch)
+    if (!wasPlaying) {
+        pause()
+    }
+}

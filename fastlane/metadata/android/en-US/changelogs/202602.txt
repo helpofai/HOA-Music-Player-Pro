@@ -1,0 +1,6 @@
+- High-Fidelity Crossfade: Professional DSP now remains active during transitions.
+- Bass Engine Pro: Enhanced sub-harmonic weight and kinetic impact for a "bone-crushing" low-end.
+- Analog Warmth: New refined saturation curve for organic, expensive sound.
+- Production Ready: Secured AdMob and License keys for safe store release.
+- Fix: Critical stability improvement for the progress slider.
+- Fix: Resolved audio quality drop when enabling crossfade.

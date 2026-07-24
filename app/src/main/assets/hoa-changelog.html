@@ -1,0 +1,311 @@
+<html>
+
+<head>
+    <style type="text/css">
+        * {
+            word-wrap: break-word;
+        }
+
+        div {
+            margin: 20px 10px;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            margin-block-end: 0rem;
+            margin-block-start: 0rem;
+            display: inline-block;
+            vertical-align: center;
+        }
+
+        li {
+            font-size: 0.85rem;
+            padding: 0.5rem 0;
+        }
+
+        ul {
+            padding-left: 1.5rem;
+            margin-top: 0rem;
+            margin-bottom: 0rem;
+        }
+
+        p {
+            font-size: 0.8rem;
+        }
+
+        span {
+            font-size: 0.7rem;
+        }
+
+        h5 {
+            margin-block-start: 0;
+            margin-block-end: 0.5rem;
+        }
+
+        h3 {
+            margin: 10px 0px;
+            font-size: 1rem;
+        }
+
+        .tag {
+            border-radius: 5px;
+            margin-left: 10px;
+            padding: 5px;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        {style-placeholder}
+    </style>
+</head>
+
+<body>
+
+<div>
+    <h5>July 24, 2026</h5>
+    <h2>v6.0.0</h2>
+    <h3>Changed</h3>
+    <ul>
+        <li>Upgraded Google Play Billing Library to version 9.1.0 to comply with Google's upcoming mandate.</li>
+    </ul>
+</div>
+
+<div>
+    <h5>June 15, 2026</h5>
+    <h2>v5.2.0</h2>
+    <h3>Changed</h3>
+    <ul>
+        <li><b>BassBoostProcessor v9.1:</b> Upgraded from imprecise 8-stage single-pole filter to proper 4-stage biquad cascade (Butterworth Q=0.707) for clean, sharp 90Hz sub isolation with no phase smearing.</li>
+        <li><b>StereoProcessor:</b> Removed the 150Hz mono-bass crossover — full stereo image preserved end-to-end. Bass effects stay where the mix placed them.</li>
+        <li><b>InstrumentExciterProcessor:</b> Processor now only engages when effects are active. No more always-on compression degrading audio at default settings.</li>
+        <li><b>Mud-carving reduced:</b> From 45% to 20% max — retains bass body and warmth.</li>
+        <li><b>Progressive saturation:</b> Smooth warmth from strength=0, no sudden gate at 30%.</li>
+        <li><b>Peak-hold impact envelope:</b> Cleaner transient extraction with 6ms hold for punchier bass.</li>
+        <li><b>ReverbProcessor:</b> Output clamping added to prevent clipping at high mix levels.</li>
+    </ul>
+    <h3>Removed</h3>
+    <ul>
+        <li><b>Mono-bass sum:</b> Sub-bass and low frequencies now preserve full stereo L/R separation across all processors.</li>
+        <li><b>Always-on limiter:</b> Soft-clip removed from InstrumentExciter — only active when processor is enabled.</li>
+    </ul>
+</div>
+
+<div>
+    <h5>June 12, 2026</h5>
+    <h2>v5.1.0</h2>
+    <h3>What's New</h3>
+    <p><b>HRTF Binaural Engine & Audio Refinements:</b> Replaced the simulated delay-matrix "8D" mode with a proper parametric HRTF binaural processor for true 360° spatial audio.</p>
+    <ul>
+        <li><b>Real HRTF Binaural Processor:</b> Uses Woodworth ITD formula, frequency-dependent ILD head shadowing, and elevation notch filters for convincing front/back/up spatialization on headphones.</li>
+        <li><b>3D Binaural Spatial Slider:</b> New percentage-based control in Settings &rarr; Audio for precise spatial strength adjustment.</li>
+        <li><b>AdMob Compliance:</b> MediaView minimum size set to 120&times;120dp to satisfy Google's native ad video policy.</li>
+    </ul>
+    <h3>Changed</h3>
+    <ul>
+        <li><b>StereoProcessor Cleaned Up:</b> Removed the delay-matrix "8D" spatial mode — spatial processing is now handled exclusively by the dedicated BinauralProcessor.</li>
+        <li><b>Audio Presets Updated:</b> "3D Spatial (8D)" preset now correctly enables the new BinauralProcessor at 70% strength.</li>
+    </ul>
+</div>
+
+<div>
+    <h5>June 11, 2026</h5>
+    <h2>v5.0.0</h2>
+    <h3>What's New</h3>
+    <p><b>Monetization Suite & Android 15 Compliance:</b> Major ad platform upgrade with extended placements, rewarded video ads, and full Android 15 API compliance.</p>
+    <ul>
+        <li><b>Rewarded Video Ads:</b> Users can watch a short ad to try Pro features directly from Settings.</li>
+        <li><b>Extended Ad Network:</b> New placements on Home, Album Details, Artist Details, and Playlist Details pages for maximum coverage.</li>
+        <li><b>Smart Banner Refresh:</b> Adaptive banner sizing and automatic retry logic for improved ad fill rates.</li>
+        <li><b>Native Ad Upgrades:</b> Suggestions section upgraded from banner to rich native ads; Now Playing ads now properly handle lifecycle.</li>
+    </ul>
+    <h3>Fixed</h3>
+    <ul>
+        <li><b>AdView Memory Leak:</b> Eliminated accumulated ad views in RecyclerView by properly destroying ads on item recycling.</li>
+        <li><b>Pro Detection Race:</b> Fixed ads briefly showing to Pro users before purchase status resolves.</li>
+        <li><b>Stale Ad Callbacks:</b> Cancelled pending retries when views are rebound — prevents loading ads on destroyed AdViews.</li>
+        <li><b>Android 15 API Compliance:</b> Properly guarded deprecated window styling APIs with API 35+ runtime checks.</li>
+    </ul>
+</div>
+
+<div>
+    <h5>July 28, 2026</h5>
+    <h2>v4.6.1</h2>
+    <h3>What's New</h3>
+    <p><b>Android 15 Edge-to-Edge Support:</b> Full compatibility with Android 15's new display standards and professional audio engine refinements.</p>
+    <ul>
+        <li><b>Edge-to-Edge Display:</b> Implemented modern `enableEdgeToEdge()` API for seamless, immersive UI on Android 15+.</li>
+        <li><b>Inset Handling:</b> Automated handling of system bars to ensure UI elements never overlap with system navigation.</li>
+        <li><b>High-Fidelity Crossfade Engine:</b> Rebuilt the crossfade system using dual <b>HoaExoPlayer</b> instances for gapless transitions.</li>
+        <li><b>Bass Engine Overdrive (v11.0):</b> Increased kinetic punch multiplier for physical, aggressive sub-bass response.</li>
+        <li><b>Precision Audio Sliders:</b> Added fine-tuning buttons for 1% increment professional mastering control.</li>
+    </ul>
+    <h3>Fixed</h3>
+    <ul>
+        <li><b>Slider Stability:</b> Fixed a critical "Maximum less than Minimum" crash in the progress slider.</li>
+        <li><b>Translation Fix:</b> Resolved string formatting issues in Persian (Farsi) translation.</li>
+        <li><b>Android 15 Migration:</b> Successfully migrated away from deprecated window styling APIs.</li>
+    </ul>
+</div>
+
+<div>
+    <h5>June 15, 2026</h5>
+    <h2>v3.4.0</h2>
+    <h3>What's New</h3>
+    <p><b>Professional Mastering Rebuild:</b> A massive update to the audio engine providing studio-grade sound and extreme headphone immersion.</p>
+    <ul>
+        <li><b>Apex Kinetic Bass Engine (v9.0):</b> Rebuilt for surgical punch and massive raw power using 8th-Order isolation and 250Hz mud-carving.</li>
+        <li><b>True 8D Spherical HRTF Matrix:</b> Implemented physical Pinna-filtering cues for a 360-degree spherical soundstage.</li>
+        <li><b>Universal Horizon Stadium Depth:</b> Merged long-distance virtual reflections with directional 8D logic for an infinite stadium feel.</li>
+        <li><b>Instrument-Aware Reinforcement:</b> Multi-band separation for independent treatment of Kick Drums, Synth Pads, and Sub-Bass.</li>
+        <li><b>Low-Bitrate Audio Restoration:</b> Rebuilds lost high-end detail in low-quality MP3s for a high-res listening experience.</li>
+    </ul>
+</div>
+
+<div>
+    <h5>May 10, 2026</h5>
+    <h2>v3.3.0</h2>
+    <h3>What's New</h3>
+    <p><b>AdMob Integration & UX Suite:</b> Seamlessly integrated professional ads for free users while maintaining high performance.</p>
+    <ul>
+        <li><b>Global Ad Injection:</b> Smart banner and native ads added across Songs, Albums, Artists, Playlists, Genres, Folders, and Search.</li>
+        <li><b>Native Player Ads:</b> Professional integrated ad experience on the Now Playing screen.</li>
+        <li><b>Ads Manager:</b> Centralized control for dynamic ad display and one-tap "Remove Ads" navigation.</li>
+    </ul>
+</div>
+
+<div>
+    <h5>April 05, 2026</h5>
+    <h2>v3.2.0</h2>
+    <h3>What's New</h3>
+    <p><b>High-Res Audio Engine Pro:</b> Major upgrade to the spatial audio and DSP processing for a professional listening experience.</p>
+    <ul>
+        <li><b>Holophonic 3D Soundstage:</b> Enhanced Spatial Mode with HRTF-inspired ILD filtering for a realistic "music everywhere" feeling.</li>
+        <li><b>Diamond Air & Clarity:</b> New ultra-high frequency "Air" exciter (>12kHz) for professional vocal sheen.</li>
+        <li><b>Mastering-Grade Bass:</b> Phase-aligned enhancement with adaptive hardware-style saturation.</li>
+        <li><b>In-App Privacy Policy:</b> Added themed privacy policy in the About section.</li>
+    </ul>
+</div>
+
+<div>
+    <h5>March 12, 2026</h5>
+    <h2>v3.1.0</h2>
+    <h3>What's New</h3>
+    <p><b>Advanced Audio Suite:</b> Rebuilt all processors to natively support both 16-bit Integer and 32-bit Float audio.</p>
+    <ul>
+        <li><b>Holophonic 6-Tap Binaural Engine:</b> Implemented a massive 3D soundstage using 6 independent virtual reflections.</li>
+        <li><b>Dual-Band Sub-Bass Processing:</b> Split bass into Deep and Sub bands for independent management.</li>
+        <li><b>Analog Soft Limiter:</b> Upgraded output stage with a tanh function to prevent digital clipping.</li>
+    </ul>
+</div>
+
+<div>
+    <h5>Feb 15, 2026</h5>
+    <h2>v3.0.0</h2>
+    <ul>
+        <li>Remove legacy notification as almost every device supports the android media notification</li>
+        <li>Fix repeat mode and update play billing</li>
+        <li>Update photo picker and general stability fixes</li>
+    </ul>
+</div>
+
+<div>
+    <h5>Dec 20, 2025</h5>
+    <h2>v2.9.0</h2>
+    <ul>
+        <li><b>ExoPlayer Migration:</b> Complete transition from MediaPlayer to ExoPlayer for superior audio handling.</li>
+        <li>Fix chromecast playback and rework music scanning UI.</li>
+    </ul>
+</div>
+
+<div>
+    <h5>Nov 05, 2025</h5>
+    <h2>v2.8.0</h2>
+    <ul>
+        <li>App now targets Android 15 (Initial phase)</li>
+        <li>Playlists search and lock screen player interface.</li>
+        <li>Fixed crash when adding album art and starting playback from widget.</li>
+    </ul>
+</div>
+
+<div>
+    <h5>Oct 12, 2025</h5>
+    <h2>v2.5.0</h2>
+    <ul>
+        <li>Android 13 Support: Granular media permissions and Photo picker.</li>
+        <li>Per-app language preferences & Predictive back gesture.</li>
+        <li>Minor redesign in Playlist details screen.</li>
+    </ul>
+</div>
+
+<div>
+    <h5>Aug 15, 2025</h5>
+    <h2>v2.2.0</h2>
+    <ul>
+        <li>Better ChromeCast integration and Seekbar-to-Slider transition.</li>
+        <li>Added NavigationRailView for Landscape mode.</li>
+        <li>Fixed all Blacklist related crashes and Top/Recent Artists update issues.</li>
+    </ul>
+</div>
+
+<div>
+    <h5>June 21, 2025</h5>
+    <h2>v2.0.0</h2>
+    <ul>
+        <li><b>Material You</b> implementation and Edge-to-Edge support.</li>
+        <li>Added Backup & Restore suite.</li>
+        <li>Improved Animations and Crossfade transitions.</li>
+    </ul>
+</div>
+
+<div>
+    <h5>May 07, 2025</h5>
+    <h2>v1.8.0</h2>
+    <ul>
+        <li>Added Android Auto support.</li>
+        <li>Added accent color extraction and Circle widget.</li>
+        <li>Implemented Search tab and circular play button option.</li>
+    </ul>
+</div>
+
+<div>
+    <h5>March 30, 2025</h5>
+    <h2>v1.5.0</h2>
+    <ul>
+        <li>Added Artwork editing for songs and Snowfall effect.</li>
+        <li>Upgraded tag editor library for Opus support.</li>
+        <li>Added Fastscroll in Playlists and Chooser for Restore items.</li>
+    </ul>
+</div>
+
+<div>
+    <h5>Feb 15, 2025</h5>
+    <h2>v1.3.0</h2>
+    <ul>
+        <li><b>Pro Architecture:</b> Re-built from scratch using MVVM Architecture and JetPack Components.</li>
+        <li>Implemented custom database for playlists and new Material Design motions.</li>
+        <li>Revamped Home tab UI.</li>
+    </ul>
+</div>
+
+<div>
+    <h5>Jan 01, 2025</h5>
+    <h2>v1.1.1</h2>
+    <ul>
+        <li><b>Initial Professional Release:</b> Launch of the HOA Music Player Pro suite.</li>
+        <li>Integrated high-performance audio engine and customizable UI themes.</li>
+    </ul>
+</div>
+
+<div>
+    <h3>Looking for maintainers/contributors</h3>
+    <p>
+        We are currently seeking maintainers/contributors to help us continue developing and
+        improving our project. If you want to contribute your skills and expertise, you can visit our Github
+        <a style="color: lightblue;" href="https://github.com/helpofai/HOA-Music-Player-Pro">here</a>, pull requests are welcome.
+        The app heavily relies on Kotlin.
+    </p>
+</div>
+</body>
+</html>

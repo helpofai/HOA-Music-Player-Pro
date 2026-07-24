@@ -1,0 +1,51 @@
+/*
+ * Copyright (c) 2026 HOA Music Player Pro contributors.
+ *
+ * Licensed under the GNU General Public License v3
+ *
+ * This is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ *
+ */
+package com.helpofai.hoa.musicplayer.adapter.song
+
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.fragment.app.FragmentActivity
+import androidx.recyclerview.widget.RecyclerView
+import com.helpofai.hoa.musicplayer.model.Song
+import com.helpofai.hoa.musicplayer.util.MusicUtil
+
+class SimpleSongAdapter(
+    context: FragmentActivity,
+    songs: ArrayList<Song>,
+    layoutRes: Int
+) : SongAdapter(context, songs, layoutRes, showAds = false) {
+
+    override fun swapDataSet(dataSet: List<Song>) {
+        this.dataSet = dataSet.toMutableList()
+        notifyDataSetChanged()
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return ViewHolder(LayoutInflater.from(activity).inflate(itemLayoutRes, parent, false))
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        super.onBindViewHolder(holder, position)
+        val songHolder = holder as? ViewHolder ?: return
+        val fixedTrackNumber = MusicUtil.getFixedTrackNumber(dataSet[position].trackNumber)
+
+        songHolder.imageText?.text = if (fixedTrackNumber > 0) fixedTrackNumber.toString() else "-"
+        songHolder.time?.text = MusicUtil.getReadableDurationString(dataSet[position].duration)
+    }
+
+    override fun getItemCount(): Int {
+        return dataSet.size
+    }
+}
