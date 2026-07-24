@@ -6,6 +6,9 @@ All notable changes to the professional audio DSP (Digital Signal Processing) su
 
 ### Changed
 - **Google Play Billing**: Upgraded Google Play Billing Library to latest stable version 9.1.0 to comply with Google's upcoming August 2026 mandate.
+- **Binaural Spatializer**: Fixed Woodworth ITD math and inverted ILD panning bugs. 3D spatial panning is now mathematically accurate.
+- **Mastering Limiter**: Fixed a bug where the Instrument Exciter's brick-wall limiter was always active, restoring full dynamic range when effects are bypassed.
+- **Bass Envelope**: Corrected attack/release time constants in BassBoostProcessor for massive kinetic punch.
 
 ## [Surgical Bass Engine & Stereo Imaging Overhaul - June 2026] (v5.2.0)
 

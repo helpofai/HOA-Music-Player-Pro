@@ -164,7 +164,9 @@ class BinauralProcessor : AudioProcessor {
         val str = spatialStrength
 
         // Precompute angle-dependent parameters (constant for this buffer)
-        val azRad = azimuth * PI.toFloat() / 180f
+        var azSigned = azimuth
+        if (azSigned > 180f) azSigned -= 360f
+        val azRad = azSigned * PI.toFloat() / 180f
         val earFactor = abs(sin(azRad))  // 0=front, 1=side
 
         // ILD gain per band
@@ -174,7 +176,8 @@ class BinauralProcessor : AudioProcessor {
         val highGainContra = 1f - 0.75f * earFactor    // high freqs contra: max -7.5dB
 
         // ITD: Woodworth formula (seconds)
-        val rawItd = (0.0875f / 343f) * (sin(azRad) + azRad)
+        // Positive means sound from right (Left ear delayed)
+        val rawItd = (0.0875f / 343f) * (abs(sin(azRad)) + abs(azRad)) * if (azSigned > 0) 1f else -1f
         val itdSamp = rawItd * sampleRate
         val itdInt = itdSamp.roundToInt().coerceIn(-60, 60)
         val itdFrac = itdSamp - itdInt
@@ -202,15 +205,15 @@ class BinauralProcessor : AudioProcessor {
             val delayedL: Float
             val delayedR: Float
             if (itdInt >= 0) {
-                // Sound is from left → right ear is delayed
-                delayedL = l
-                delayedR = delayLineR[readIdx] * (1f - abs(itdFrac)) +
-                           delayLineR[readPrev] * abs(itdFrac)
-            } else {
-                // Sound is from right → left ear is delayed
+                // Sound is from right (itdInt >= 0) -> Left ear is delayed
                 delayedL = delayLineL[readIdx] * (1f - abs(itdFrac)) +
                            delayLineL[readPrev] * abs(itdFrac)
                 delayedR = r
+            } else {
+                // Sound is from left (itdInt < 0) -> Right ear is delayed
+                delayedL = l
+                delayedR = delayLineR[readIdx] * (1f - abs(itdFrac)) +
+                           delayLineR[readPrev] * abs(itdFrac)
             }
             delayWp = (delayWp + 1) % 64
 
@@ -222,8 +225,17 @@ class BinauralProcessor : AudioProcessor {
             val lowR = delayedR - hpR
 
             // Apply angle-dependent gain to each band
-            val ildL = lowL * lowGainIpsi + hpL * highGainIpsi
-            val ildR = lowR * lowGainContra + hpR * highGainContra
+            val ildL: Float
+            val ildR: Float
+            if (azSigned > 0) {
+                // Sound from right: Right is Ipsi, Left is Contra
+                ildR = lowR * lowGainIpsi + hpR * highGainIpsi
+                ildL = lowL * lowGainContra + hpL * highGainContra
+            } else {
+                // Sound from left: Left is Ipsi, Right is Contra
+                ildL = lowL * lowGainIpsi + hpL * highGainIpsi
+                ildR = lowR * lowGainContra + hpR * highGainContra
+            }
 
             // ── Step 3: Elevation spectral notches (zero allocation) ─
             var spatialL: Float; var spatialR: Float

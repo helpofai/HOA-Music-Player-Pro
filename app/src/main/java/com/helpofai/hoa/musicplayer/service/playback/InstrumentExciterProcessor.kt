@@ -52,7 +52,7 @@ class InstrumentExciterProcessor : AudioProcessor {
         return outputAudioFormat
     }
 
-    override fun isActive() = inputAudioFormat.channelCount == 2
+    override fun isActive() = inputAudioFormat.channelCount == 2 && (clarity > 0f || strength > 0f)
 
     override fun queueInput(inputBuffer: ByteBuffer) {
         val position = inputBuffer.position()

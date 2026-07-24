@@ -126,8 +126,9 @@ class BassBoostProcessor : AudioProcessor {
         val fs = inputAudioFormat.sampleRate.toFloat()
 
         // Sample-rate-aware time constants for DJ 'Boom Boom' effect
-        val attackMs = 0.005f * fs
-        val releaseMs = 0.250f * fs // 250ms for a long, massive ringing boom
+        val dt = 1f / fs
+        val att = (dt / (0.005f + dt)).coerceIn(0f, 1f)
+        val rel = (dt / (0.250f + dt)).coerceIn(0f, 1f)
         val peakHoldSamples = (fs * 0.015f).toInt().coerceAtLeast(1)
 
         var i = position
@@ -173,8 +174,6 @@ class BassBoostProcessor : AudioProcessor {
                 peakR = if (absSubR > peakR) absSubR else peakR * 0.995f
             }
 
-            val att = attackMs.coerceIn(0.001f, 1f)
-            val rel = releaseMs.coerceIn(0.001f, 1f)
             envL += (if (absSubL > envL) att else rel) * (absSubL - envL)
             envR += (if (absSubR > envR) att else rel) * (absSubR - envR)
 
