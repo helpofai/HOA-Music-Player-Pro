@@ -50,7 +50,7 @@ class HoaExoPlayer(context: Context) : AudioManagerPlayback(context), Player.Lis
         stereoProcessor.stereoWidth = PreferenceUtil.stereoWidth
         stereoProcessor.clarity = PreferenceUtil.clarity
         instrumentExciter.clarity = PreferenceUtil.clarity
-        instrumentExciter.strength = PreferenceUtil.bassStrength
+        instrumentExciter.strength = PreferenceUtil.clarity
         reverbProcessor.amount = PreferenceUtil.reverbAmount
         bassBoostProcessor.strength = PreferenceUtil.bassStrength
         compressor.enabled = PreferenceUtil.compressorEnabled
@@ -307,11 +307,11 @@ class HoaExoPlayer(context: Context) : AudioManagerPlayback(context), Player.Lis
     fun setClarity(clarity: Float) {
         stereoProcessor.clarity = clarity
         instrumentExciter.clarity = clarity
+        instrumentExciter.strength = clarity
     }
 
     fun setBassStrength(strength: Float) {
         bassBoostProcessor.strength = strength
-        instrumentExciter.strength = strength
     }
 
     fun setReverbAmount(amount: Float) {
