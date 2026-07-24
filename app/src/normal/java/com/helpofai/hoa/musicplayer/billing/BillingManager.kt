@@ -17,6 +17,7 @@ import com.android.billingclient.api.Purchase
 import com.android.billingclient.api.PurchasesUpdatedListener
 import com.android.billingclient.api.QueryProductDetailsParams
 import com.android.billingclient.api.QueryPurchasesParams
+import com.android.billingclient.api.ProductDetails
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -192,9 +193,10 @@ class BillingManager(private val context: Context) : PurchasesUpdatedListener {
                 .setProductList(listOf(productDetailsParams))
                 .build()
 
-            billingClient.queryProductDetailsAsync(params) { billingResult, productDetailsList ->
+            billingClient.queryProductDetailsAsync(params) { billingResult, queryResult ->
                 if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
-                    val productDetails = productDetailsList.firstOrNull()
+                    val productDetailsList = queryResult.productDetailsList
+                    val productDetails = productDetailsList?.firstOrNull() ?: if (productDetailsList != null && productDetailsList.isNotEmpty()) productDetailsList[0] else null
                     if (productDetails != null) {
                         // Build billing flow parameters with valid product details
                         val productDetailsParamsList = listOf(
