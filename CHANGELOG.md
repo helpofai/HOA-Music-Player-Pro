@@ -2,6 +2,18 @@
 
 All notable changes to the professional audio DSP (Digital Signal Processing) suite are documented here.
 
+## [UI/UX Refinement & Modernization - July 2026] (v6.1.0)
+
+### Added
+- **Settings UI**: Populated all previously blank preferences across 'Look and Feel', 'General', and 'Now Playing' screens with matching Material vector icons for a premium, unified aesthetic.
+
+### Fixed
+- **Layout Bug**: Replaced the massive `ic_app_shortcut_background` drawable with a standard 24dp icon in General Settings, resolving the oversized row height distortion.
+- **Android Studio IDE**: Added suppressed lint annotations to `ToolbarContentTintHelper.java` to silence reflection warnings and clear up the workspace.
+
+### Changed
+- **SDK Upgrade**: Bumped both `compileSdk` and `targetSdk` to 37, fully modernizing the app for the latest Android API behaviors and strict background constraints.
+
 ## [Billing Library Update - July 2026] (v6.0.0)
 
 ### Changed

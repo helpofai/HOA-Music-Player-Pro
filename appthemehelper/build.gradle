@@ -1,12 +1,11 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 android {
-    compileSdk = 36
+    compileSdk = 37
     namespace = "com.helpofai.hoa.appthemehelper"
 
     defaultConfig {
         minSdk = 24
-        targetSdk = 36
     }
     buildTypes {
         release {
@@ -16,6 +15,7 @@ android {
     }
     lint {
         abortOnError = false
+        targetSdk 37
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_21
@@ -23,6 +23,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = "21"
+    }
+    testOptions {
+        targetSdk 37
     }
 }
 

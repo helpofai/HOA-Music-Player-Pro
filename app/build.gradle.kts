@@ -9,12 +9,12 @@ plugins {
 }
 
 android {
-    compileSdk = 36
+    compileSdk = 37
     namespace = "com.helpofai.hoa.musicplayer"
 
     defaultConfig {
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 37
 
         vectorDrawables {
             useSupportLibrary = true
@@ -22,7 +22,7 @@ android {
 
         applicationId = namespace
         versionCode = 6
-        versionName = "6.0.0"
+        versionName = "6.1.0"
 
         val localProperties = getProperties("local.properties")
         val playLicenseKey = getProperties("local.properties")?.getProperty("GOOGLE_PLAY_LICENSE_KEY") 

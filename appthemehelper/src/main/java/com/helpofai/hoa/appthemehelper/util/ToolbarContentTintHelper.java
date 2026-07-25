@@ -40,7 +40,9 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 import com.helpofai.hoa.appthemehelper.ThemeStore;
+import android.annotation.SuppressLint;
 
+@SuppressLint({"RestrictedApi", "PrivateApi", "DiscouragedPrivateApi"})
 public final class ToolbarContentTintHelper {
 
     public static class InternalToolbarContentTintUtil {
