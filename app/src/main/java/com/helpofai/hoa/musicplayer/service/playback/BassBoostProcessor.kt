@@ -100,8 +100,8 @@ class BassBoostProcessor : AudioProcessor {
     private fun processBiquad(stage: Int, x: Float,
                                x1: FloatArray, x2: FloatArray,
                                y1: FloatArray, y2: FloatArray): Float {
-        val y = b0[stage] * x + b1[stage] * x1[stage] + b2[stage] * x2[stage]
-                - a1[stage] * y1[stage] - a2[stage] * y2[stage]
+        val y = b0[stage] * x + b1[stage] * x1[stage] + b2[stage] * x2[stage] -
+                a1[stage] * y1[stage] - a2[stage] * y2[stage]
         x2[stage] = x1[stage]; x1[stage] = x
         y2[stage] = y1[stage]; y1[stage] = y
         return y

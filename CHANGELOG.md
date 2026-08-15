@@ -1,8 +1,9 @@
-# Changelog - HOA Music Player Pro Audio Engine
+## [Audio Engine Optimization - August 2026] (v7.0.0)
 
-All notable changes to the professional audio DSP (Digital Signal Processing) suite are documented here.
+### Added
+- **BassBoost Optimization**: Improved bass signal path stability with corrected biquad filter calculations.
+- **Thread Safety**: Optimized audio processor updates using main-thread message queues to prevent UI contention.
 
-## [UI/UX Refinement & Modernization - July 2026] (v6.1.0)
 
 ### Added
 - **Settings UI**: Populated all previously blank preferences across 'Look and Feel', 'General', and 'Now Playing' screens with matching Material vector icons for a premium, unified aesthetic.

@@ -122,7 +122,7 @@ androidx-preference-ktx = { group = "androidx.preference", name = "preference-kt
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core_version" }
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
 androidx-palette-ktx = { group = "androidx.palette", name = "palette-ktx", version = "1.0.0" }
-androidx-exoplayer = { group = "androidx.media3", name = "media3-exoplayer", version = "1.10.1" }
+androidx-exoplayer = { group = "androidx.media3", name = "media3-exoplayer", version = "1.11.0" }
 
 
 

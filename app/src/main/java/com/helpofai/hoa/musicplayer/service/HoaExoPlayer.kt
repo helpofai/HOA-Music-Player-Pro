@@ -300,26 +300,30 @@ class HoaExoPlayer(context: Context) : AudioManagerPlayback(context), Player.Lis
         stereoProcessor.balance = balance
     }
 
+    private val handler = Handler(Looper.getMainLooper())
+
     fun setStereoWidth(width: Float) {
-        stereoProcessor.stereoWidth = width
+        handler.post { stereoProcessor.stereoWidth = width }
     }
 
     fun setClarity(clarity: Float) {
-        stereoProcessor.clarity = clarity
-        instrumentExciter.clarity = clarity
-        instrumentExciter.strength = clarity
+        handler.post {
+            stereoProcessor.clarity = clarity
+            instrumentExciter.clarity = clarity
+            instrumentExciter.strength = clarity
+        }
     }
 
     fun setBassStrength(strength: Float) {
-        bassBoostProcessor.strength = strength
+        handler.post { bassBoostProcessor.strength = strength }
     }
 
     fun setReverbAmount(amount: Float) {
-        reverbProcessor.amount = amount
+        handler.post { reverbProcessor.amount = amount }
     }
 
     fun setCompressorEnabled(enabled: Boolean) {
-        compressor.enabled = enabled
+        handler.post { compressor.enabled = enabled }
     }
 
     companion object {
