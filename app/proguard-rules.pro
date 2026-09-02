@@ -77,3 +77,13 @@
 -keep class com.google.gson.reflect.TypeToken
 -keep class * extends com.google.gson.reflect.TypeToken
 -keep public class * implements java.lang.reflect.Type
+
+# Google AdMob Rules
+-keep public class com.google.android.gms.ads.** {
+   public *;
+}
+-keep public class com.google.ads.** {
+   public *;
+}
+-keep class com.google.android.gms.ads.nativead.** { *; }
+-dontwarn com.google.android.gms.ads.**

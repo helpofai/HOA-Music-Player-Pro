@@ -40,11 +40,14 @@ android {
             ?: System.getenv("ADMOB_INTERSTITIAL_ID") ?: ""
         val nativeId = localProperties?.getProperty("ADMOB_NATIVE_ID") 
             ?: System.getenv("ADMOB_NATIVE_ID") ?: ""
+        val rewardedId = localProperties?.getProperty("ADMOB_REWARDED_ID")
+            ?: System.getenv("ADMOB_REWARDED_ID") ?: ""
         
         manifestPlaceholders["ADMOB_APP_ID"] = appId
         buildConfigField("String", "ADMOB_BANNER_ID", "\"$bannerId\"")
         buildConfigField("String", "ADMOB_INTERSTITIAL_ID", "\"$interstitialId\"")
         buildConfigField("String", "ADMOB_NATIVE_ID", "\"$nativeId\"")
+        buildConfigField("String", "ADMOB_REWARDED_ID", "\"$rewardedId\"")
     }
     val signingProperties = getProperties("hoa.properties")
     val theSigningConfig = if (signingProperties != null) {

@@ -32,30 +32,26 @@ import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 /**
  * Professional Ads Manager to handle dynamic ad display.
  *
- * Supports three ad formats: Banner (inline), Interstitial (full-screen),
- * and Native (custom layout). Pro users see zero ads.
+ * Supports three ad formats: Banner (adaptive & inline), Interstitial (full-screen),
+ * Native (custom layout), and Rewarded (pro feature trials).
+ * Pro users see zero ads.
  */
 object AdsManager {
     private const val TAG = "AdsManager"
 
-    // Use test IDs in Debug builds, Production IDs in Release builds
-    private val IS_TEST_MODE = BuildConfig.DEBUG
-
-    // Production IDs are now safely injected via BuildConfig from local.properties
+    // Production IDs are safely injected via BuildConfig from local.properties
     private val PROD_BANNER_AD_UNIT_ID = BuildConfig.ADMOB_BANNER_ID
     private val PROD_INTERSTITIAL_AD_UNIT_ID = BuildConfig.ADMOB_INTERSTITIAL_ID
     private val PROD_NATIVE_AD_UNIT_ID = BuildConfig.ADMOB_NATIVE_ID
+    private val PROD_REWARDED_AD_UNIT_ID = BuildConfig.ADMOB_REWARDED_ID
 
-    // Official Google Test IDs
+    // Official Google Test IDs (fallback when production IDs are not configured)
     private const val TEST_BANNER_AD_UNIT_ID = "ca-app-pub-3940256099942544/6300978111"
     private const val TEST_INTERSTITIAL_AD_UNIT_ID = "ca-app-pub-3940256099942544/1033173712"
     private const val TEST_NATIVE_AD_UNIT_ID = "ca-app-pub-3940256099942544/2247696110"
-
-    // Rewarded ad — test ID from Google, production uses same native ID as placeholder
     private const val TEST_REWARDED_AD_UNIT_ID = "ca-app-pub-3940256099942544/5224354917"
-    private const val PROD_REWARDED_AD_UNIT_ID = "ca-app-pub-3940256099942544/5224354917"
 
-    private const val BANNER_RETRY_DELAY_MS = 30_000L      // Retry failed banner after 30s
+    private const val BANNER_RETRY_DELAY_MS = 25_000L      // Retry failed banner after 25s
 
     // Default to enabled; runtime pro check in shouldShowAds() handles pro gating.
     // Use setAdsEnabled() for remote-config overrides.
@@ -69,20 +65,20 @@ object AdsManager {
     private val pendingBannerRetries = HashMap<Int, Runnable>()
     private val mainHandler = Handler(Looper.getMainLooper())
 
-    private fun getBannerId(): String {
-        return if (IS_TEST_MODE || PROD_BANNER_AD_UNIT_ID.isEmpty()) TEST_BANNER_AD_UNIT_ID else PROD_BANNER_AD_UNIT_ID
+    fun getBannerId(): String {
+        return if (PROD_BANNER_AD_UNIT_ID.isNotEmpty()) PROD_BANNER_AD_UNIT_ID else TEST_BANNER_AD_UNIT_ID
     }
 
-    private fun getInterstitialId(): String {
-        return if (IS_TEST_MODE || PROD_INTERSTITIAL_AD_UNIT_ID.isEmpty()) TEST_INTERSTITIAL_AD_UNIT_ID else PROD_INTERSTITIAL_AD_UNIT_ID
+    fun getInterstitialId(): String {
+        return if (PROD_INTERSTITIAL_AD_UNIT_ID.isNotEmpty()) PROD_INTERSTITIAL_AD_UNIT_ID else TEST_INTERSTITIAL_AD_UNIT_ID
     }
 
-    private fun getNativeId(): String {
-        return if (IS_TEST_MODE || PROD_NATIVE_AD_UNIT_ID.isEmpty()) TEST_NATIVE_AD_UNIT_ID else PROD_NATIVE_AD_UNIT_ID
+    fun getNativeId(): String {
+        return if (PROD_NATIVE_AD_UNIT_ID.isNotEmpty()) PROD_NATIVE_AD_UNIT_ID else TEST_NATIVE_AD_UNIT_ID
     }
 
-    private fun getRewardedId(): String {
-        return if (IS_TEST_MODE || PROD_REWARDED_AD_UNIT_ID.isEmpty()) TEST_REWARDED_AD_UNIT_ID else PROD_REWARDED_AD_UNIT_ID
+    fun getRewardedId(): String {
+        return if (PROD_REWARDED_AD_UNIT_ID.isNotEmpty()) PROD_REWARDED_AD_UNIT_ID else TEST_REWARDED_AD_UNIT_ID
     }
 
     /**
@@ -112,15 +108,40 @@ object AdsManager {
     }
 
     /**
+     * Helper to compute Anchored Adaptive Banner size for highest fill rate.
+     */
+    private fun getAdaptiveBannerSize(context: Context, container: ViewGroup): AdSize {
+        val displayMetrics = context.resources.displayMetrics
+        var widthPixels = container.width.toFloat()
+        if (widthPixels <= 0f) {
+            widthPixels = displayMetrics.widthPixels.toFloat()
+        }
+        val density = displayMetrics.density
+        val adWidth = (widthPixels / density).toInt().coerceAtLeast(320)
+        return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(context, adWidth)
+    }
+
+    /**
+     * Format AdMob LoadAdError into clear actionable developer details.
+     */
+    fun formatAdError(error: LoadAdError): String {
+        val codeDescription = when (error.code) {
+            AdRequest.ERROR_CODE_NO_FILL -> "ERROR_CODE_NO_FILL (3): AdMob has no ad to serve right now. Causes: account-level temporary ad limits, missing/unverified app-ads.txt, unlinked Play Store listing, or low regional advertiser demand."
+            AdRequest.ERROR_CODE_NETWORK_ERROR -> "ERROR_CODE_NETWORK_ERROR (2): Device network connection or timeout issue."
+            AdRequest.ERROR_CODE_INVALID_REQUEST -> "ERROR_CODE_INVALID_REQUEST (1): Invalid Ad Unit ID or App ID mismatch in AndroidManifest."
+            AdRequest.ERROR_CODE_INTERNAL_ERROR -> "ERROR_CODE_INTERNAL_ERROR (0): Internal AdMob server error or user consent missing."
+            else -> "UNKNOWN (${error.code})"
+        }
+        return "[$codeDescription] Message: ${error.message} | Domain: ${error.domain}"
+    }
+
+    /**
      * Load and show a banner ad in the provided container.
      * Automatically destroys any previous AdView in the container and cancels
      * any stale retry Runnables.
      *
-     * Uses fixed-size [AdSize.BANNER] for maximum fill rate. Keeps the container
-     * VISIBLE at all times so the ad slot is always present — on failure the
-     * container shows but is transparent to clicks.
-     *
-     * Retries up to 3 times with exponential backoff (30s, 60s, 90s).
+     * Uses Adaptive Banner for highest fill rate. Keeps container VISIBLE so UI remains stable.
+     * Retries up to 3 times with backoff.
      */
     fun loadBannerAd(container: ViewGroup) {
         if (!shouldShowAds()) {
@@ -138,7 +159,13 @@ object AdsManager {
 
         val adView = AdView(container.context)
         adView.adUnitId = getBannerId()
-        adView.setAdSize(AdSize.BANNER)
+        
+        // Use adaptive banner size for best fill rate
+        try {
+            adView.setAdSize(getAdaptiveBannerSize(container.context, container))
+        } catch (_: Exception) {
+            adView.setAdSize(AdSize.BANNER)
+        }
 
         container.removeAllViews()
         container.addView(adView)
@@ -152,15 +179,11 @@ object AdsManager {
 
         adView.adListener = object : AdListener() {
             override fun onAdFailedToLoad(error: LoadAdError) {
-                Log.e(TAG, "Banner failed to load: ${error.message} (attempt ${retryAttempts + 1})")
-                // Keep container VISIBLE — the empty slot is better than a
-                // disappearing layout. User will see a blank space bounded by
-                // the container's minHeight.
+                Log.w(TAG, "Banner failed to load: ${formatAdError(error)} (attempt ${retryAttempts + 1})")
                 if (retryAttempts < maxRetries) {
                     retryAttempts++
                     val delay = BANNER_RETRY_DELAY_MS * retryAttempts
                     val retryTask = Runnable {
-                        // Double-check we haven't been replaced by a fresh bind
                         if (container.indexOfChild(adView) >= 0 && shouldShowAds()) {
                             adView.loadAd(adRequest)
                         }
@@ -172,6 +195,7 @@ object AdsManager {
 
             override fun onAdLoaded() {
                 retryAttempts = 0
+                Log.d(TAG, "Banner successfully loaded and displayed.")
             }
 
             override fun onAdImpression() {
@@ -190,7 +214,7 @@ object AdsManager {
         InterstitialAd.load(context, getInterstitialId(), adRequest,
             object : InterstitialAdLoadCallback() {
                 override fun onAdFailedToLoad(adError: LoadAdError) {
-                    Log.e(TAG, "Interstitial failed to load: ${adError.message}")
+                    Log.w(TAG, "Interstitial failed to load: ${formatAdError(adError)}")
                     mInterstitialAd = null
                 }
 
@@ -242,7 +266,7 @@ object AdsManager {
             }
             .withAdListener(object : AdListener() {
                 override fun onAdFailedToLoad(adError: LoadAdError) {
-                    Log.e(TAG, "Native ad preload failed: ${adError.message}")
+                    Log.w(TAG, "Native ad preload failed: ${formatAdError(adError)}")
                 }
             })
             .withNativeAdOptions(NativeAdOptions.Builder().build())
@@ -278,7 +302,7 @@ object AdsManager {
             }
             .withAdListener(object : AdListener() {
                 override fun onAdFailedToLoad(adError: LoadAdError) {
-                    Log.e(TAG, "Native ad failed to load: ${adError.message}")
+                    Log.w(TAG, "Native ad failed to load: ${formatAdError(adError)}")
                     callback(null)
                 }
             })
@@ -347,7 +371,7 @@ object AdsManager {
         RewardedAd.load(context, getRewardedId(), adRequest,
             object : RewardedAdLoadCallback() {
                 override fun onAdFailedToLoad(adError: LoadAdError) {
-                    Log.e(TAG, "Rewarded ad failed to load: ${adError.message}")
+                    Log.w(TAG, "Rewarded ad failed to load: ${formatAdError(adError)}")
                     mRewardedAd = null
                 }
 
@@ -386,9 +410,6 @@ object AdsManager {
     }
 
     /**
-     * Release all ad resources. Call from Application.onTerminate() or when ads are permanently disabled.
-     */
-    /**
      * Print diagnostic info to Logcat — useful for debugging ad fill issues.
      * Look for "AdDiagnostics" in the log. Call from App.onCreate() or via debug menu.
      */
@@ -403,18 +424,10 @@ object AdsManager {
         Log.i(TAG, "Pro version: $isPro")
         Log.i(TAG, "Ads enabled: $isAdsEnabled")
         Log.i(TAG, "shouldShowAds(): ${shouldShowAds()}")
-        Log.i(TAG, "Native ad unit: ${
-            if (IS_TEST_MODE || PROD_NATIVE_AD_UNIT_ID.isEmpty()) "TEST ($TEST_NATIVE_AD_UNIT_ID)"
-            else "PROD ($PROD_NATIVE_AD_UNIT_ID)"
-        }")
-        Log.i(TAG, "Banner ad unit:  ${
-            if (IS_TEST_MODE || PROD_BANNER_AD_UNIT_ID.isEmpty()) "TEST ($TEST_BANNER_AD_UNIT_ID)"
-            else "PROD ($PROD_BANNER_AD_UNIT_ID)"
-        }")
-        Log.i(TAG, "Interstitial ad unit: ${
-            if (IS_TEST_MODE || PROD_INTERSTITIAL_AD_UNIT_ID.isEmpty()) "TEST ($TEST_INTERSTITIAL_AD_UNIT_ID)"
-            else "PROD ($PROD_INTERSTITIAL_AD_UNIT_ID)"
-        }")
+        Log.i(TAG, "Native ad unit:       ${if (PROD_NATIVE_AD_UNIT_ID.isNotEmpty()) "PROD ($PROD_NATIVE_AD_UNIT_ID)" else "TEST ($TEST_NATIVE_AD_UNIT_ID)"}")
+        Log.i(TAG, "Banner ad unit:       ${if (PROD_BANNER_AD_UNIT_ID.isNotEmpty()) "PROD ($PROD_BANNER_AD_UNIT_ID)" else "TEST ($TEST_BANNER_AD_UNIT_ID)"}")
+        Log.i(TAG, "Interstitial ad unit: ${if (PROD_INTERSTITIAL_AD_UNIT_ID.isNotEmpty()) "PROD ($PROD_INTERSTITIAL_AD_UNIT_ID)" else "TEST ($TEST_INTERSTITIAL_AD_UNIT_ID)"}")
+        Log.i(TAG, "Rewarded ad unit:     ${if (PROD_REWARDED_AD_UNIT_ID.isNotEmpty()) "PROD ($PROD_REWARDED_AD_UNIT_ID)" else "TEST ($TEST_REWARDED_AD_UNIT_ID)"}")
         Log.i(TAG, "Native preloaded: $nativeReady")
         Log.i(TAG, "Interstitial loaded: $interstitialReady")
         Log.i(TAG, "Rewarded loaded: $rewardedReady")
