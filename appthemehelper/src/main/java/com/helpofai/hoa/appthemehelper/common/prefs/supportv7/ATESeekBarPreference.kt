@@ -1,14 +1,12 @@
 package com.helpofai.hoa.appthemehelper.common.prefs.supportv7
 
 import android.content.Context
-import android.text.Editable
 import android.util.AttributeSet
 import android.widget.SeekBar
 import android.widget.TextView
 import androidx.core.content.withStyledAttributes
 import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
-import androidx.core.widget.doAfterTextChanged
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.preference.PreferenceViewHolder
@@ -51,9 +49,9 @@ class ATESeekBarPreference @JvmOverloads constructor(
             accentColor, false
         )
         (view.findViewById(androidx.preference.R.id.seekbar_value) as TextView).apply {
-            appendUnit(editableText)
-            doAfterTextChanged {
-                appendUnit(it)
+            // Fix: Only append unit once on bind, skip doAfterTextChanged to avoid infinite loop with EmojiCompat
+            if (unit.isNotEmpty() && !text.endsWith(unit)) {
+                append(unit)
             }
         }
 
@@ -80,12 +78,6 @@ class ATESeekBarPreference @JvmOverloads constructor(
                     value = newValue
                 }
             }
-        }
-    }
-
-    private fun TextView.appendUnit(editable: Editable?) {
-        if (!editable.toString().endsWith(unit)) {
-            append(unit)
         }
     }
 }
