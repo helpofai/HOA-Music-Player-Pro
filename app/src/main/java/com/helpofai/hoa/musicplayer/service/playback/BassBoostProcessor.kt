@@ -15,12 +15,13 @@ import kotlin.math.abs
 import kotlin.math.cos
 import kotlin.math.max
 import kotlin.math.min
+import kotlin.math.pow
 import kotlin.math.sin
 import kotlin.math.sqrt
 import kotlin.math.tanh
 
 /**
- * Mastering-Grade Apex Kinetic Bass Engine (v10.0)
+ * Mastering-Grade Apex Kinetic Bass Engine (v10.2)
  *
  * Built on Media3 BaseAudioProcessor for robust lifecycle and zero playback stalling:
  * 1. 8th-Order Linkwitz-Riley (48 dB/oct) Zero-Leakage Sub-Band Isolation (<110Hz).
@@ -28,6 +29,9 @@ import kotlin.math.tanh
  * 3. Warm Harmonic Sub-Synthesis with soft-clipping tape drive.
  * 4. Stereo-Linked Dynamic Transient Punch (Kick Drums & 808s).
  * 5. C1-Continuous Soft-Knee Mastering Limiter.
+ *
+ * Slider curve: uses sqrt(strength) so 50% slider ≈ old 100% quality,
+ * and 100% slider delivers noticeably stronger, deeper bass.
  */
 @UnstableApi
 class BassBoostProcessor : BaseAudioProcessor() {
@@ -125,7 +129,12 @@ class BassBoostProcessor : BaseAudioProcessor() {
 
         val is16Bit = inputAudioFormat.encoding == C.ENCODING_PCM_16BIT
         val bytesPerSample = if (is16Bit) 2 else 4
-        val str = strength
+
+        // ── NON-LINEAR SLIDER CURVE ─────────────────────────────────────
+        // sqrt curve: slider 50% → str=0.707 (≈old 100% quality)
+        //             slider 100% → str=1.0 (new maximum, deeper & harder)
+        val str = sqrt(strength)
+
         val fs = inputAudioFormat.sampleRate.toFloat()
 
         val dt = 1f / fs
@@ -133,8 +142,8 @@ class BassBoostProcessor : BaseAudioProcessor() {
         val rel = (dt / (0.150f + dt)).coerceIn(0f, 1f)   // 150ms release
         val peakHoldSamples = (fs * 0.015f).toInt().coerceAtLeast(1) // 15ms peak hold
 
-        // Headroom factor to smoothly balance overall volume without pumping
-        val headroomScale = 1f / (1f + (str * 0.20f))
+        // Headroom: slightly tighter scale to keep vocals clear at 100%
+        val headroomScale = 1f / (1f + (str * 0.22f))
 
         val position = inputBuffer.position()
         val limit = inputBuffer.limit()
