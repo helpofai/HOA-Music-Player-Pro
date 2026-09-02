@@ -227,7 +227,7 @@ open class SongAdapter(
             get() = Song.emptySong
 
         fun loadAd() {
-            adContainer?.let { AdsManager.loadBannerAd(it) }
+            adContainer?.let { AdsManager.loadBannerAd(it, adaptive = false) }
         }
 
         override fun onClick(v: View?) {}

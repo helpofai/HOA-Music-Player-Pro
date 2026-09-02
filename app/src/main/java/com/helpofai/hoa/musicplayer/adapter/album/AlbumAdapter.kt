@@ -208,7 +208,7 @@ open class AlbumAdapter(
     inner class AdViewHolder(itemView: View) : ViewHolder(itemView) {
         private val adContainer: ViewGroup? = itemView.findViewById(R.id.ad_container)
         fun loadAd() {
-            adContainer?.let { AdsManager.loadBannerAd(it) }
+            adContainer?.let { AdsManager.loadBannerAd(it, adaptive = false) }
         }
         override fun onClick(v: View?) {}
         override fun onLongClick(v: View?): Boolean = false

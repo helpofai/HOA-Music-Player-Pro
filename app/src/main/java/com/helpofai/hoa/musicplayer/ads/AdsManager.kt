@@ -96,18 +96,6 @@ object AdsManager {
     }
 
     /**
-     * Destroy any AdView children in the container to prevent memory leaks.
-     */
-    private fun destroyExistingAdViews(container: ViewGroup) {
-        for (i in 0 until container.childCount) {
-            val child = container.getChildAt(i)
-            if (child is AdView) {
-                child.destroy()
-            }
-        }
-    }
-
-    /**
      * Helper to compute Anchored Adaptive Banner size for highest fill rate.
      */
     private fun getAdaptiveBannerSize(context: Context, container: ViewGroup): AdSize {
@@ -137,16 +125,23 @@ object AdsManager {
 
     /**
      * Load and show a banner ad in the provided container.
-     * Automatically destroys any previous AdView in the container and cancels
-     * any stale retry Runnables.
      *
-     * Uses Adaptive Banner for highest fill rate. Keeps container VISIBLE so UI remains stable.
-     * Retries up to 3 times with backoff.
+     * @param container ViewGroup where the AdView should be placed
+     * @param adaptive Whether to use Anchored Adaptive Banner (full screen width) or fixed standard BANNER
      */
-    fun loadBannerAd(container: ViewGroup) {
+    fun loadBannerAd(container: ViewGroup, adaptive: Boolean = true) {
         if (!shouldShowAds()) {
             container.visibility = View.GONE
             return
+        }
+
+        // Avoid destroying already attached or in-flight AdViews when scrolling RecyclerView
+        for (i in 0 until container.childCount) {
+            val child = container.getChildAt(i)
+            if (child is AdView) {
+                container.visibility = View.VISIBLE
+                return
+            }
         }
 
         val containerKey = System.identityHashCode(container)
@@ -154,15 +149,15 @@ object AdsManager {
         // Cancel any stale retry from a previous load of this container
         pendingBannerRetries.remove(containerKey)?.let { mainHandler.removeCallbacks(it) }
 
-        // Destroy any existing AdView to prevent memory leaks
-        destroyExistingAdViews(container)
-
         val adView = AdView(container.context)
         adView.adUnitId = getBannerId()
         
-        // Use adaptive banner size for best fill rate
         try {
-            adView.setAdSize(getAdaptiveBannerSize(container.context, container))
+            if (adaptive) {
+                adView.setAdSize(getAdaptiveBannerSize(container.context, container))
+            } else {
+                adView.setAdSize(AdSize.BANNER)
+            }
         } catch (_: Exception) {
             adView.setAdSize(AdSize.BANNER)
         }

@@ -91,6 +91,15 @@ class HomeFragment :
         loadProfile()
         setupTitle()
         colorButtons()
+
+        // Load banner ad below quick-actions
+        if (AdsManager.shouldShowAds()) {
+            binding.adContainerHomeBanner.isVisible = true
+            AdsManager.loadBannerAd(binding.adContainerHomeBanner, adaptive = true)
+        } else {
+            binding.adContainerHomeBanner.isVisible = false
+        }
+
         postponeEnterTransition()
         view.doOnPreDraw { startPostponedEnterTransition() }
         view.doOnLayout {
@@ -249,14 +258,6 @@ class HomeFragment :
         if (!PreferenceUtil.homeSuggestions || songs.isEmpty()) {
             binding.suggestions.root.isVisible = false
             return
-        }
-
-        // Banner ad below quick-action buttons
-        if (AdsManager.shouldShowAds()) {
-            binding.adContainerHomeBanner.isVisible = true
-            AdsManager.loadBannerAd(binding.adContainerHomeBanner)
-        } else {
-            binding.adContainerHomeBanner.isVisible = false
         }
 
         // Native ad in suggestions card

@@ -198,7 +198,7 @@ class ArtistAdapter(
         private val adContainer: ViewGroup? = itemView.findViewById(R.id.ad_container)
 
         fun loadAd() {
-            adContainer?.let { AdsManager.loadBannerAd(it) }
+            adContainer?.let { AdsManager.loadBannerAd(it, adaptive = false) }
         }
 
         override fun onClick(v: View?) {}

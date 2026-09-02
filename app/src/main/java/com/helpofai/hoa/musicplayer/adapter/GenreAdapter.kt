@@ -137,7 +137,7 @@ class GenreAdapter(
     inner class AdViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val adContainer: ViewGroup? = itemView.findViewById(R.id.ad_container)
         fun loadAd() {
-            adContainer?.let { AdsManager.loadBannerAd(it) }
+            adContainer?.let { AdsManager.loadBannerAd(it, adaptive = false) }
         }
     }
 
