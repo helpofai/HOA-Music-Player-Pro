@@ -183,6 +183,42 @@ class PlaybackManager(val context: Context) {
     fun setPlaybackSpeedPitch(playbackSpeed: Float, playbackPitch: Float) {
         playback?.setPlaybackSpeedPitch(playbackSpeed, playbackPitch)
     }
+
+    fun setBalance(balance: Float) {
+        playback?.setBalance(balance)
+    }
+
+    fun setStereoWidth(width: Float) {
+        playback?.setStereoWidth(width)
+    }
+
+    fun setClarity(clarity: Float) {
+        playback?.setClarity(clarity)
+    }
+
+    fun setBassStrength(strength: Float) {
+        playback?.setBassStrength(strength)
+    }
+
+    fun setReverbAmount(amount: Float) {
+        playback?.setReverbAmount(amount)
+    }
+
+    fun setCompressorEnabled(enabled: Boolean) {
+        playback?.setCompressorEnabled(enabled)
+    }
+
+    fun setSpatialStrength(strength: Float) {
+        playback?.setSpatialStrength(strength)
+    }
+
+    fun setNoiseCancellationEnabled(enabled: Boolean) {
+        playback?.setNoiseCancellationEnabled(enabled)
+    }
+
+    fun setNoiseCancellationStrength(strength: Float) {
+        playback?.setNoiseCancellationStrength(strength)
+    }
 }
 
 enum class PlaybackLocation {

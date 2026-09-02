@@ -82,6 +82,7 @@ import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.getSongModel
 import com.helpofai.hoa.musicplayer.glide.HoaGlideExtension.songCoverOptions
 import com.helpofai.hoa.musicplayer.helper.ShuffleHelper.makeShuffleList
 import com.helpofai.hoa.musicplayer.model.Song
+import com.helpofai.hoa.musicplayer.util.PreferenceUtil
 import com.helpofai.hoa.musicplayer.model.Song.Companion.emptySong
 import com.helpofai.hoa.musicplayer.model.smartplaylist.AbsSmartPlaylist
 import com.helpofai.hoa.musicplayer.providers.HistoryStore
@@ -681,17 +682,23 @@ class MusicService : MediaBrowserServiceCompat(),
 
             TOGGLE_HEADSET -> registerHeadsetEvents()
 
-            "audio_balance" -> (playback as? HoaExoPlayer)?.setBalance(com.helpofai.hoa.musicplayer.util.PreferenceUtil.balance)
+            "audio_balance" -> playbackManager.setBalance(PreferenceUtil.balance)
 
-            "audio_stereo_width" -> (playback as? HoaExoPlayer)?.setStereoWidth(com.helpofai.hoa.musicplayer.util.PreferenceUtil.stereoWidth)
+            "audio_stereo_width" -> playbackManager.setStereoWidth(PreferenceUtil.stereoWidth)
 
-            "audio_bass_strength" -> (playback as? HoaExoPlayer)?.setBassStrength(com.helpofai.hoa.musicplayer.util.PreferenceUtil.bassStrength)
+            "audio_bass_strength" -> playbackManager.setBassStrength(PreferenceUtil.bassStrength)
 
-            "audio_reverb_amount" -> (playback as? HoaExoPlayer)?.setReverbAmount(com.helpofai.hoa.musicplayer.util.PreferenceUtil.reverbAmount)
+            "audio_reverb_amount" -> playbackManager.setReverbAmount(PreferenceUtil.reverbAmount)
 
-            "audio_clarity" -> (playback as? HoaExoPlayer)?.setClarity(com.helpofai.hoa.musicplayer.util.PreferenceUtil.clarity)
+            "audio_clarity" -> playbackManager.setClarity(PreferenceUtil.clarity)
 
-            "compressor_enabled" -> (playback as? HoaExoPlayer)?.setCompressorEnabled(com.helpofai.hoa.musicplayer.util.PreferenceUtil.compressorEnabled)
+            "audio_spatial_strength", "spatial_audio" -> playbackManager.setSpatialStrength(PreferenceUtil.spatialStrength)
+
+            "compressor_enabled" -> playbackManager.setCompressorEnabled(PreferenceUtil.compressorEnabled)
+
+            "audio_noise_cancellation" -> playbackManager.setNoiseCancellationEnabled(PreferenceUtil.noiseCancellationEnabled)
+
+            "audio_noise_cancellation_strength" -> playbackManager.setNoiseCancellationStrength(PreferenceUtil.noiseCancellationStrength)
         }
     }
 
@@ -1027,8 +1034,11 @@ class MusicService : MediaBrowserServiceCompat(),
         intent.putExtra("position", songProgressMillis.toLong())
         intent.putExtra("playing", isPlaying)
         intent.putExtra("scrobbling_source", hoa_MUSIC_PACKAGE_NAME)
-        @Suppress("Deprecation")
-        sendStickyBroadcast(intent)
+        try {
+            sendBroadcast(intent)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     fun toggleShuffle() {

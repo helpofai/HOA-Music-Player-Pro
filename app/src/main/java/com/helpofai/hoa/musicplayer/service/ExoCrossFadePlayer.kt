@@ -236,6 +236,51 @@ class ExoCrossFadePlayer(context: Context) : AudioManagerPlayback(context), Play
         player2.setPlaybackSpeedPitch(speed, pitch)
     }
 
+    override fun setBalance(balance: Float) {
+        player1.setBalance(balance)
+        player2.setBalance(balance)
+    }
+
+    override fun setStereoWidth(width: Float) {
+        player1.setStereoWidth(width)
+        player2.setStereoWidth(width)
+    }
+
+    override fun setClarity(clarity: Float) {
+        player1.setClarity(clarity)
+        player2.setClarity(clarity)
+    }
+
+    override fun setBassStrength(strength: Float) {
+        player1.setBassStrength(strength)
+        player2.setBassStrength(strength)
+    }
+
+    override fun setReverbAmount(amount: Float) {
+        player1.setReverbAmount(amount)
+        player2.setReverbAmount(amount)
+    }
+
+    override fun setCompressorEnabled(enabled: Boolean) {
+        player1.setCompressorEnabled(enabled)
+        player2.setCompressorEnabled(enabled)
+    }
+
+    override fun setSpatialStrength(strength: Float) {
+        player1.setSpatialStrength(strength)
+        player2.setSpatialStrength(strength)
+    }
+
+    override fun setNoiseCancellationEnabled(enabled: Boolean) {
+        player1.setNoiseCancellationEnabled(enabled)
+        player2.setNoiseCancellationEnabled(enabled)
+    }
+
+    override fun setNoiseCancellationStrength(strength: Float) {
+        player1.setNoiseCancellationStrength(strength)
+        player2.setNoiseCancellationStrength(strength)
+    }
+
     // PlaybackCallbacks implementation
     override fun onTrackWentToNext() {
         // Handled by our own crossfade logic

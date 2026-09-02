@@ -88,7 +88,7 @@ class App : Application() {
         }
 
         fun isProVersion(): Boolean {
-            return instance?.billingManager!!.isProVersion
+            return instance?.billingManager?.isProVersion ?: false
         }
     }
 }

@@ -68,6 +68,8 @@ import com.helpofai.hoa.musicplayer.MANAGE_AUDIO_FOCUS
 import com.helpofai.hoa.musicplayer.MATERIAL_YOU
 import com.helpofai.hoa.musicplayer.NEW_BLUR_AMOUNT
 import com.helpofai.hoa.musicplayer.NEXT_SLEEP_TIMER_ELAPSED_REALTIME
+import com.helpofai.hoa.musicplayer.NOISE_CANCELLATION
+import com.helpofai.hoa.musicplayer.NOISE_CANCELLATION_STRENGTH
 import com.helpofai.hoa.musicplayer.NOW_PLAYING_SCREEN_ID
 import com.helpofai.hoa.musicplayer.PAUSE_HISTORY
 import com.helpofai.hoa.musicplayer.PAUSE_ON_ZERO_VOLUME
@@ -890,10 +892,35 @@ object PreferenceUtil {
             sharedPreferences.edit { putInt("audio_clarity", intValue) }
         }
 
+    var spatialStrength: Float
+        get() {
+            val value = sharedPreferences.getInt("audio_spatial_strength", 0)
+            return value / 100f
+        }
+        set(value) {
+            val intValue = (value * 100).toInt()
+            sharedPreferences.edit { putInt("audio_spatial_strength", intValue) }
+        }
+
     // ── Multiband Compressor ──────────────────────────────────────
     var compressorEnabled: Boolean
         get() = sharedPreferences.getBoolean("compressor_enabled", false)
         set(value) = sharedPreferences.edit { putBoolean("compressor_enabled", value) }
+
+    // ── Audio Noise Cancellation & De-Noising ────────────────────
+    var noiseCancellationEnabled: Boolean
+        get() = sharedPreferences.getBoolean(NOISE_CANCELLATION, false)
+        set(value) = sharedPreferences.edit { putBoolean(NOISE_CANCELLATION, value) }
+
+    var noiseCancellationStrength: Float
+        get() {
+            val value = sharedPreferences.getInt(NOISE_CANCELLATION_STRENGTH, 50)
+            return value / 100f
+        }
+        set(value) {
+            val intValue = (value * 100).toInt()
+            sharedPreferences.edit { putInt(NOISE_CANCELLATION_STRENGTH, intValue) }
+        }
 
     val appBarMode: TopAppBarLayout.AppBarMode
         get() = if (sharedPreferences.getString(APPBAR_MODE, "1") == "0") {

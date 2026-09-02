@@ -589,6 +589,10 @@
     <string name="pref_summary_audio_signature">One-tap professional tuning presets</string>
     <string name="pref_title_compressor">Multiband Compressor</string>
     <string name="pref_summary_compressor">3-band dynamics processor for consistent, punchy sound</string>
+    <string name="pref_title_noise_cancellation">Audio Noise Cancellation</string>
+    <string name="pref_summary_noise_cancellation">Adaptive de-noising, tape hiss removal, and DC rumble filter</string>
+    <string name="pref_title_noise_cancellation_strength">Noise Reduction Sensitivity</string>
+    <string name="pref_summary_noise_cancellation_strength">Sensitivity of the downward expander and spectral de-hiss filter</string>
     <string name="preset_hoa_signature">The HOA Signature</string>
     <string name="preset_bass_head">Bass Head</string>
     <string name="preset_vocal_air">Vocal Air</string>

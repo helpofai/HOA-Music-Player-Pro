@@ -161,6 +161,8 @@ class AudioSettings : AbsSettingsFragment() {
         PreferenceUtil.clarity = 0f // Off (0)
         PreferenceUtil.bassStrength = 0f // Off (0)
         PreferenceUtil.reverbAmount = 0f // Off (0)
+        PreferenceUtil.noiseCancellationEnabled = false
+        PreferenceUtil.noiseCancellationStrength = 0.5f
 
         // Refresh UI
         (findPreference("audio_balance") as? SeekBarPreference)?.value = 100
@@ -168,6 +170,8 @@ class AudioSettings : AbsSettingsFragment() {
         (findPreference("audio_clarity") as? SeekBarPreference)?.value = 0
         (findPreference("audio_bass_strength") as? SeekBarPreference)?.value = 0
         (findPreference("audio_reverb_amount") as? SeekBarPreference)?.value = 0
+        (findPreference("audio_noise_cancellation") as? androidx.preference.TwoStatePreference)?.isChecked = false
+        (findPreference("audio_noise_cancellation_strength") as? SeekBarPreference)?.value = 50
         Toast.makeText(requireContext(), R.string.message_updated, Toast.LENGTH_SHORT).show()
     }
 

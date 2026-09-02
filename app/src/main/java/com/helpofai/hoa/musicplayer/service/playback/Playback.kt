@@ -57,6 +57,24 @@ interface Playback {
 
     fun setPlaybackSpeedPitch(speed: Float, pitch: Float)
 
+    fun setBalance(balance: Float) {}
+
+    fun setStereoWidth(width: Float) {}
+
+    fun setClarity(clarity: Float) {}
+
+    fun setBassStrength(strength: Float) {}
+
+    fun setReverbAmount(amount: Float) {}
+
+    fun setCompressorEnabled(enabled: Boolean) {}
+
+    fun setSpatialStrength(strength: Float) {}
+
+    fun setNoiseCancellationEnabled(enabled: Boolean) {}
+
+    fun setNoiseCancellationStrength(strength: Float) {}
+
     interface PlaybackCallbacks {
         fun onTrackWentToNext()
 

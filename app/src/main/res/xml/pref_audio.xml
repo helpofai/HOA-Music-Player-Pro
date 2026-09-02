@@ -139,6 +139,26 @@
         android:title="@string/pref_title_compressor"
         app:icon="@drawable/ic_equalizer" />
 
+    <com.helpofai.hoa.appthemehelper.common.prefs.supportv7.ATESwitchPreference
+        android:defaultValue="false"
+        android:key="audio_noise_cancellation"
+        android:layout="@layout/list_item_view_switch"
+        android:summary="@string/pref_summary_noise_cancellation"
+        android:title="@string/pref_title_noise_cancellation"
+        app:icon="@drawable/ic_settings_brightness" />
+
+    <com.helpofai.hoa.appthemehelper.common.prefs.supportv7.ATESeekBarPreference
+        android:defaultValue="50"
+        android:key="audio_noise_cancellation_strength"
+        android:layout="@layout/list_item_view_seekbar"
+        android:max="100"
+        android:summary="@string/pref_summary_noise_cancellation_strength"
+        android:title="@string/pref_title_noise_cancellation_strength"
+        app:ateKey_pref_unit="%"
+        app:dependency="audio_noise_cancellation"
+        app:icon="@drawable/ic_diamond"
+        app:showSeekBarValue="true" />
+
     <com.helpofai.hoa.appthemehelper.common.prefs.supportv7.ATEPreference
         android:key="restore_default_audio"
         android:layout="@layout/list_item_view_no_title"

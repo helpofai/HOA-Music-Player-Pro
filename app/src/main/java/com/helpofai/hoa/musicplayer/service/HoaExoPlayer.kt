@@ -18,8 +18,10 @@ import androidx.media3.exoplayer.audio.AudioSink
 import androidx.media3.exoplayer.audio.DefaultAudioSink
 import com.helpofai.hoa.musicplayer.R
 import com.helpofai.hoa.musicplayer.service.playback.BassBoostProcessor
+import com.helpofai.hoa.musicplayer.service.playback.BinauralProcessor
 import com.helpofai.hoa.musicplayer.service.playback.InstrumentExciterProcessor
 import com.helpofai.hoa.musicplayer.service.playback.MultibandCompressorProcessor
+import com.helpofai.hoa.musicplayer.service.playback.NoiseCancellationProcessor
 import com.helpofai.hoa.musicplayer.service.playback.ReverbProcessor
 import com.helpofai.hoa.musicplayer.service.playback.StereoProcessor
 import com.helpofai.hoa.musicplayer.util.PreferenceUtil
@@ -33,10 +35,12 @@ import com.helpofai.hoa.musicplayer.util.logE
 
 @OptIn(UnstableApi::class)
 class HoaExoPlayer(context: Context) : AudioManagerPlayback(context), Player.Listener {
+    private val noiseCancellationProcessor = NoiseCancellationProcessor()
     private val stereoProcessor = StereoProcessor()
     private val reverbProcessor = ReverbProcessor()
     private val bassBoostProcessor = BassBoostProcessor()
     private val instrumentExciter = InstrumentExciterProcessor()
+    private val binauralProcessor = BinauralProcessor()
     private val compressor = MultibandCompressorProcessor()
 
     private var player: ExoPlayer = createPlayer()
@@ -46,6 +50,8 @@ class HoaExoPlayer(context: Context) : AudioManagerPlayback(context), Player.Lis
         private set
 
     init {
+        noiseCancellationProcessor.enabled = PreferenceUtil.noiseCancellationEnabled
+        noiseCancellationProcessor.strength = PreferenceUtil.noiseCancellationStrength
         stereoProcessor.balance = PreferenceUtil.balance
         stereoProcessor.stereoWidth = PreferenceUtil.stereoWidth
         stereoProcessor.clarity = PreferenceUtil.clarity
@@ -53,6 +59,7 @@ class HoaExoPlayer(context: Context) : AudioManagerPlayback(context), Player.Lis
         instrumentExciter.strength = PreferenceUtil.clarity
         reverbProcessor.amount = PreferenceUtil.reverbAmount
         bassBoostProcessor.strength = PreferenceUtil.bassStrength
+        binauralProcessor.spatialStrength = PreferenceUtil.spatialStrength
         compressor.enabled = PreferenceUtil.compressorEnabled
         player.setWakeMode(C.WAKE_MODE_LOCAL)
     }
@@ -72,10 +79,12 @@ class HoaExoPlayer(context: Context) : AudioManagerPlayback(context), Player.Lis
                 val useFloat = enableFloatOutput || PreferenceUtil.isHighResAudio
                 return DefaultAudioSink.Builder(context)
                     .setAudioProcessors(arrayOf(
+                        noiseCancellationProcessor,
                         bassBoostProcessor,
                         stereoProcessor,
                         reverbProcessor,
                         instrumentExciter,
+                        binauralProcessor,
                         compressor
                     ))
                     .setEnableFloatOutput(useFloat)
@@ -296,17 +305,17 @@ class HoaExoPlayer(context: Context) : AudioManagerPlayback(context), Player.Lis
         player.playbackParameters = PlaybackParameters(speed, pitch)
     }
 
-    fun setBalance(balance: Float) {
-        stereoProcessor.balance = balance
-    }
-
     private val handler = Handler(Looper.getMainLooper())
 
-    fun setStereoWidth(width: Float) {
+    override fun setBalance(balance: Float) {
+        handler.post { stereoProcessor.balance = balance }
+    }
+
+    override fun setStereoWidth(width: Float) {
         handler.post { stereoProcessor.stereoWidth = width }
     }
 
-    fun setClarity(clarity: Float) {
+    override fun setClarity(clarity: Float) {
         handler.post {
             stereoProcessor.clarity = clarity
             instrumentExciter.clarity = clarity
@@ -314,16 +323,28 @@ class HoaExoPlayer(context: Context) : AudioManagerPlayback(context), Player.Lis
         }
     }
 
-    fun setBassStrength(strength: Float) {
+    override fun setBassStrength(strength: Float) {
         handler.post { bassBoostProcessor.strength = strength }
     }
 
-    fun setReverbAmount(amount: Float) {
+    override fun setReverbAmount(amount: Float) {
         handler.post { reverbProcessor.amount = amount }
     }
 
-    fun setCompressorEnabled(enabled: Boolean) {
+    override fun setCompressorEnabled(enabled: Boolean) {
         handler.post { compressor.enabled = enabled }
+    }
+
+    override fun setSpatialStrength(strength: Float) {
+        handler.post { binauralProcessor.spatialStrength = strength }
+    }
+
+    override fun setNoiseCancellationEnabled(enabled: Boolean) {
+        handler.post { noiseCancellationProcessor.enabled = enabled }
+    }
+
+    override fun setNoiseCancellationStrength(strength: Float) {
+        handler.post { noiseCancellationProcessor.strength = strength }
     }
 
     companion object {
