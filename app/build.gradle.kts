@@ -22,7 +22,7 @@ android {
 
         applicationId = namespace
         versionCode = 7
-        versionName = "7.0.0"
+        versionName = "7.1.0"
 
         val localProperties = getProperties("local.properties")
         val playLicenseKey = getProperties("local.properties")?.getProperty("GOOGLE_PLAY_LICENSE_KEY") 

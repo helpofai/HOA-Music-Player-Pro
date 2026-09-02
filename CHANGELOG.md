@@ -1,3 +1,16 @@
+## [Audio Engine & DSP Overhaul - September 2026] (v7.1.0)
+
+### Added
+- **Noise Cancellation Processor**: Introduced advanced optical-modeled dynamic noise cancellation featuring 30Hz infrasonic HPF, adaptive spectral de-hiss, and stereo downward silence expander.
+- **Audio Settings Integration**: Added interactive switches and controls for Noise Cancellation in Audio Settings.
+
+### Changed
+- **Media3 Architecture Overhaul**: Migrated all audio processors (`BassBoostProcessor`, `StereoProcessor`, `MultibandCompressorProcessor`, `ReverbProcessor`, `BinauralProcessor`, and `InstrumentExciterProcessor`) to Google Media3's `BaseAudioProcessor` lifecycle for stall-free playback and robust buffer handling.
+- **Bass Response Curve**: Applied a non-linear square-root curve to the bass strength slider, delivering punchy bass quality at 50% and higher depth at 100%.
+
+### Fixed
+- **Headphone Balance**: Implemented true linear pan law in `StereoProcessor` and phase-aligned early reflection taps in `BinauralProcessor` for symmetrical Left/Right acoustic energy.
+
 ## [Audio Engine Optimization - August 2026] (v7.0.0)
 
 ### Added
