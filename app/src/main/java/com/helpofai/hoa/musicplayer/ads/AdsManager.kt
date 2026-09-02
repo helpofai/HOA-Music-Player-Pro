@@ -59,6 +59,9 @@ object AdsManager {
     private var mInterstitialAd: InterstitialAd? = null
     private var mRewardedAd: RewardedAd? = null
     private var preloadedNativeAd: NativeAd? = null
+    private var isPreloadingNative = false
+    private var lastNativeFailureTimestamp = 0L
+    private const val NATIVE_FAILURE_COOLDOWN_MS = 15_000L
 
     // Track pending retry Runnables keyed by container identity, so we can cancel
     // stale retries when a fresh loadBannerAd is called for the same container.
@@ -251,16 +254,21 @@ object AdsManager {
      * Preload a NativeAd in the background for instant display later.
      */
     fun preloadNativeAd(context: Context) {
-        if (!shouldShowAds()) return
+        if (!shouldShowAds() || preloadedNativeAd != null || isPreloadingNative) return
+        if (System.currentTimeMillis() - lastNativeFailureTimestamp < NATIVE_FAILURE_COOLDOWN_MS) return
 
+        isPreloadingNative = true
         val adLoader = AdLoader.Builder(context, getNativeId())
             .forNativeAd { nativeAd ->
                 preloadedNativeAd?.destroy()
                 preloadedNativeAd = nativeAd
+                isPreloadingNative = false
                 Log.d(TAG, "Native ad preloaded and cached.")
             }
             .withAdListener(object : AdListener() {
                 override fun onAdFailedToLoad(adError: LoadAdError) {
+                    isPreloadingNative = false
+                    lastNativeFailureTimestamp = System.currentTimeMillis()
                     Log.w(TAG, "Native ad preload failed: ${formatAdError(adError)}")
                 }
             })
@@ -290,6 +298,12 @@ object AdsManager {
             return
         }
 
+        // Avoid spamming AdMob server if recent request failed
+        if (System.currentTimeMillis() - lastNativeFailureTimestamp < NATIVE_FAILURE_COOLDOWN_MS) {
+            callback(null)
+            return
+        }
+
         // No cache — load fresh
         val adLoader = AdLoader.Builder(context, getNativeId())
             .forNativeAd { nativeAd ->
@@ -297,6 +311,7 @@ object AdsManager {
             }
             .withAdListener(object : AdListener() {
                 override fun onAdFailedToLoad(adError: LoadAdError) {
+                    lastNativeFailureTimestamp = System.currentTimeMillis()
                     Log.w(TAG, "Native ad failed to load: ${formatAdError(adError)}")
                     callback(null)
                 }
